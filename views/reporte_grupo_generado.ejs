@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nueva Ventana</title>
+    <style>
+        /* Establecer el tamaño de la página a A4 */
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20mm; /* Margen para la impresión */
+        }
+
+        /* Parte imprimible */
+        #impresion {
+            /* Estilos para la parte imprimible */
+            margin: 10mm;
+        }
+
+        /* Cabecera */
+        #impresion .header {
+            /*background-color: #005000;*/ /* Verde oscuro */
+            /* border: 10px solid #005000;
+            color: #005000; */
+            text-align: center;
+            padding: 0px;
+            margin-bottom: 10px;
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Logo */
+        #impresion .logo {
+            /* Estilos para el logo */
+            /* max-width: 100%; */
+            /* height: auto; */
+            max-width: 20%;
+        }
+
+        #impresion h1{
+            margin: 0;
+            font-size: 1.3rem;
+            width: 50%;
+        }
+
+        /* Subtítulos */
+        #impresion .subtitle {
+            background-color: #0B983A; /* Verde claro */
+            padding: 10px;
+            margin-bottom: 10px;
+            color: white;
+
+            font-size: 11px;
+        }
+
+        /* Contenido */
+        #impresion .content {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        /* Mapa */
+        #impresion #map {
+            width: 100%;
+            height: 350px;
+            margin: 0 auto;
+        }
+
+        .header{
+            display: flex;
+            align-items: center;
+        }
+
+        .header img{
+            
+        }
+
+        .header span{
+            
+            /* font-size: 15px; */
+            font-weight: bold;
+        }
+
+        .content p{
+            border-bottom: 1px solid #358B5A;
+            font-size: 11px;
+        }
+
+        h4{
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        h4 span{
+            font-weight: 700;
+        }
+
+        button{
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+            font-size: 14px;
+            padding: 0.6rem 2.75rem;
+            font-weight: 600;
+            border-radius: 30px;
+            color: #181F26;
+            background-color: #30E85B;
+            border-color: #30E85B;
+            outline: none;
+            text-align: center;
+            text-decoration: none;
+            vertical-align: middle;
+            display: inline-block;
+            text-transform: none;
+        }
+
+        .group-item{
+            display: flex;
+            /* justify-content: space-between; */
+        }
+
+        .item{
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            width: 50%;
+        }
+
+        .item span.atributo{
+            font-weight: 400;
+            font-size: 1rem;
+        }
+
+        .item span.valor{
+            font-weight: 700;
+            font-size: 2rem;
+            padding-top: 0.3rem;
+        }
+
+        .item span.valor-02{
+            font-weight: 700;
+            font-size: 1.25rem;
+            padding-top: 0.5rem;
+            padding-left: 0.5rem;
+        }
+
+        i{
+            font-style: normal;
+        }
+
+        
+        
+    </style>
+</head>
+<body>
+
+    <!-- Parte no imprimible con botón "Imprimir" -->
+    <button id="printBtn">Imprimir</button>
+
+    <!-- Parte imprimible -->
+    <div id="impresion">
+
+        <!-- Cabecera -->
+        <div class="header">
+            <img class="logo" src="../assets/images/img-logo-geofarms.png" alt="Logo">
+            <img class="logo" src="../assets/images/logo/logo-perhusa.png" alt="Logo" style="margin-left: 2rem;">
+            <h1>ANALISIS DE DEFORESTACIÓN</h1>            
+        </div>
+
+        <!-- Sección A - Datos del Productor -->
+        
+        <div class="content">
+            <div style="display: flex; justify-content: space-between;">
+                <!-- Primera columna -->
+                <div>
+                    <h4>Código de Venta: <span id="codigo_venta">-</span></h4>
+
+                </div>
+                <!-- Segunda columna -->
+                <div>
+                    <h4>Fecha de Emisión: <span id="fechaImpresion">-</span></h4>
+                    
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- Seccion del Mapa -->
+
+        
+        <div style="display: flex; flex-direction: column; justify-content: space-between;">
+            <div id="map"></div>
+            <span style="margin-top: 0.5rem"> <b> Fuente </b>: PLATAFORMA DE MONITOREO DE CAMBIOS SOBRE LA COBERTURA DE LOS BOSQUES (GEOBOSQUES) - MINAM <br> Areas Naturales Protegidas - SERNANP - MINAM</span>
+            
+        </div>
+
+        <!-- Caracteristcas del grupo de parcelas-->
+        
+        <div class="content" style="margin-top: 1rem;">
+            <div style="display: flex; justify-content: space-between;">
+                <!-- Primera columna -->
+                <div style="width: 50%;">
+                    <h4 style="font-weight: 600; border-right: 2px solid #248763; margin-bottom: 0; padding-bottom: 2rem; color: #248763">DETALLE DE PARCELAS </h4>
+                    <div class="group-item" style="padding-bottom: 2rem;    border-right: 2px solid #248763;">
+                        <div class="item">
+                            <span class="atributo">Total Hectáreas</span>
+                            <span class="valor"><i class="i-total-area">50</i> ha</span>
+                        </div>
+                        <div class="item">
+                            <span class="atributo">Parcelas analizadas</span>
+                            <span class="valor"><i class="i-parcelas-analizadas">100</i> %</span>
+                        </div>
+                    </div>
+                    <div class="group-item" style="border-right: 2px solid #248763;">
+                        <div class="item">
+                            <span class="atributo">Total Parcelas</span>
+                            <span class="valor"><i class="i-total-parcelas">50</i></span>
+                        </div>
+                        <div class="item">
+                            <span class="atributo">Prod. Visitados</span>
+                            <span class="valor"><i class="i-productores">100</i> %</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Segunda columna -->
+                <div style="width: 50%; padding-left: 3rem;">
+                    <h4 style="font-weight: 600; color: #248763">RESULTADO DE ANÁLISIS </h4>
+                    <!-- <div class="group-item" style="padding-bottom: 3rem;">
+                        <div class="item">
+                            <span class="atributo">No Bosque</span>
+                            <span class="valor-02"><i class="i-no-bosque">60</i>% ha</span>
+                        </div>
+                        <div class="item">
+                            <span class="atributo">Bosque</span>
+                            <span class="valor-02"><i class="i-bosque">20</i>% ha</span>
+                        </div>
+                        <div class="item">
+                            <span class="atributo">Pérdida</span>
+                            <span class="valor-02"><i class="i-perdida">10</i>% ha</span>
+                        </div>
+                    </div> -->
+                    <div style="display: flex; justify-content: space-between;">
+                        <div style="width: 45%;">
+                            <div class="group-item" style="margin-bottom: 1rem;">
+                                <div style="display: flex;">
+                                    <img src="../assets/images/leaf-svgrepo-com.svg" alt="Logo" style="width: 3.5rem; padding-right: 2rem;">
+                                </div>
+                                <div class="item" style="width: auto;">
+                                    <span class="atributo">Intersección Areas Protegidas </span>
+                                    <span class="valor"><i class="i-ints-anp">0</i>&nbsp %</span>
+                                </div>
+                            </div>
+                            
+                            <div class="group-item">
+                                <div style="display: flex;">
+                                    <img src="../assets/images/burning-forest-svgrepo-com.svg" alt="Logo" style="width: 3.5rem; padding-right: 2rem;">
+                                </div>
+                                <div class="item" style="width: auto;">
+                                    <span class="atributo">Intersección Zonas Deforestadas 2020</span>
+                                    <span class="valor"><i class="i-ints-def20">0</i>&nbsp %</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="width: 45%;">
+                            
+                            <div class="group-item">
+                                <div style="display: flex;">
+                                    <img src="../assets/images/buffer-svgrepo-com.svg" alt="Logo" style="width: 3.5rem; padding-right: 2rem;">
+                                </div>
+                                <div class="item" style="width: auto;">
+                                    <span class="atributo">Intersección Zona de Amortigüamiento</span>
+                                    <span class="valor"><i class="i-ints-za">0</i>&nbsp %</span>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+
+        <!-- Sección D - Deforestacion y sostenibilidad -->
+        
+        <div class="content" style="margin-top: 2rem; display: flex;">
+            <div style="width: 50%;">
+                <div class="group-item" style="margin-bottom: 1rem;">
+                    <div>
+                        <img src="../assets/images/media_perhusa_01.jpg" alt="Logo" style="width: 5.5rem; margin-right: 2rem;width: 4rem; height: 4rem; border-radius: 3rem; object-fit: cover;">
+                    </div>
+                    
+                </div>
+                <div class="group-item" style="margin-bottom: 1rem;">
+                    <div>
+                        <img src="../assets/images/media_perhusa_02.jpg" alt="Logo" style="width: 5.5rem; margin-right: 1rem;width: 4rem; height: 4rem; border-radius: 3rem; object-fit: cover;">
+                    </div>
+                    <div>
+                        <img src="../assets/images/media_perhusa_03.jpg" alt="Logo" style="width: 5.5rem; margin-right: 1rem;width: 4rem; height: 4rem; border-radius: 3rem; object-fit: cover;">
+                    </div>
+                </div>
+                <div class="group-item" style="margin-bottom: 1rem;">
+                    <div>
+                        <img src="../assets/images/media_perhusa_04.jpg" alt="Logo" style="width: 5.5rem; margin-right: 1rem;width: 4rem; height: 4rem; border-radius: 3rem; object-fit: cover;">
+                    </div>
+                    <div>
+                        <img src="../assets/images/media_perhusa_05.jpg" alt="Logo" style="width: 5.5rem; margin-right: 1rem;width: 4rem; height: 4rem; border-radius: 3rem; object-fit: cover;">
+                    </div>
+                    <div>
+                        <img src="../assets/images/media_perhusa_06.jpg" alt="Logo" style="width: 5.5rem; margin-right: 1rem;width: 4rem; height: 4rem; border-radius: 3rem; object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+            <div style="width: 50%; display: flex; align-items: flex-end; justify-content: flex-end;">
+                <div>
+                    <span class="atributo">Usa el código QR para compartir información de deforestación</span>
+                </div>
+                <div id="qr-code"></div>
+
+            </div>
+            <div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script src='https://unpkg.com/@turf/turf@6/turf.min.js'></script>
+
+    <!-- latest jquery-->
+    <script src="../assets/js/jquery-3.6.0.min.js"></script>
+
+    <script src="../assets/js/qrcode.min.js"></script>
+
+    <!-- Script para obtener parámetros de la URL y funciones de impresión -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.js"></script>
+    <link href="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.css" rel="stylesheet" />
+
+    <script src="./js/capas-de-datos.js"></script>
+
+    <script>
+        document.getElementById('printBtn').addEventListener('click', function () {
+
+            captureMapImage();
+
+            // Función para imprimir usando html2pdf
+            const printContent = document.getElementById('impresion');
+            //html2pdf().from(printContent).outputPdf();
+
+            setTimeout(function(){
+                html2pdf(printContent);
+            }, 3000)
+
+        });
+
+        // Configuración y carga del mapa con Mapbox GL JS
+        var map = new maplibregl.Map({
+            container: 'map',
+            style: {
+                version: 8,
+                sources: {
+                  osm: {
+                    type: 'raster',
+                    //tiles: ["https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}.png"],
+                    //tiles: ["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],
+                    //tiles: ["https://basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png"],
+                    //tiles: ["https://basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"],           
+                    tiles: ["https://mts1.google.com/vt/lyrs=y@186112443&hl=x-local&src=app&x={x}&y={y}&z={z}&s=Galile"],
+                    tileSize: 256,
+                    //attribution: ''
+                    }
+                },
+                "glyphs": "https://fonts.openmaptiles.org/{fontstack}/{range}.pbf",
+                layers: [{
+                    id: 'osm',
+                    type: 'raster',
+                    source: 'osm',
+                }]
+            }
+            ,
+            center: [-75.02919564021485, -9.213978200952667],
+            zoom: 5
+        });
+
+        // Deshabilita la manipulación del mapa, el zoom y el scroll
+        map.dragPan.disable();
+        map.scrollZoom.disable();
+        map.doubleClickZoom.disable();
+        map.touchZoomRotate.disable();
+        map.boxZoom.disable();
+        map.keyboard.disable();
+
+        // Función para obtener una imagen estática del mapa y mostrarla en la impresión
+        function captureMapImage() {
+            const mapCanvas = map.getCanvas();
+            const mapImage = new Image();
+
+            // Necesitas esperar a que el mapa se haya renderizado completamente antes de capturar la imagen
+            map.once('render', function () {
+                mapImage.src = mapCanvas.toDataURL('image/png');
+
+                // Busca el elemento div con el id 'map' y agrega la imagen como hijo
+                const mapDiv = document.getElementById('map');
+                mapDiv.innerHTML = ''; // Limpia el contenido previo
+                mapDiv.appendChild(mapImage);
+            });
+
+            // Forza un nuevo renderizado del mapa para asegurarte de que la imagen se actualice correctamente
+            map.resize();
+        }
+
+        // Llamar a captureMapImage después de que el mapa haya cargado
+        map.on('load', function () {
+            // Supongamos que tienes una función que obtiene el JSON y el id buscado
+            const codigoVentaBuscado = obtenerCodigoVenta(); // Reemplazar con tu función real
+            console.log(codigoVentaBuscado);
+
+            const parcelas_array = obtenerUnidadesProductivasLlenarReporte(codigoVentaBuscado);
+            // const json = obtenerDatosDelServidor(parcelas_array);
+
+            // Después de hacer el fitbound, capturar la imagen
+            // captureMapImage();
+        });
+
+        function obtenerUnidadesProductivasLlenarReporte($codigoVentaBuscado){
+            // ============================ PREPARAR WHERE QUERY ================
+            var up_array = [];
+            var query_filtros_dict = {};
+            query_filtros_dict["where"] = {"codigo_venta" : $codigoVentaBuscado};
+
+            query_filtros_dict = JSON.stringify(query_filtros_dict["where"]);
+
+            
+            $.ajax({
+                url: '/filtrar-up-codigo-venta',
+                type: 'GET',
+                dataType: 'json',
+                data: {
+                    where_filtros: query_filtros_dict
+                },
+                success: function(up) {
+                    console.log(up);
+                    var total_area_ha = 0;
+                    var total_anp_m2 = 0;
+                    var total_za_m2 = 0;
+                    var total_def20_m2 = 0;
+                    var numero_parcelas = up.length;
+
+                    for (let i = 0; i < up.length; i++) {
+                        let id_up = up[i].id;
+
+                        //INSERTAR ID-PARCELA EN EL ARREGLO
+                        up_array.push(id_up);
+                        
+                        //Calcular total area ha
+                        up[i].area_poly_ha ? total_area_ha += parseFloat(up[i].area_poly_ha) : false;
+
+                        //Calcular total anp m2
+                        up[i].area_ints_anp_m2 ? total_anp_m2 += parseFloat(up[i].area_ints_anp_m2) : false;
+
+                        //Calcular total za m2
+                        up[i].area_ints_za_m2 ? total_za_m2 += parseFloat(up[i].area_ints_za_m2) : false;
+
+                        //Calcular total def20 m2
+                        up[i].area_ints_deforestacion_2020_m2 ? total_def20_m2 += parseFloat(up[i].area_ints_deforestacion_2020_m2) : false;
+                        
+                    }
+                    total_area_ha = total_area_ha.toFixed(1);
+                    console.log(total_area_ha);
+                    console.log(numero_parcelas);
+                    var total_anp_ha = total_anp_m2/10000;
+                    total_anp_ha = total_anp_ha.toFixed(2);
+                    var total_za_ha = total_za_m2/10000;
+                    total_za_ha = total_za_ha.toFixed(2);
+                    var total_def20_ha = total_def20_m2/10000;
+                    total_def20_ha = total_def20_ha.toFixed(2);
+
+                    var total_area_sost = total_za_m2
+
+
+                    $('#fechaImpresion').text(obtenerFechaHoy());
+                    $('#codigo_venta').html($codigoVentaBuscado);
+                    
+
+                    $('.i-total-area').html(total_area_ha);
+                    $('.i-total-parcelas').html(numero_parcelas);
+
+                    
+                    // $('.i-perdida').html((total_def20_ha/total_area_ha*100).toFixed(1));
+                    $('.i-ints-anp').html((total_anp_ha/total_area_ha*100).toFixed(1));
+                    $('.i-ints-za').html((total_za_ha/total_area_ha*100).toFixed(1));
+                    $('.i-ints-def20').html((total_def20_ha/total_area_ha*100).toFixed(1));
+
+                    generarQrCode(up.id);
+
+                    // ============================ AGREGAR POLIGONOS AL MAPA ================
+                    $.ajax({
+                        url: '/get-shapefile',
+                        type: 'GET',
+                        dataType: 'json',
+                        data: {ids: up_array},
+                        success: function(geojson) {
+
+                            geojson = JSON.parse(geojson);
+                            console.log(geojson);
+
+                            // Inicializa un array vacío para almacenar los límites de todos los polígonos
+                            var allBounds = [];
+
+                            // Itera sobre cada feature en el GeoJSON
+                            geojson.features.forEach(function(feature) {
+                                // Convierte cada polígono a un objeto turf
+                                var turfPolygon;
+                                if (feature.geometry.type === 'Polygon') {
+                                    turfPolygon = turf.polygon(feature.geometry.coordinates);
+                                } else if (feature.geometry.type === 'MultiPolygon') {
+                                    turfPolygon = turf.multiPolygon(feature.geometry.coordinates);
+                                }
+
+                                // Calcula los límites del polígono actual
+                                var bbox = turf.bbox(turfPolygon);
+
+                                // Agrega los límites al array de todos los límites
+                                allBounds.push([[bbox[0], bbox[1]], [bbox[2], bbox[3]]]);
+                            });
+
+                            // Calcula los límites que contienen todos los polígonos
+                            var mergedBounds = allBounds.reduce(function(previous, current) {
+                                return [
+                                    [Math.min(previous[0][0], current[0][0]), Math.min(previous[0][1], current[0][1])],
+                                    [Math.max(previous[1][0], current[1][0]), Math.max(previous[1][1], current[1][1])]
+                                ];
+                            });
+
+                            // Centra el mapa en los límites calculados, con un relleno de 100 píxeles
+                            map.fitBounds(mergedBounds, { padding: 50 });
+
+                            
+                            agregar_geojson('cafe','fill',geojson, _paint=null, {'text_field':'nombre', 'text_size': 20});
+                            //cambiarEstiloParcelaSeleccionada(49);
+
+                            agregar_geojson_borde('cafeborde','line',geojson);
+                        }
+                
+                    });
+
+                }        
+            });
+
+            
+
+            
+            
+        };
+
+
+        // Ejemplo de función para obtener el id buscado
+        function obtenerCodigoVenta() {
+            // Obtener la cadena de consulta de la URL
+            const queryString = window.location.search;
+
+            // Crear un objeto URLSearchParams a partir de la cadena de consulta
+            const params = new URLSearchParams(queryString);
+
+            // Obtener el valor de la variable1
+            const dataCodigoVenta = params.get('dataCodigoVenta');
+
+            return dataCodigoVenta;
+
+            
+        };
+
+        function obtenerFechaHoy() {
+            const hoy = new Date();
+            const dia = hoy.getDate().toString().padStart(2, '0');
+            const mes = (hoy.getMonth() + 1).toString().padStart(2, '0'); // Meses comienzan desde 0
+            const anio = hoy.getFullYear();
+
+            return `${dia}/${mes}/${anio}`;
+        }
+
+        function generarQrCode(id){
+            var qrcode = new QRCode("qr-code", {
+                text: "https://geofarmsperhusa.com.pe/visor",
+                width: 128,
+                height: 128,
+                colorDark : "#000000",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        }
+        
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="zona-id" content="<%= user.zona_id %>">
+    <meta name="rol-id" content="<%= user.rol %>">
+
+    <!-- <link rel="icon" href="../assets/images/favicon/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/images/favicon/favicon.png" type="image/x-icon"> -->
+    <title>Geofarms - Monitoreo</title>
+    <!-- Google font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" type="text/css" href="../assets/css/vendors/font-awesome.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- ico-font-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/icofont.css">
+    <!-- Themify icon-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/themify.css">
+    <!-- Flag icon-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/flag-icon.css">
+    <!-- Feather icon-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/feather-icon.css">
+    <!-- Plugins css start-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/scrollbar.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/date-picker.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/animate.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/chartist.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/slick.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/slick-theme.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/prism.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/daterange-picker.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/mapsjs-ui.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/select2.css">
+    <!-- Plugins css Ends-->
+    <!-- Bootstrap css-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/bootstrap.css">
+    <!-- App css-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <link id="color" rel="stylesheet" href="../assets/css/color-1.css" media="screen">
+    <!-- Responsive css-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/responsive.css">
+
+    <!-- Leaflet css-->
+    <!--
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+    -->
+    <script src="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.js"></script>
+    <link href="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.css" rel="stylesheet" />
+
+    <!-- <link rel="stylesheet" type="text/css" href="../assets/css/altomayo-style.css"> -->
+    <link rel="stylesheet" type="text/css" href="../assets/css/altomayo-v2-style.css">
+
+    <script src='https://unpkg.com/@turf/turf@6/turf.min.js'></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+    <script src="https://cdn.sheetjs.com/xlsx-0.19.3/package/dist/shim.min.js"></script>
+    <script src="https://cdn.sheetjs.com/xlsx-0.19.3/package/dist/xlsx.full.min.js"></script>
+
+    <style>
+
+      /*
+      .row-table, .table-responsive{
+        position: absolute;
+        bottom: 0;
+        background-color: #EEE;
+        z-index: 10;
+        display: none;
+
+        width: 98vw;
+        left: 1vw;
+        bottom: 1vw;
+        height: 25vh;
+      }
+      */
+
+      .table-container {/*oculto en la línea 29 del archivo mapa-indices.js*/
+        position: absolute;
+        bottom: 1%;
+        background-color: #EEE;
+        z-index:10;
+        display: flex;
+        justify-content: center;
+        border-radius: 10px;
+        /*display: none;*/
+
+        /*position: relative;*/
+        height: auto; /* ajusta la altura según tus necesidades */
+        /*overflow: auto;*/
+        width: 98%;
+        left: 1%;
+        padding: 1rem;
+
+      }
+
+      .table-actualizar-datos {
+        width: 100%;
+        /* height: 85%; */
+      }
+
+      .table-actualizar-datos tbody tr td{
+        border-bottom-width: 0px;
+      }
+
+      .table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .table tbody{
+        /*overflow-y: scroll;*/
+      }
+
+      th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .table thead{
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        background-color: #f2f2f2;
+      }
+
+      .table thead th{
+        position: sticky;
+        top: 0;
+      }
+
+      th {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        background-color: #f2f2f2;
+        z-index: 1; /* Asegura que la cabecera esté encima de los botones de paginación */
+      }
+
+      .pagination-container {
+        /*position: -webkit-sticky;*/
+        display: flex;
+        justify-content: space-between;
+
+        position: absolute;
+        bottom: 0;
+        background-color: #f2f2f2;
+        padding: 8px;
+        z-index: 1; /* Asegura que los botones de paginación estén encima del contenido de la tabla */
+      }
+
+      /*alert*/
+      .div-alert {
+        position: absolute;
+        bottom: 1%;
+        z-index:10;
+        width: 98%;
+        left: 1%;
+        display: none;
+        font-size: 14px;
+      }
+
+      .btn-descargar-container{
+        position: absolute;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        /* right: 8%; */
+        /* left: 50%; */
+        z-index: 999;
+      }
+
+    </style>
+
+  </head>
+  <body style="height: 100% !important">  
+    <div class="loader-indices">
+
+      <svg class="draw-coffe-container">
+        <g>
+          <path d="M8.5581 18.9099C8.60311 19.618 7.89062 20.1044 7.35055 19.6442C5.16871 17.785 4.45172 13.9899 5.48237 10.1435C6.58272 6.03694 9.32065 3.19731 12.3564 3.03964C12.8886 3.01201 13.2769 3.51632 13.3582 4.04291C13.4204 4.44576 13.5161 4.85313 13.5603 5.21401C13.7317 6.61365 13.3786 8.02025 12.5667 9.17223L9.72895 13.1983C8.8171 14.492 8.37643 16.052 8.4768 17.6309L8.5581 18.9099ZM15.5137 3.49628C15.5292 3.4222 15.6073 3.42901 15.6758 3.46102C18.6989 4.87234 19.6518 9.19062 18.4644 13.622C17.4013 17.5896 14.8115 20.3743 11.8982 20.7007C11.2742 20.7706 10.8213 20.091 10.7733 19.4649C10.7197 18.7664 10.5516 18.0113 10.5174 17.4732C10.4353 16.1814 10.7958 14.9051 11.5419 13.8466L14.3796 9.82049C15.372 8.41251 15.8035 6.69334 15.5941 4.98266C15.4754 4.01337 15.484 3.63885 15.5137 3.49628Z"/>
+        </g>
+  
+        <g>
+  
+          <path d="M17.135,12.37a5.447,5.447,0,0,0,3.42-1.2.982.982,0,0,0,.37-.72,1.04,1.04,0,0,0-.31-.8l-2.78-2.78c.39-.39.8-.8,1.19-1.2.08-.07.15-.14.23-.22a.511.511,0,0,0,0-.7.5.5,0,0,0-.71,0c-.48.47-.94.94-1.42,1.41l-2.78-2.78a1.077,1.077,0,0,0-.8-.31,1,1,0,0,0-.72.37,5.454,5.454,0,0,0-1.19,3.67l-1.45,1.46L7.855,6.24a.978.978,0,0,0-1.41,0L3.365,9.32a1,1,0,0,0,0,1.41L5.7,13.06l-.41.4a2.65,2.65,0,0,0,0,3.74L6.8,18.71a2.632,2.632,0,0,0,3.74,0l.4-.4,2.33,2.33a1,1,0,0,0,1.41,0l3.08-3.09a1,1,0,0,0,0-1.41l-2.32-2.32,1.45-1.46A2.09,2.09,0,0,0,17.135,12.37ZM4.065,10.03l3.09-3.09,2.32,2.33L6.4,12.35Zm12.99,6.82-3.08,3.08-2.33-2.33,3.08-3.08Zm-5.23-8.51a5.482,5.482,0,0,0,3.84,3.83l-5.84,5.84a1.642,1.642,0,0,1-2.32,0l-1.52-1.52a1.642,1.642,0,0,1,0-2.32Zm2.12,1.71a4.417,4.417,0,0,1-.3-5.96l3.13,3.13,3.14,3.14.02.03A4.5,4.5,0,0,1,13.945,10.05Z"/>
+  
+        </g>
+  
+        <g>
+          <path d="M14 16.6c-0.2 0-0.4 0-0.56 0.040v-1.32c0-0.48-0.36-0.84-0.84-0.84h-11.8c-0.48 0-0.84 0.36-0.84 0.84v4.2c0 3.72 3 6.72 6.72 6.72 2.080 0 3.92-0.96 5.16-2.44 0.64 0.4 1.36 0.64 2.12 0.64 2.16 0 3.92-1.76 3.92-3.92 0.040-2.16-1.68-3.92-3.88-3.92zM6.68 24.6c-2.8 0-5.040-2.28-5.040-5.040v-3.36h10.12v3.36c-0.040 2.76-2.28 5.040-5.080 5.040zM14 22.8c-0.44 0-0.88-0.12-1.24-0.36 0.4-0.88 0.64-1.84 0.64-2.88v-1.2c0.2-0.040 0.36-0.080 0.56-0.080 1.24 0 2.24 1 2.24 2.24 0.040 1.28-0.92 2.28-2.2 2.28zM6.040 10.88c-0.28 0.36-0.2 0.88 0.16 1.16 0.16 0.12 0.32 0.16 0.48 0.16 0.24 0 0.52-0.12 0.68-0.32 1.12-1.52 0.44-2.68 0-3.36-0.4-0.64-0.52-0.84-0.040-1.4 0.28-0.36 0.24-0.88-0.12-1.16s-0.88-0.24-1.16 0.12c-1.2 1.52-0.52 2.64-0.080 3.36 0.36 0.56 0.52 0.8 0.080 1.44z"></path>
+        </g>
+  
+        <defs>
+          <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#30E85B;stop-opacity:.5" />
+            <stop offset="100%" style="stop-color:#30E85B;stop-opacity:1" />
+          </linearGradient>
+        </defs>
+      </svg>
+
+      <div class="text-loader-container">
+        <h2>geofarms</h2>
+        <h6 style="color: var(--color-secondary-01);">&copy; 2024 Perales Huancaruna </h6>
+        <small style="color: var(--color-gray-01);">Lambayeque - Perú</small>
+      </div>
+
+      <div id="loader"></div>
+      
+    </div>
+    <!-- Loader ends-->
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper compact-wrapper" id="pageWrapper">
+      <!-- Page Header Start-->
+      <div class="page-header">
+        <div class="header-wrapper row m-0">
+          
+          <div class="header-logo-wrapper col-auto p-0">
+            <div class="logo-wrapper"><a href="index.html">
+              <img class="img-fluid" src="../assets/images/img-logo-geofarms.png" alt="">
+              
+            </a></div>
+            <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="align-center"></i></div>
+          </div>
+          <div class="left-header col-7 horizontal-wrapper ps-0">
+         
+
+
+            <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+              <i data-feather="bar-chart"></i
+              ><span class="">Dashboard</span>
+            </a>
+            <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+              <i data-feather="map"></i
+              ><span class="">Monitoreo</span>
+            </a> 
+            <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+              <i data-feather="map"></i
+              ><span class="">Coberturas</span>
+            </a> 
+            <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+              <i data-feather="file-text"> </i><span class="">Reportes</span>
+            </a> 
+
+        
+            
+          </div>
+          
+          <script class="result-template" type="text/x-handlebars-template">
+            <div class="ProfileCard u-cf">                        
+            <div class="ProfileCard-avatar"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-airplay m-0"><path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"></path><polygon points="12 15 17 21 7 21 12 15"></polygon></svg></div>
+            <div class="ProfileCard-details">
+            <div class="ProfileCard-realName">{{name}}</div>
+            </div>
+            </div>
+          </script>
+          <script class="empty-template" type="text/x-handlebars-template"><div class="EmptyMessage">Your search turned up 0 results. This most likely means the backend is down, yikes!</div></script>
+        </div>
+      </div>
+      <!-- Page Header Ends                              -->
+      <!-- Page Body Start-->
+      <div class="page-body-wrapper">
+        
+        <%- include('./partials/menu_lateral'); %>
+        
+        <div class="page-body">
+          <!-- Container-fluid starts-->
+          <div class="container-fluid">
+
+            <div class="row h-100 m-0">
+
+              <!-- Sección de Información -->
+              <div class="col-xl-3 col-md-3 box-col-30 xl-30 info-section">
+                <div class="card">
+                  <div class="card-body">
+
+                    <div class="logo-section mb-4">
+
+                      <%- include('./partials/user_profile'); %>
+
+                    </div>
+
+                    <div class="title-module-section">
+
+                      
+                      <div class="group-title-module" style="display: flex;">
+                        <a class="a-open-menu">
+                          <span class="fa fa-bars"></span>
+                        </a>
+                        <div class="item-title-module">
+                          <small>Módulo</small>
+                          <h5 class="mb-0">Monitoreo de Parcelas</h5>
+                        </div>
+                        
+                      </div>
+                      
+                    </div>
+
+                    <div class="options-section">
+
+                      <div class="buscador-periodo-ie-section">
+
+                        
+                        
+                        <div class="buscador-parcela-section mb-5">
+                          <h6 class="mb-0">Buscador de Parcelas</h6>
+    
+                          <div class="search mt-3">
+                            <form class="form-inline w-100">
+                              <div class="form-group d-flex mb-0 w-100 ui search">
+                                <i class="fa fa-search"></i>
+                                <input class="form-control-plaintext input-buscar-parcela" type="text" placeholder="Ingresa el nombre, código o DNI">
+                                
+                                <div class="dropdown-content">
+                                  <ul class="list-group list-group-flush list">
+                                    
+                                  </ul>
+                                </div>
+                                <div class="spinner" style="display: none;"></div>
+                              </div>
+                            </form>
+                          </div>
+    
+                        </div>
+
+                        <div class="periodo-section">
+                          <h6 class="mb-0">Período de Analísis</h6>
+
+                          <div class="periodos-buttons-section mt-3">
+                            <button class="btn btn-sm btn-periodo-predefinido-01" type="button">Ultimos 12 meses</button>
+                            <button class="btn btn-sm btn-periodo-predefinido-02" type="button">2021</button>
+                            <button class="btn btn-sm btn-periodo-predefinido-03" type="button">2020</button>
+                          </div>
+
+                          <div class="mt-3">
+                            <form class="form-inline w-100">
+                              <div class="form-group d-flex mb-0 w-100 ui search">
+                                <i class="fa fa-calendar"></i>
+  
+                                <input class="form-control-plaintext datepicker-here form-control digits input-periodo" type="text" data-range="true" data-multiple-dates-separator=" - " data-language="en" placeholder="Seleccionar Período">
+                                
+                              </div>
+                            </form>
+
+                          </div>
+
+                        </div>
+
+                        
+
+                        <div class="footer-section">
+
+                          <button class="btn btn-primary btn-consultar-periodo" type="button">Consultar</button>
+
+                        </div>
+
+                      </div>
+                      <!-- ./buscador-periodo-ie-section -->
+
+                      <div class="fechas-disponibles-ie-section">
+
+                        <div class="fechas-section">
+                          <h6 class="mb-0">Fechas Disponibles</h6>
+
+                          <div class="mt-3 items-fechas-section">
+
+                            <div class="d-flex mb-4">
+                              <label class="col-form-label m-r-10" >
+                                <i class="fa fa-satellite"></i> &nbsp
+                                09 de Noviembre del 2022</label>
+                              <div class="flex-grow-1 text-end icon-state">
+                                <label class="switch switch-fechas-disponibles">
+                                  <input type="checkbox" value="09-11-22"><span class="switch-state"></span>
+                                </label>
+                              </div>
+                            </div>
+
+                            <div class="d-flex mb-4">
+                              <label class="col-form-label m-r-10" >
+                                <i class="fa fa-satellite"></i> &nbsp
+                                10 de Noviembre del 2022</label>
+                              <div class="flex-grow-1 text-end icon-state">
+                                <label class="switch switch-fechas-disponibles">
+                                  <input type="checkbox" value="10-11-22"><span class="switch-state"></span>
+                                </label>
+                              </div>
+                            </div>
+
+                            <div class="d-flex mb-4">
+                              <label class="col-form-label m-r-10">
+                                <i class="fa fa-satellite"></i> &nbsp
+                                11 de Noviembre del 2022</label>
+                              <div class="flex-grow-1 text-end icon-state">
+                                <label class="switch switch-fechas-disponibles">
+                                  <input type="checkbox" value="11-11-22"><span class="switch-state"></span>
+                                </label>
+                              </div>
+                            </div>
+
+                          </div>
+
+                        </div>
+
+                        <div class="footer-section" style="justify-content: space-between;">
+
+                          <button class="btn btn-back btn-volver-fechas" type="button"><i class="fa-solid fa-chevron-left me-2"></i> Volver</button>
+
+                          <button class="btn btn-primary btn-consultar-fechas" type="button">Consultar</button>
+
+                        </div>
+
+                      </div>
+                      <!-- ./fechas-disponibles-ie-section -->
+
+                      <div class="resultados-ie-section">
+
+                        <div class="parcela-consultada-section mb-5">
+                          <h6 class="mb-0">Parcela</h6>
+
+                          <div class="mt-3 w-100 d-flex">
+                            <div class="img-container">
+                              <img class="perfil-img-productor" src="https://cdn.www.gob.pe/uploads/document/file/1464052/standard_FOTO_WEB_CAFE-1536x1024.jpg" alt="">
+
+                            </div>
+                            <div class="perfil-container">
+                              <p class="mb-0 perfil-nombre-parcela">Cafetalera II</p>
+                              <small class="perfil-fecha-consultada"><i class="fa fa-satellite"></i>  <span>09-Nov-22</span></small>
+                              <div>
+                                <small class="perfil-nombre-productor">Productor</small> - 
+                                <small class="perfil-codigo-productor">C0120</small>
+                              </div>
+                              
+
+                            </div>
+
+                          </div>
+
+                        </div>
+                                  
+
+                        <div class="indice-espectral-section mb-5">
+                          <h6 class="mb-0">Indice Espectral</h6>
+
+                          <div class="mt-3">
+
+                            <div class="profile-nav onhover-dropdown">
+                              <div class="d-flex profile-media">
+                                
+                                  <span class="span-indice-seleccionado">NDVI - Salud de la vegetación en términos de vigorosidad</span>
+                                  <i class="fa fa-chevron-down"></i>
+                                
+                              </div>
+                              <ul class="profile-dropdown list-item-indice onhover-show-div">
+                                <li>
+                                  <a href="#" class=" item-indice" data-indice="ndvi">
+                                    <i class="fa-regular fa-map"></i>
+                                    <span> NDVI - Salud de la vegetación en términos de vigorosidad </span>
+                                  </a>
+                                </li>
+                                <li>
+                                  <a href="#" class=" item-indice" data-indice="ndwi">
+                                    <i class="fa-regular fa-map"></i>
+                                    <span> NDWI - Contenido de humedad en la superficie del cultivo </span>
+                                  </a>
+                                </li>
+                                <li>
+                                  <a href="#" class=" item-indice" data-indice="mcari">
+                                    <i class="fa-regular fa-map"></i>
+                                    <span> MCARI - Concentración de clorofila </span>
+                                  </a>
+                                </li>
+                                <li>
+                                  <a href="#" class=" item-indice" data-indice="reci">
+                                    <i class="fa-regular fa-map"></i>
+                                    <span> RECI - Concentración de clorofila relacionado con el nivel de nitrógeno </span>
+                                  </a>
+                                </li>
+                                <li>
+                                  <a href="#" class=" item-indice" data-indice="evi">
+                                    <i class="fa-regular fa-map"></i>
+                                    <span> EVI 01 - Salud de la vegetación en periodos secos y/o baja densidad del cultivo </span>
+                                  </a>
+                                </li>
+                                <li>
+                                  <a href="#" class=" item-indice" data-indice="evi2">
+                                    <i class="fa-regular fa-map"></i>
+                                    <span> EVI 02 - Salud de la vegetación en zonas con mayor humedad atmosférica</span>
+                                  </a>
+                                </li>
+                                
+                              </ul>
+                            </div>
+
+                          </div>
+
+                        </div>
+
+                        <div class="parametros-section mb-5">
+                          <h6 class="mb-0">Parámetros Climáticos</h6>
+
+                          <div class="mt-3 items-parametros-section">
+
+                            <div class="d-flex mb-4">
+                              <label class="col-form-label m-r-10" >
+                                <i class="fa fa-cloud-rain"></i> &nbsp
+                                Precipitación</label>
+                              <div class="flex-grow-1 text-end icon-state">
+                                <label class="switch switch-parametro-climatico">
+                                  <input type="checkbox" name="input_parametro_climatico" value="grafica_precipitacion"><span class="switch-state"></span>
+                                </label>
+                              </div>
+                            </div>
+
+                            <div class="d-flex mb-4">
+                              <label class="col-form-label m-r-10" >
+                                <i class="fa fa-temperature-quarter"></i> &nbsp
+                                Temperatura</label>
+                              <div class="flex-grow-1 text-end icon-state">
+                                <label class="switch switch-parametro-climatico">
+                                  <input type="checkbox" name="input_parametro_climatico" value="grafica_temperatura"><span class="switch-state"></span>
+                                </label>
+                              </div>
+                            </div>
+
+                            <div class="d-flex mb-4">
+                              <label class="col-form-label m-r-10">
+                                <i class="fa fa-cloud"></i> &nbsp
+                                Humedad</label>
+                              <div class="flex-grow-1 text-end icon-state">
+                                <label class="switch switch-parametro-climatico">
+                                  <input type="checkbox" name="input_parametro_climatico" value="grafica_humedad"><span class="switch-state"></span>
+                                </label>
+                              </div>
+                            </div>
+
+                            <div class="d-flex mb-4">
+                              <label class="col-form-label m-r-10">
+                                <i class="fa fa-chart-area"></i> &nbsp
+                                Superficie Indice</label>
+                              <div class="flex-grow-1 text-end icon-state">
+                                <label class="switch switch-parametro-climatico">
+                                  <input type="checkbox" name="input_parametro_climatico" value="grafica_area"><span class="switch-state"></span>
+                                </label>
+                              </div>
+                            </div>
+
+                          </div>
+
+                        </div>
+
+                        <div class="footer-section" style="justify-content: space-between;">
+
+                          <button class="btn btn-back btn-volver-resultados" type="button"><i class="fa-solid fa-chevron-left me-2"></i> Volver</button>
+
+                          <button class="btn btn-primary btn-nueva-consulta" type="button">Nueva Consulta</button>
+
+                        </div>
+
+                      </div>
+                      <!-- ./resultados-ie-section -->
+
+                    </div>
+  
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Sección del Mapa -->
+              <div class="col-xl-9 col-md-9 box-col-70 xl-70 map-section">
+                  
+                <div class="card">
+                  <div class="card-body">
+
+                    <div class="position-absolute tools-map-section">
+
+                      <div class="layer-tool-section">
+
+                        <div class="profile-nav onhover-dropdown">
+                          <div class="d-flex profile-media">
+                            
+                              <i class="fa fa-layer-group"></i>
+                            
+                          </div>
+                          <ul class="profile-dropdown list-item-indice onhover-show-div">
+                            <li>
+                              
+                              <div class="d-flex mb-4">
+                                <label class="col-form-label m-r-10" >
+                                  <i class="fa fa-earth"></i>
+                                  Parcelas Convencionales</label>
+                                <div class="flex-grow-1 text-end icon-state">
+                                  <label class="switch switch-parcelas-convencionales">
+                                    <input type="checkbox" value="parcelas_convencionales" checked><span class="switch-state"></span>
+                                  </label>
+                                </div>
+                              </div>
+                              <div class="d-flex mb-4">
+                                <label class="col-form-label m-r-10" >
+                                  <i class="fa fa-earth"></i>
+                                  Parcelas Orgánicas</label>
+                                <div class="flex-grow-1 text-end icon-state">
+                                  <label class="switch switch-parcelas-organicas">
+                                    <input type="checkbox" value="parcelas_organicas" checked><span class="switch-state"></span>
+                                  </label>
+                                </div>
+                              </div>
+                              <div class="d-flex mb-4">
+                                <label class="col-form-label m-r-10" >
+                                  <i class="fa fa-earth"></i>
+                                  Red Vial Nacional</label>
+                                <div class="flex-grow-1 text-end icon-state">
+                                  <label class="switch switch-capa-datos">
+                                    <input type="checkbox" value="red_vial_nacional"><span class="switch-state"></span>
+                                  </label>
+                                </div>
+                              </div>
+                              <div class="d-flex mb-4">
+                                <label class="col-form-label m-r-10" >
+                                  <i class="fa fa-earth"></i>
+                                  Red Vial Departamental</label>
+                                <div class="flex-grow-1 text-end icon-state">
+                                  <label class="switch switch-capa-datos">
+                                    <input type="checkbox" value="red_vial_departamental"><span class="switch-state"></span>
+                                  </label>
+                                </div>
+                              </div>
+  
+                              <div class="d-flex mb-4">
+                                <label class="col-form-label m-r-10" >
+                                  <i class="fa fa-earth"></i>
+                                  Red Vial Vecinal</label>
+                                <div class="flex-grow-1 text-end icon-state">
+                                  <label class="switch switch-capa-datos">
+                                    <input type="checkbox" value="red_vial_vecinal"><span class="switch-state"></span>
+                                  </label>
+                                </div>
+                              </div>
+  
+                              <div class="d-flex mb-4">
+                                <label class="col-form-label m-r-10">
+                                  <i class="fa fa-earth"></i>
+                                  Areas Naturales Protegidas</label>
+                                <div class="flex-grow-1 text-end icon-state">
+                                  <label class="switch switch-capa-datos">
+                                    <input type="checkbox" value="areas_naturales_protegidas"><span class="switch-state"></span>
+                                  </label>
+                                </div>
+                              </div>
+
+                              <div class="d-flex mb-4">
+                                <label class="col-form-label m-r-10">
+                                  <i class="fa fa-earth"></i>
+                                  Zonas de Amortiguamiento</label>
+                                <div class="flex-grow-1 text-end icon-state">
+                                  <label class="switch switch-capa-datos">
+                                    <input type="checkbox" value="zonas_amortiguamiento"><span class="switch-state"></span>
+                                  </label>
+                                </div>
+                              </div>
+
+                              <div class="d-flex mb-4">
+                                <label class="col-form-label m-r-10">
+                                  <i class="fa fa-earth"></i>
+                                  Deforestacion 2014</label>
+                                <div class="flex-grow-1 text-end icon-state">
+                                  <label class="switch switch-capa-datos">
+                                    <input type="checkbox" value="deforestacion_2014"><span class="switch-state"></span>
+                                  </label>
+                                </div>
+                              </div>
+
+                              <div class="d-flex mb-4">
+                                <label class="col-form-label m-r-10">
+                                  <i class="fa fa-earth"></i>
+                                  Deforestacion 2020</label>
+                                <div class="flex-grow-1 text-end icon-state">
+                                  <label class="switch switch-capa-datos">
+                                    <input type="checkbox" value="deforestacion_2020"><span class="switch-state"></span>
+                                  </label>
+                                </div>
+                              </div>
+
+                              <div class="d-flex mb-4">
+                                <label class="col-form-label m-r-10">
+                                  <i class="fa fa-earth"></i>
+                                  Cuencas Hidrograficas</label>
+                                <div class="flex-grow-1 text-end icon-state">
+                                  <label class="switch switch-capa-datos">
+                                    <input type="checkbox" value="cuencas_hidrograficas"><span class="switch-state"></span>
+                                  </label>
+                                </div>
+                              </div>
+                              <div class="d-flex mb-4">
+                                <label class="col-form-label m-r-10">
+                                  <i class="fa fa-earth"></i>
+                                  Rios y Quebradas</label>
+                                <div class="flex-grow-1 text-end icon-state">
+                                  <label class="switch switch-capa-datos">
+                                    <input type="checkbox" value="rios_quebradas"><span class="switch-state"></span>
+                                  </label>
+                                </div>
+                              </div>
+
+                              <div class="d-flex mb-4">
+                                <label class="col-form-label m-r-10">
+                                  <i class="fa fa-earth"></i>
+                                  Parcelas Café - ANP</label>
+                                <div class="flex-grow-1 text-end icon-state">
+                                  <label class="switch switch-capa-datos">
+                                    <input type="checkbox" value="interseccion_cafe_anp"><span class="switch-state"></span>
+                                  </label>
+                                </div>
+                              </div>
+
+                              <div class="d-flex mb-4">
+                                <label class="col-form-label m-r-10">
+                                  <i class="fa fa-earth"></i>
+                                  Parcelas Café - Zonas de Amortiguamiento</label>
+                                <div class="flex-grow-1 text-end icon-state">
+                                  <label class="switch switch-capa-datos">
+                                    <input type="checkbox" value="interseccion_cafe_za"><span class="switch-state"></span>
+                                  </label>
+                                </div>
+                              </div>
+
+                              <div class="d-flex mb-4">
+                                <label class="col-form-label m-r-10">
+                                  <i class="fa fa-earth"></i>
+                                  Parcelas Café - Deforestación 2014</label>
+                                <div class="flex-grow-1 text-end icon-state">
+                                  <label class="switch switch-capa-datos">
+                                    <input type="checkbox" value="interseccion_cafe_deforestacion_2014"><span class="switch-state"></span>
+                                  </label>
+                                </div>
+                              </div>
+
+                              <div class="d-flex mb-4">
+                                <label class="col-form-label m-r-10">
+                                  <i class="fa fa-earth"></i>
+                                  Parcelas Café - Deforestación 2020</label>
+                                <div class="flex-grow-1 text-end icon-state">
+                                  <label class="switch switch-capa-datos">
+                                    <input type="checkbox" value="interseccion_cafe_deforestacion_2020"><span class="switch-state"></span>
+                                  </label>
+                                </div>
+                              </div>
+
+                              <div class="d-flex mb-4 d-none">
+                                <label class="col-form-label m-r-10">
+                                  <i class="fa fa-earth"></i>
+                                  Uso Actual - Amazonas</label>
+                                <div class="flex-grow-1 text-end icon-state">
+                                  <label class="switch switch-capa-datos">
+                                    <input type="checkbox" value="uso_actual_amazonas"><span class="switch-state"></span>
+                                  </label>
+                                </div>
+                              </div>
+
+                              <div class="d-flex mb-4">
+                                <label class="col-form-label m-r-10">
+                                  <i class="fa fa-earth"></i>
+                                  Uso Actual - Cajamarca</label>
+                                <div class="flex-grow-1 text-end icon-state">
+                                  <label class="switch switch-capa-datos">
+                                    <input type="checkbox" value="uso_actual_cajamarca"><span class="switch-state"></span>
+                                  </label>
+                                </div>
+                              </div>
+
+                              <div class="d-flex mb-4">
+                                <label class="col-form-label m-r-10">
+                                  <i class="fa fa-earth"></i>
+                                  Uso Actual - Cusco</label>
+                                <div class="flex-grow-1 text-end icon-state">
+                                  <label class="switch switch-capa-datos">
+                                    <input type="checkbox" value="uso_actual_cusco"><span class="switch-state"></span>
+                                  </label>
+                                </div>
+                              </div>
+
+                              <div class="d-flex mb-4">
+                                <label class="col-form-label m-r-10">
+                                  <i class="fa fa-earth"></i>
+                                  Uso Actual - Huánuco</label>
+                                <div class="flex-grow-1 text-end icon-state">
+                                  <label class="switch switch-capa-datos">
+                                    <input type="checkbox" value="uso_actual_huanuco"><span class="switch-state"></span>
+                                  </label>
+                                </div>
+                              </div>
+
+                              <div class="d-flex mb-4">
+                                <label class="col-form-label m-r-10">
+                                  <i class="fa fa-earth"></i>
+                                  Uso Actual - Junín</label>
+                                <div class="flex-grow-1 text-end icon-state">
+                                  <label class="switch switch-capa-datos">
+                                    <input type="checkbox" value="uso_actual_junin"><span class="switch-state"></span>
+                                  </label>
+                                </div>
+                              </div>
+
+                              <div class="d-flex mb-4">
+                                <label class="col-form-label m-r-10">
+                                  <i class="fa fa-earth"></i>
+                                  Uso Actual - San Martín</label>
+                                <div class="flex-grow-1 text-end icon-state">
+                                  <label class="switch switch-capa-datos">
+                                    <input type="checkbox" value="uso_actual_sanmartin"><span class="switch-state"></span>
+                                  </label>
+                                </div>
+                              </div>
+
+                            </li>
+                          
+                            
+                          </ul>
+                        </div>
+
+                      </div>
+
+                      <a href="#" class="home-tool-section">
+                        <i class="fa fa-home"></i>
+                      </a>
+
+                      <a href="#" class="table-tool-section">
+                        <i class="fa fa-table"></i>
+                      </a>
+
+                      <a href="#" class="coordenadas-tool-section">
+                        <i class="fa fa-location-dot"></i>
+                      </a>
+                      
+                      <a href="#" class="reporte-grupo-tool-section">
+                        <i class="fa fa-file"></i>
+                      </a>
+                      
+
+                    </div>
+
+                    <div class="position-absolute legend-section">
+                      <div class="d-flex flex-column contenido">
+                        
+                      </div>
+                    </div>
+
+                    <div class="position-absolute legend-section-capas">
+                      <div class="d-flex flex-column contenido">
+                        
+                      </div>
+                    </div>
+
+
+                    <div id="map"></div>
+
+                    <div class="contenedor-grafica">
+                      <div class="btn-descargar-container">
+                        <button class="btn btn-sm btn-graysoft btn-descargar-data-xls" type="button" data-parametro="">Descargar xls</button>
+                      </div>
+                      <div id="grafica-parametros">
+                        
+                      </div>
+                    </div>
+
+                    <div class="table-container">
+                      <div class="table-responsive table-actualizar-datos">
+                        <table class="table" id="table-actualizar-datos">
+                          <!-- Contenido de la tabla -->
+                          <thead>
+                            <tr>
+                              <th scope="col">Id</th>
+                              <th scope="col">Parcela</th>
+                              <th scope="col">Variedad</th>
+                              <th scope="col">Altitud</th>
+                              <th scope="col">Sombra</th>
+                              <th scope="col">Codigo <br>Venta</th>
+                              <th scope="col">Sello</th>
+                              <th scope="col">Codigo <br>Productor</th>
+                              <th scope="col">Productor</th>
+                              <th scope="col">DNI</th>
+                              <th scope="col">Zona</th>
+                              <th scope="col">Caserio</th>
+                              <th scope="col">Comite</th>
+                              <th scope="col">Usuario</th>
+                              <th scope="col">Area ha<br>Manual</th>
+                              <th scope="col">Area ha<br>Calc</th>
+                              <th scope="col">Ints. Total</th>
+                              <th scope="col">Ints. ANP</th>
+                              <th scope="col">ANP <br> m2</th>
+                              <th scope="col">Ints. ZA</th>
+                              <th scope="col">ZA <br> m2</th>
+                              <th scope="col">Ints. Def14</th>
+                              <th scope="col">DEF14 <br> m2</th>
+                              <th scope="col">Ints. Def20</th>
+                              <th scope="col">DEF20 <br> m2</th>
+                              <th scope="col">Ints. Parcelas</th>
+                              <th scope="col">Ints. Parcelas <br> m2</th>
+                              <th scope="col">Origen LPA</th>
+                              <th scope="col">LPA</th>
+                              <th scope="col">Tipo LPA</th>
+                              <th colspan="2">Acciones</th>
+                            </tr>
+                          </thead>
+                          <tbody></tbody>
+                        </table>
+                      </div>
+                    
+                    </div>
+
+                    <div class="coordenadas-section">
+                      <div class="">
+                        <h6 class="mb-3">Ingresa las coordenadas geográficas:</h6>
+                        
+                        <div class="form-group d-flex mb-2 w-100">
+                          <i class="fa fa-map-pin"></i>
+                          <input class="form-control-plaintext input-coordenadas-latitud" type="text" placeholder="Latitud: -12.74584161">
+                        </div>
+                        <div class="form-group d-flex mb-0 w-100">
+                          <i class="fa fa-map-pin"></i>
+                          <input class="form-control-plaintext input-coordenadas-longitud" type="text" placeholder="Longitud: -76.65478921">
+                        </div>
+                        
+                      </div>
+                      <div class="w-100 mt-3 text-center">
+                        <button class="btn btn-primary btn-sm btn-consultar-coordenada" type="button">Ir a coordenada</button>
+                      </div>
+                    </div>
+
+                    <div class="reporte-grupo-section">
+                      <div class="">
+                        <h6 class="mb-3">Seleccionar Código de Venta:</h6>
+                        <select id="select-filtro-codigo-venta-grupo" class="js-codigo-venta col-sm-12">
+                          
+                        </select>
+                      </div>
+                      <div class="w-100 mt-3 text-center">
+                        <button class="btn btn-primary btn-sm btn-generar-reporte-grupo" type="button">Generar Reporte</button>
+                      </div>
+                    </div>
+
+                    
+
+                    <div class="div-alert alert alert-success" role="alert">
+                      Esta capa se mostrará a partir del nivel de Zoom 10.
+                    </div>
+
+                  </div>
+                </div>
+
+                <div style="position:absolute; bottom: 10%;left: 10%;z-index: 3000; width: 100%; height: 70%;display: none;">
+                  <div class="col-xl-4 col-md-12 box-col-4 xl-30">
+                    <div class="card sellview-sec">
+                      <div class="card-header card-no-border pb-0">
+                        <h5>Precipitación</h5>
+                        <div class="center-content">
+                          <p>ENE 23 - JUN 23</p>
+                        </div>
+                        <div class="card-header-right">
+                          <ul class="list-unstyled card-option">
+                            <li><i class="icon-more-alt"></i></li>
+                            <li><i class="view-html fa fa-code"></i></li>
+                            <li><i class="icofont icofont-maximize full-card"></i></li>
+                            <li><i class="icofont icofont-minus minimize-card"></i></li>
+                            <li><i class="icofont icofont-refresh reload-card"></i></li>
+                            <li><i class="icofont icofont-error close-card"></i></li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="card-body">
+                        <div id="sell-view"></div>
+                        <div class="code-box-copy">
+                          <button class="code-box-copy__btn btn-clipboard" data-clipboard-target="#sellview" title="" data-bs-original-title="Copy" aria-label="Copy"><i class="icofont icofont-copy-alt"></i></button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="div-zoom-info"></div>
+                  
+              </div>
+            
+            </div>
+
+          </div>
+          <!-- Container-fluid Ends-->
+        </div>       
+
+        <!-- footer start-->
+        <footer class="footer">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-6 p-0 footer-left">
+                <p class="mb-0">Copyright© 2026 TraZar. Todos los derechos</p>
+              </div>
+              <!-- <div class="col-md-6 p-0 footer-right">
+                <ul class="color-varient">
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                </ul>
+                <p class="mb-0 ms-3">Hand-crafted & made with <i class="fa fa-heart font-danger"></i></p>
+              </div> -->
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>    
+
+    <div class="modal fade" id="modal-fechas-imagenes" tabindex="-1" aria-labelledby="exampleModalCenter" aria-modal="true" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Fechas disponibles</h5>
+            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>Seleccionar la fecha para mostrar el análisis.</p>
+
+            <div class="div-radiobuttons-wrapper">
+
+            </div>            
+
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cerrar</button>
+            <button class="btn btn-primary seleccionar-fecha" type="button">Seleccionar periodo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="div-btn-cancelar-proceso">
+      <button class="btn btn-primary btn-cancelar-proceso" type="button"><i class="fa-solid fa-chevron-left me-2"></i> Volver</button>
+    </div>
+
+    <div class="row row-table d-none" style="height: 40%;">
+
+      <div class="col-xl-12 col-md-12 box-col-100 xl-100" style="height: 100%; max-height: 100%; overflow: auto;">
+
+        
+
+      </div>                      
+   
+    </div>    
+
+    <!-- latest jquery-->
+    <script src="../assets/js/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap js-->
+    <script src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+    <!-- feather icon js-->
+    <script src="../assets/js/icons/feather-icon/feather.min.js"></script>
+    <script src="../assets/js/icons/feather-icon/feather-icon.js"></script>
+    <!-- scrollbar js-->
+    <script src="../assets/js/scrollbar/simplebar.js"></script>
+    <script src="../assets/js/scrollbar/custom.js"></script>
+    <!-- Sidebar jquery-->
+    <script src="../assets/js/config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Plugins JS start-->
+    <!-- <script src="../assets/js/sidebar-menu.js"></script> -->
+    <script src="../assets/js/select2/select2.full.min.js"></script>
+    <script src="../assets/js/select2/select2-custom.js"></script>
+    <script src="../assets/js/chart/chartist/chartist.js"></script>
+    <script src="../assets/js/chart/chartist/chartist-plugin-tooltip.js"></script>
+    <script src="../assets/js/chart/knob/knob.min.js"></script>
+    <script src="../assets/js/chart/knob/knob-chart.js"></script>
+    <script src="../assets/js/chart/apex-chart/apex-chart.js"></script>
+    <script src="../assets/js/chart/apex-chart/stock-prices.js"></script>
+    <script src="../assets/js/prism/prism.min.js"></script>
+    <script src="../assets/js/clipboard/clipboard.min.js"></script>
+    <script src="../assets/js/custom-card/custom-card.js"></script>
+    <script src="../assets/js/notify/bootstrap-notify.min.js"></script>
+    <script src="../assets/js/dashboard/default.js"></script>
+    <!-- <script src="../assets/js/notify/index.js"></script> -->
+    <script src="../assets/js/slick-slider/slick.min.js"></script>
+    <script src="../assets/js/slick-slider/slick-theme.js"></script>
+    <!-- <script src="../assets/js/typeahead/handlebars.js"></script>
+    <script src="../assets/js/typeahead/typeahead.bundle.js"></script>
+    <script src="../assets/js/typeahead/typeahead.custom.js"></script>
+    <script src="../assets/js/typeahead-search/handlebars.js"></script>
+    <script src="../assets/js/typeahead-search/typeahead-custom.js"></script> -->
+    <script src="../assets/js/datepicker/date-picker/datepicker.js"></script>
+    <script src="../assets/js/datepicker/date-picker/datepicker.en.js"></script>
+    <script src="../assets/js/datepicker/date-picker/datepicker.custom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/progressbar.js/1.0.0/progressbar.min.js"></script>
+  
+    <!-- <script src="../assets/js/map-js/mapsjs-core.js"></script>
+    <script src="../assets/js/map-js/mapsjs-service.js"></script>
+    <script src="../assets/js/map-js/mapsjs-ui.js"></script>
+    <script src="../assets/js/map-js/mapsjs-mapevents.js"></script>
+    <script src="../assets/js/map-js/custom.js"></script> -->
+    <!--
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" 
+    crossorigin=""></script>
+    -->
+    <!-- Plugins JS Ends-->
+    <!-- Theme js-->
+    <script src="../assets/js/script.js"></script>
+    <!-- <script src="../assets/js/theme-customizer/customizer.js"></script> -->
+    <!-- login js-->
+    <!-- Plugin used-->
+    <script src="./js/mapa-indices.js"></script>
+    <script src="./js/parametros-climaticos.js"></script>
+    <script src="./js/grafica-precipitacion.js"></script>
+    <script src="./js/grafica-temperatura.js"></script>
+    <script src="./js/grafica-humedad.js"></script>
+    <script src="./js/grafica-areas.js"></script>
+    <script src="./js/data-legend.js"></script>
+    <script src="./js/capas-de-datos.js"></script>
+    <script src="./js/tools-script.js"></script>
+
+    <%- include('./partials/scripts'); %>
+
+  </body>
+</html>

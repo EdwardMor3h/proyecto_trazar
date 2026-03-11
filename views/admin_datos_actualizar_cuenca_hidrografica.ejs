@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Enzo admin is super flexible, powerful, clean &amp; modern responsive bootstrap 5 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, Enzo admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="pixelstrap">
+    <!-- <link rel="icon" href="../assets/images/favicon/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/images/favicon/favicon.png" type="image/x-icon"> -->
+    <title>Geofarms - Administración de Datos</title>
+    <!-- Google font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" type="text/css" href="../assets/css/vendors/font-awesome.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- ico-font-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/icofont.css">
+    <!-- Themify icon-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/themify.css">
+    <!-- Flag icon-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/flag-icon.css">
+    <!-- Feather icon-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/feather-icon.css">
+    <!-- Plugins css start-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/scrollbar.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/date-picker.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/animate.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/chartist.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/slick.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/slick-theme.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/prism.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/daterange-picker.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/mapsjs-ui.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/select2.css">
+    <!-- Plugins css Ends-->
+    <!-- Bootstrap css-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/bootstrap.css">
+    <!-- App css-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <link id="color" rel="stylesheet" href="../assets/css/color-1.css" media="screen">
+    <!-- Responsive css-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/responsive.css">
+
+    <!-- Leaflet css-->
+    <!--
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+    -->
+    <script src="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.js"></script>
+    <link href="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.css" rel="stylesheet" />
+
+    <!-- <link rel="stylesheet" type="text/css" href="../assets/css/altomayo-style.css"> -->
+    <link rel="stylesheet" type="text/css" href="../assets/css/altomayo-v2-style.css">
+
+    <script src='https://unpkg.com/@turf/turf@6/turf.min.js'></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  </head>
+  <body style="height: 100% !important;">
+    <div class="loader-indices">
+      
+        <div id="loader"></div>
+      
+    </div>
+    <!-- Loader ends-->
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper compact-wrapper" id="pageWrapper">
+      <!-- Page Header Start-->
+      <div class="page-header">
+        <div class="header-wrapper row m-0">
+          
+          <div class="header-logo-wrapper col-auto p-0">
+            <div class="logo-wrapper"><a href="index.html"><img class="img-fluid" src="../assets/images/logo/logo-perhusa.png" alt=""></a></div>
+            <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="align-center"></i></div>
+          </div>
+          <div class="left-header col-7 horizontal-wrapper ps-0">
+            <!-- <div class="input-group">
+              <div class="input-group-prepend"><span class="input-group-text mobile-search"><i class="fa fa-search"></i></span></div>
+              <input class="form-control" type="text" placeholder="Search Here........">
+            </div> -->
+
+
+            <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+              <i data-feather="bar-chart"></i
+              ><span class="">Dashboard</span>
+            </a>
+            <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+              <i data-feather="map"></i
+              ><span class="">Monitoreo</span>
+            </a> 
+            <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+              <i data-feather="map"></i
+              ><span class="">Coberturas</span>
+            </a> 
+            <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+              <i data-feather="file-text"> </i><span class="">Reportes</span>
+            </a> 
+
+        
+            
+          </div>
+          <div class="nav-right col-3 pull-right right-header p-0">
+            <ul class="nav-menus">             
+              <li class="onhover-dropdown">
+                <div class="notification-box"><i class="fa fa-bell-o"> </i><span class="badge rounded-pill badge-primary">4                                </span></div>
+                <ul class="notification-dropdown onhover-show-div">
+                  <li><i data-feather="bell">            </i>
+                    <h6 class="f-18 mb-0">Notificaciones</h6>
+                  </li>
+                  <li><a href="email_read.html">
+                      <p><i class="fa fa-circle-o me-3 font-primary"> </i>Solicitud NDVI <span class="pull-right">10 min.</span></p></a></li>
+                  <li><a href="email_read.html">
+                      <p><i class="fa fa-circle-o me-3 font-success"></i>Solicitud RECI<span class="pull-right">1 hr</span></p></a></li>
+                  <li><a href="email_read.html">
+                      <p><i class="fa fa-circle-o me-3 font-info"></i>Solicitud MCARI<span class="pull-right">3 hr</span></p></a></li>
+                  <li><a href="email_read.html"> 
+                      <p><i class="fa fa-circle-o me-3 font-danger"></i>Solicitud EVI<span class="pull-right">6 hr</span></p></a></li>
+                  <li><a class="btn btn-primary" href="email_read.html">Ver más</a></li>
+                </ul>
+              </li>
+              
+              
+              
+              <!-- <li class="profile-nav onhover-dropdown p-0 me-0">
+                <div class="d-flex profile-media"><img class="b-r-50" src="../assets/images/dashboard/profile.jpg" alt="">
+                  <div class="flex-grow-1"><span>Administrador</span>
+                    <p class="mb-0 font-roboto">Admin <i class="middle fa fa-angle-down"></i></p>
+                  </div>
+                </div>
+                <ul class="profile-dropdown onhover-show-div">
+                  <li><a href="user-profile.html"><i data-feather="user"></i><span>Account </span></a></li>
+                  <li><a href="email_inbox.html"><i data-feather="mail"></i><span>Inbox</span></a></li>
+                  <li><a href="kanban.html"><i data-feather="file-text"></i><span>Taskboard</span></a></li>
+                  <li><a href="login.html"><i data-feather="log-in"> </i><span>Log in</span></a></li>
+                </ul>
+              </li> -->
+            </ul>
+          </div>
+          <script class="result-template" type="text/x-handlebars-template">
+            <div class="ProfileCard u-cf">                        
+            <div class="ProfileCard-avatar"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-airplay m-0"><path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"></path><polygon points="12 15 17 21 7 21 12 15"></polygon></svg></div>
+            <div class="ProfileCard-details">
+            <div class="ProfileCard-realName">{{name}}</div>
+            </div>
+            </div>
+          </script>
+          <script class="empty-template" type="text/x-handlebars-template"><div class="EmptyMessage">Your search turned up 0 results. This most likely means the backend is down, yikes!</div></script>
+        </div>
+      </div>
+      <!-- Page Header Ends                              -->
+      <!-- Page Body Start-->
+      <div class="page-body-wrapper">
+        
+        <%- include('./partials/menu_lateral'); %>
+        
+        <div class="page-body">
+          <!-- Container-fluid starts-->
+          <div class="container-fluid">
+
+            <div class="row h-100 m-0">
+
+              <!-- Sección de Información -->
+              <div class="col-xl-3 col-md-3 box-col-30 xl-30 info-section">
+                <div class="card">
+                  <div class="card-body">
+
+                    <div class="logo-section mb-4">
+
+                      <%- include('./partials/user_profile'); %>
+
+                    </div>
+
+                    <div class="title-module-section">
+
+                      
+                      <div class="group-title-module" style="display: flex;">
+                        <a class="a-open-menu">
+                          <span class="fa fa-bars"></span>
+                        </a>
+                        <div class="item-title-module">
+                          <small>Módulo</small>
+                          <h5 class="mb-0">Administración de Datos</h5>
+                        </div>
+                        
+                      </div>
+                      
+                    </div>
+
+                    <div class="options-section">
+
+                      <div class="buscador-periodo-ie-section">
+
+                        <%- include('./partials/admin_menu'); %>
+
+ 
+                      </div>
+                      <!-- ./buscador-periodo-ie-section -->
+
+           
+
+                    </div>
+
+                    
+
+                    
+
+
+                   
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Sección del Mapa -->
+              <div class="col-xl-9 col-md-9 box-col-70 xl-70 admin-data-section">
+                  
+                <div class="card">
+                  <!-- <div class="card-header pb-0">
+                    <h5>Visualizador de Indices</h5><span>Distribución espacial del índice</span>
+                  </div> -->
+                  <div class="card-body p-5">
+
+                    <div class="mb-4">
+                      <h5 class="mb-0">Cuencas Hidrográficas</h5>
+                      <small class="mb-0">Agregue una nueva cuenca hidrográfica o modifique un registro existente</small>
+                    </div>
+
+                    <div class="row">
+
+
+                      <div class="col-xl-12 col-md-12 box-col-100 xl-100">
+
+                        <div class="footer-section" style="position: relative; padding-left: 0; justify-content: flex-end;">
+
+                          <button class="btn btn-complementary btn-agregar-registro" type="button"><i class="fa fa-plus me-2"></i> Agregar nuevo registro</button>
+
+                        </div>
+
+                        
+
+                        <div class="table-responsive table-actualizar-datos mb-4">
+                          <table class="table" id="table-actualizar-datos">
+                            <thead>
+                              <tr>
+                                <th scope="col">Identificador</th>
+                                <th scope="col">Cuenca Hidrográfica</th>
+                                <th></th>
+                                
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>
+                                  1
+                                </td>
+                                <td>
+                                  <form class="form-inline w-100">
+                                    <div class="form-group d-flex mb-0 w-100 ui search">
+                                      <i class="fa fa-lemon"></i>
+        
+                                      <input class="form-control-plaintext form-control input-registro" type="text" data-language="en" placeholder="Insertar Variedad" prev-value="">
+                                      
+                                    </div>
+                                  </form>
+                                </td>
+                                <td data-url="variedades" data-id="">
+                                  
+                                  <a class="btn btn-complementary btn-editar-registro">
+                                    <i class="fa fa-pen me-2"></i>
+                                    Editar
+                                  </a>
+                                  <a class="btn btn-graysoft btn-guardar-registro">
+                                    <i class="fa fa-check me-2"></i>
+                                    Aceptar
+                                  </a>
+                                  
+                                </td>
+                              </tr>
+                              
+                              
+                              
+                            </tbody>
+                          </table>
+                        </div>
+
+                        
+
+                      </div>
+                   
+                    </div>
+
+                    
+                  </div>
+                </div>
+
+                <div style="position:absolute; bottom: 10%;left: 10%;z-index: 3000; width: 100%; height: 70%;display: none;">
+                  <div class="col-xl-4 col-md-12 box-col-4 xl-30">
+                    <div class="card sellview-sec">
+                      <div class="card-header card-no-border pb-0">
+                        <h5>Precipitación</h5>
+                        <div class="center-content">
+                          <p>ENE 23 - JUN 23</p>
+                        </div>
+                        <div class="card-header-right">
+                          <ul class="list-unstyled card-option">
+                            <li><i class="icon-more-alt"></i></li>
+                            <li><i class="view-html fa fa-code"></i></li>
+                            <li><i class="icofont icofont-maximize full-card"></i></li>
+                            <li><i class="icofont icofont-minus minimize-card"></i></li>
+                            <li><i class="icofont icofont-refresh reload-card"></i></li>
+                            <li><i class="icofont icofont-error close-card"></i></li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="card-body">
+                        <div id="sell-view"></div>
+                        <div class="code-box-copy">
+                          <button class="code-box-copy__btn btn-clipboard" data-clipboard-target="#sellview" title="" data-bs-original-title="Copy" aria-label="Copy"><i class="icofont icofont-copy-alt"></i></button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                  
+              </div>
+
+              
+
+            
+            </div>
+
+          </div>
+          <!-- Container-fluid Ends-->
+        </div>
+        <!-- footer start-->
+        <footer class="footer">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-6 p-0 footer-left">
+                <p class="mb-0">Copyright© 2026 TraZar. Todos los derechos</p>
+              </div>
+              <!-- <div class="col-md-6 p-0 footer-right">
+                <ul class="color-varient">
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                </ul>
+                <p class="mb-0 ms-3">Hand-crafted & made with <i class="fa fa-heart font-danger"></i></p>
+              </div> -->
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modal-fechas-imagenes" tabindex="-1" aria-labelledby="exampleModalCenter" aria-modal="true" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Fechas disponibles</h5>
+            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>Seleccionar la fecha para mostrar el análisis.</p>
+
+            <div class="div-radiobuttons-wrapper">
+
+            </div>            
+
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cerrar</button>
+            <button class="btn btn-primary seleccionar-fecha" type="button">Seleccionar periodo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- latest jquery-->
+    <script src="../assets/js/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap js-->
+    <script src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+    <!-- feather icon js-->
+    <script src="../assets/js/icons/feather-icon/feather.min.js"></script>
+    <script src="../assets/js/icons/feather-icon/feather-icon.js"></script>
+    <!-- scrollbar js-->
+    <script src="../assets/js/scrollbar/simplebar.js"></script>
+    <script src="../assets/js/scrollbar/custom.js"></script>
+    <!-- Sidebar jquery-->
+    <script src="../assets/js/config.js"></script>
+    <!-- Plugins JS start-->
+    <!-- <script src="../assets/js/sidebar-menu.js"></script> -->
+    <script src="../assets/js/select2/select2.full.min.js"></script>
+    <script src="../assets/js/select2/select2-custom.js"></script>
+    <script src="../assets/js/chart/chartist/chartist.js"></script>
+    <script src="../assets/js/chart/chartist/chartist-plugin-tooltip.js"></script>
+    <script src="../assets/js/chart/knob/knob.min.js"></script>
+    <script src="../assets/js/chart/knob/knob-chart.js"></script>
+    <script src="../assets/js/chart/apex-chart/apex-chart.js"></script>
+    <script src="../assets/js/chart/apex-chart/stock-prices.js"></script>
+    <script src="../assets/js/prism/prism.min.js"></script>
+    <script src="../assets/js/clipboard/clipboard.min.js"></script>
+    <script src="../assets/js/custom-card/custom-card.js"></script>
+    <script src="../assets/js/notify/bootstrap-notify.min.js"></script>
+    <script src="../assets/js/dashboard/default.js"></script>
+    <!-- <script src="../assets/js/notify/index.js"></script> -->
+    <script src="../assets/js/slick-slider/slick.min.js"></script>
+    <script src="../assets/js/slick-slider/slick-theme.js"></script>
+    <!-- <script src="../assets/js/typeahead/handlebars.js"></script>
+    <script src="../assets/js/typeahead/typeahead.bundle.js"></script>
+    <script src="../assets/js/typeahead/typeahead.custom.js"></script>
+    <script src="../assets/js/typeahead-search/handlebars.js"></script>
+    <script src="../assets/js/typeahead-search/typeahead-custom.js"></script> -->
+    <script src="../assets/js/datepicker/date-picker/datepicker.js"></script>
+    <script src="../assets/js/datepicker/date-picker/datepicker.en.js"></script>
+    <script src="../assets/js/datepicker/date-picker/datepicker.custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
+    <!-- <script src="../assets/js/map-js/mapsjs-core.js"></script>
+    <script src="../assets/js/map-js/mapsjs-service.js"></script>
+    <script src="../assets/js/map-js/mapsjs-ui.js"></script>
+    <script src="../assets/js/map-js/mapsjs-mapevents.js"></script>
+    <script src="../assets/js/map-js/custom.js"></script> -->
+    <!--
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" 
+    crossorigin=""></script>
+    -->
+    <!-- Plugins JS Ends-->
+    <!-- Theme js-->
+    <script src="../assets/js/script.js"></script>
+    <script src="../js/tools-script.js"></script>
+    <script>
+      var data_model = 'cuencas_hidrograficas'
+    </script>
+    <script src="../js/admin-datos/admin-datos-script.js"></script>
+    <script>
+      obtener_data();
+    </script>
+      
+    <%- include('./partials/scripts'); %>
+  </body>
+</html>

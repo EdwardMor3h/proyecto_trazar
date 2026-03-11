@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nueva Ventana</title>
+    <style>
+        /* Establecer el tamaño de la página a A4 */
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20mm; /* Margen para la impresión */
+        }
+
+        /* Parte imprimible */
+        #impresion {
+            /* Estilos para la parte imprimible */
+            margin: 10mm;
+        }
+
+        /* Cabecera */
+        #impresion .header {
+            /*background-color: #005000;*/ /* Verde oscuro */
+            border: 10px solid #005000;
+            color: #005000; /* Texto blanco */
+            text-align: center;
+            padding: 0px;
+            margin-bottom: 10px;
+        }
+
+        /* Logo */
+        #impresion .logo {
+            /* Estilos para el logo */
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Subtítulos */
+        #impresion .subtitle {
+            background-color: #0B983A; /* Verde claro */
+            padding: 10px;
+            margin-bottom: 10px;
+            color: white;
+
+            font-size: 11px;
+        }
+
+        /* Contenido */
+        #impresion .content {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        /* Mapa */
+        #impresion #map {
+            width: 45%;
+            height: 350px;
+            margin: 0 auto;
+        }
+
+        #impresion #vertices-content{
+            width: 55%;
+            height: 350px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        #impresion #vertices-content .vertices-table,
+        #impresion #vertices-content .vertices-table-02{
+            width: 50%;
+        }
+
+        #impresion #vertices-content .vertices-table,
+        #impresion #vertices-content .vertices-table-02{
+            font-size: 11px;
+        }
+
+        #impresion #vertices-content .vertices-table,
+        #impresion #vertices-content .vertices-table-02{
+            text-align: center;
+            font-size: 11px;
+        }
+
+        .header{
+            display: flex;
+            align-items: center;
+        }
+
+        .header img{
+            width: 20%;
+        }
+
+        .header span{
+            width: 80%;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .content p{
+            border-bottom: 1px solid #358B5A;
+
+            font-size: 11px;
+        }
+
+        button{
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+            font-size: 14px;
+            padding: 0.6rem 2.75rem;
+            font-weight: 600;
+            border-radius: 30px;
+            color: #181F26;
+            background-color: #30E85B;
+            border-color: #30E85B;
+            outline: none;
+            text-align: center;
+            text-decoration: none;
+            vertical-align: middle;
+            display: inline-block;
+            text-transform: none;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <!-- Parte no imprimible con botón "Imprimir" -->
+    <button id="printBtn">Imprimir</button>
+
+    <!-- Parte imprimible -->
+    <div id="impresion">
+
+        <!-- Cabecera -->
+        <div class="header">
+            <img class="logo" src="../assets/images/img-logo-geofarms.png" alt="Logo">
+            <span>FICHA TÉCNICA DE PRODUCCIÓN DE CAFÉ</span>            
+        </div>
+
+        <!-- Sección A - Datos del Productor -->
+        <div class="subtitle">A) DATOS DEL PRODUCTOR</div>
+        <div class="content">
+            <div style="display: flex; justify-content: space-between;">
+                <!-- Primera columna -->
+                <div>
+                    <p>Nombre del productor: <span id="nombreProductor">-</span></p>
+                    <p>Codigo del productor: <span id="codigoProductor">-</span></p>
+                    
+                </div>
+                <!-- Segunda columna -->
+                <div>
+                    <p>LPA Origen: <span id="lpaOrigen">-</span></p>
+                    <p>LPA Tipo: <span id="lpaTipo">-</span></p>
+                    
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- Sección B - Datos de la Unidad Productiva -->
+        <div class="subtitle">B) DATOS DE LA UNIDAD PRODUCTIVA</div>
+        <div class="content">
+            <div style="display: flex; justify-content: space-between;">
+                <!-- Primera columna -->
+                <div>
+                    <p>Nombre de parcela: <span id="nombreParcela">-</span></p>
+                    <p>Código de parcela: <span id="codigoParcela">-</span></p>
+                    <p>Área de parcela (ha): <span id="areaParcela">-</span></p>
+                    <p>Altitud de la parcela (ha): <span id="altitudParcela">-</span></p>
+                    <p>Variedad de cultivo: <span id="variedadCultivo">-</span></p>
+                    <p>Sello de certificación: <span id="selloCertificacion">-</span></p>
+                </div>
+                <!-- Segunda columna -->
+                <div>
+                    <p>Cuenca de producción: <span id="cuencaProduccion">-</span></p>
+                    <p>Corredor económico: <span id="corredorEconomico">-</span></p>
+                    <p>Zona de producción: <span id="zonaProduccion">-</span></p>
+                    <p>Comité local: <span id="comiteLocal">-</span></p>
+                    <p>Caserío: <span id="caserio">-</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección C - Mapa de Parcela -->
+        <div class="subtitle">C) MAPA DE PARCELA</div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+            <div id="map"></div>
+            <div id="vertices-content">
+                <table class="vertices-table">
+                    <thead>
+                        <th>Punto <br> Control</th>
+                        <th>Latitud</th>
+                        <th>Longitud</th>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+                <table class="vertices-table-02">
+                    <thead>
+                        <th>Punto <br> Control</th>
+                        <th>Latitud</th>
+                        <th>Longitud</th>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Sección D - Deforestacion y sostenibilidad -->
+        <div class="subtitle">D) DEFORESTACIÓN Y SOSTENIBILIDAD</div>
+        <div class="content">
+            <div style="display: flex; justify-content: space-between;">
+                <!-- Primera columna -->
+                <div>
+                    <p>Intersección con ANP (ha): <span id="interseccionANP">-</span></p>
+                    <p>Intersección con ZA (ha): <span id="interseccionZA">-</span></p>
+                    <p>Intersección deforestación 2014 (m2): <span id="interseccionD2014M2">-</span></p>
+                    <p>Intersección deforestación 2014 (%): <span id="interseccionD2014Porcentaje">-</span></p>
+                    <p>Intersección deforestación 2020 (m2): <span id="interseccionD2020M2">-</span></p>
+                    <p>Intersección deforestación 2020 (%): <span id="interseccionD2020Porcentaje">-</span></p>
+                    <p>Intersección Total (ha): <span id="interseccionTotal">-</span></p>
+                    <p>Intersección Total (%): <span id="interseccionTotalPorcentaje">-</span></p>
+                    <p>Fuente: GEOBOSQUES (MINAM) / SERNANP</p>
+
+                </div>
+                <!-- Segunda columna -->
+                <div>
+                    <div id="qr-code"></div>
+
+                    <p>Fecha de impresión: <span id="fechaImpresion"></span></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src='https://unpkg.com/@turf/turf@6/turf.min.js'></script>
+
+    <!-- latest jquery-->
+    <script src="../assets/js/jquery-3.6.0.min.js"></script>
+
+    <script src="../assets/js/qrcode.min.js"></script>
+
+    <!-- Script para obtener parámetros de la URL y funciones de impresión -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.js"></script>
+    <link href="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.css" rel="stylesheet" />
+
+    <script src="./js/capas-de-datos.js"></script>
+
+    <script>
+        document.getElementById('printBtn').addEventListener('click', function () {
+
+            captureMapImage();
+
+            // Función para imprimir usando html2pdf
+            const printContent = document.getElementById('impresion');
+            //html2pdf().from(printContent).outputPdf();
+
+            setTimeout(function(){
+                html2pdf(printContent);
+            }, 3000)
+
+        });
+
+        // Configuración y carga del mapa con Mapbox GL JS
+        var map = new maplibregl.Map({
+            container: 'map',
+            style: {
+                version: 8,
+                sources: {
+                  osm: {
+                    type: 'raster',
+                    //tiles: ["https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}.png"],
+                    //tiles: ["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],
+                    //tiles: ["https://basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png"],
+                    //tiles: ["https://basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"],           
+                    tiles: ["https://mts1.google.com/vt/lyrs=y@186112443&hl=x-local&src=app&x={x}&y={y}&z={z}&s=Galile"],
+                    tileSize: 256,
+                    //attribution: ''
+                    }
+                },
+                "glyphs": "https://fonts.openmaptiles.org/{fontstack}/{range}.pbf",
+                layers: [{
+                    id: 'osm',
+                    type: 'raster',
+                    source: 'osm',
+                }]
+            }
+            ,
+            center: [-75.02919564021485, -9.213978200952667],
+            zoom: 5
+        });
+
+        // Deshabilita la manipulación del mapa, el zoom y el scroll
+        map.dragPan.disable();
+        map.scrollZoom.disable();
+        map.doubleClickZoom.disable();
+        map.touchZoomRotate.disable();
+        map.boxZoom.disable();
+        map.keyboard.disable();
+
+        // Función para obtener una imagen estática del mapa y mostrarla en la impresión
+        function captureMapImage() {
+            const mapCanvas = map.getCanvas();
+            const mapImage = new Image();
+
+            // Necesitas esperar a que el mapa se haya renderizado completamente antes de capturar la imagen
+            map.once('render', function () {
+                mapImage.src = mapCanvas.toDataURL('image/png');
+
+                // Busca el elemento div con el id 'map' y agrega la imagen como hijo
+                const mapDiv = document.getElementById('map');
+                mapDiv.innerHTML = ''; // Limpia el contenido previo
+                mapDiv.appendChild(mapImage);
+            });
+
+            // Forza un nuevo renderizado del mapa para asegurarte de que la imagen se actualice correctamente
+            map.resize();
+        }
+
+        // Llamar a captureMapImage después de que el mapa haya cargado
+        map.on('load', function () {
+            // Supongamos que tienes una función que obtiene el JSON y el id buscado
+            const idBuscado = obtenerIdBuscado("id"); // Reemplazar con tu función real
+            console.log(idBuscado);
+            const idgBuscado = obtenerIdBuscado("idg"); // Reemplazar con tu función real
+            console.log(idgBuscado);
+            const lpaTipoBuscado = obtenerIdBuscado("lpaTipo"); // Reemplazar con tu función real
+            console.log(idgBuscado);
+
+            const vertices = colocar_vertices(idgBuscado,lpaTipoBuscado);
+            const json = obtenerDatosDelServidor(idBuscado); // Reemplazar con tu función real            
+
+            // Después de hacer el fitbound, capturar la imagen
+            // captureMapImage();
+        });
+
+        function colocar_vertices($idg, $lpaTipo)
+        {
+            $.ajax({
+                type: 'GET',
+                url: '/get-vertices-parcela',
+                dataType: 'json',
+                data: {table_name: 'parcelas_cafe', idg: $idg, lpa_tipo: $lpaTipo},
+                success: function(geojson){
+
+                    // geojson = JSON.parse(geojson);
+
+                    console.log(geojson);
+                    var htmlContent_01 = '';
+                    var htmlContent_02 = '';
+
+                    var arrayPuntos = [];
+
+                    var conteo;
+
+                    if($lpaTipo === 'ORGANICO')
+                    {
+                        for(var i=0; i<geojson.length; i++)
+                        {
+
+                            if(i !== geojson.length-1)
+                            {
+                                let latitud = geojson[i]["latitud"];
+                                latitud = parseFloat(latitud).toFixed(8)
+
+                                let longitud = geojson[i]["longitud"];
+                                longitud = parseFloat(longitud).toFixed(8)
+                                
+                                if (i<14)
+                                {
+                                    
+                                    if(i<9){
+                                        conteo = "P0" + (i+1);
+                                    }
+                                    else{
+                                        conteo = "P" + (i+1);
+                                    }
+
+                                    htmlContent_01 += '<tr>\
+                                                        <td>'+ conteo +'</td>\
+                                                        <td>'+ latitud +'</td>\
+                                                        <td>'+ longitud +'</td>\
+                                                    </tr>';
+
+                                    if(i != geojson.length - 1)
+                                        arrayPuntos.push([[geojson[i]["latitud"],geojson[i]["longitud"]], conteo])
+                                }
+                                else
+                                {
+                                    conteo = "P" + (i+1);
+                                    htmlContent_02 += '<tr>\
+                                                        <td>'+ conteo +'</td>\
+                                                        <td>'+ latitud +'</td>\
+                                                        <td>'+ longitud +'</td>\
+                                                    </tr>';
+
+                                    if(i != geojson.length - 1)
+                                        arrayPuntos.push([[geojson[i]["latitud"],geojson[i]["longitud"]], conteo])
+
+                                }
+
+                            }
+                            
+                        };
+
+                        $('.vertices-table tbody').html(htmlContent_01);
+                        $('.vertices-table-02 tbody').html(htmlContent_02);
+                        // console.log(htmlContent);
+                        console.log(arrayPuntos);
+                        colocarVerticesEnElMapa(arrayPuntos, 'ORGANICO');
+
+                    }
+
+                    else{
+
+                        htmlContent_01 += '<tr>\
+                                            <td>P01</td>\
+                                            <td>'+ geojson[0]["latitud"] +'</td>\
+                                            <td>'+ geojson[0]["longitud"] +'</td>\
+                                        </tr>';
+
+                        $('.vertices-table tbody').html(htmlContent_01);
+
+                        arrayPuntos.push(geojson[0]["latitud"]);
+                        arrayPuntos.push(geojson[0]["longitud"]);
+
+                        colocarVerticesEnElMapa(arrayPuntos, 'CONVENCIONAL');
+
+
+                    }
+                }
+            })
+        };
+
+        function colocarVerticesEnElMapa(vertices, $lpa_tipo){
+            console.log(vertices);
+
+            if($lpa_tipo === 'ORGANICO')
+            {
+                vertices.forEach(function(vertice) {
+                    var latitud = vertice[0][0];
+                    var longitud = vertice[0][1];
+                    var label= vertice[0];
+                    new maplibregl.Marker()
+                    .setLngLat([longitud, latitud])
+                    .addTo(map);                    
+                });
+
+            }
+            else
+            {
+                new maplibregl.Marker()
+                    .setLngLat([vertices[1], vertices[0]])
+                    .addTo(map);   
+
+            }
+            
+            
+            
+        };
+
+        // Ejemplo de función para obtener datos del servidor
+        function obtenerDatosDelServidor(idBuscado) {
+            // Puedes hacer una llamada AJAX aquí para obtener los datos del servidor
+            // Retorna un objeto JSON simulado para este ejemplo
+
+            $.ajax({
+                url: '/get-shapefile',
+                //url: '/get-nuevas-parcelas-shapefile',
+                type: 'GET',
+                dataType: 'json',
+                data: {id: idBuscado},
+                success: function(geojson) {
+
+                    geojson = JSON.parse(geojson);
+
+                    console.log(geojson);
+                    var firstFeature = geojson.features[0];
+                    console.log(firstFeature);
+                    var turfMultiPolygon = turf.multiPolygon(firstFeature.geometry.coordinates);
+                    var bbox = turf.bbox(turfMultiPolygon);
+                    var bounds = [[bbox[0], bbox[1]], [bbox[2], bbox[3]]];
+                    map.fitBounds(bounds, { padding: 60 });
+                    
+                    agregar_geojson('cafe','fill',geojson, _paint=null, {'text_field':'nombre', 'text_size': 20});
+                    //cambiarEstiloParcelaSeleccionada(49);
+
+                    agregar_geojson_borde('cafeborde','line',geojson);
+                }
+        
+            });
+
+            $.ajax({
+                url: '/filtrar-unidad-productiva-tabla-atributos',
+                //url: '/get-nuevas-parcelas-shapefile',
+                type: 'GET',
+                dataType: 'json',
+                data: {
+                    where_filtros: JSON.stringify({id: idBuscado})
+                },
+                success: function(up) {
+                    console.log(up);
+
+                    var up = up[0];
+
+                    up.Productor ? $('#nombreProductor').text(up.Productor.nombre) : false;
+                    up.Productor ? $('#codigoProductor').text(up.Productor.codigo) : false;
+                    up.Productor ? $('#lpaOrigen').text(up.Productor.lpa_origen) : false;
+                    up.Productor ? $('#lpaTipo').text(up.Productor.lpa_tipo) : false;
+
+                    up.nombre ? $('#nombreParcela').text(up.nombre) : false;
+                    up.id ? $('#codigoParcela').text(up.id) : false;
+                    up.area_poly_ha ? $('#areaParcela').text(up.area_poly_ha) : false;
+                    up.altitud ? $('#altitudParcela').text(up.altitud) : false;
+                    up.Variedad ? $('#variedadCultivo').text(up.Variedad.descripcion) : false;
+                    up.Sello ? $('#selloCertificacion').text(up.Sello.descripcion) : false;
+
+                    up.CuencaHidrografica ? $('#cuencaProduccion').text(up.CuencaHidrografica.descripcion) : false;
+                    up.Corredor ? $('#corredorEconomico').text(up.Corredor.descripcion) : false;
+                    up.Zona ? $('#zonaProduccion').text(up.Zona.descripcion) : false;
+                    up.Comite ? $('#comiteLocal').text(up.Comite.descripcion) : false;
+                    up.Caserio ? $('#caserio').text(up.Caserio.descripcion) : false;
+                    
+                    up.area_ints_anp_m2 ? $('#interseccionANP').text((up.area_ints_anp_m2/10000).toFixed(3)) : false;
+                    up.area_ints_za_m2 ? $('#interseccionZA').text((up.area_ints_za_m2/10000).toFixed(3)) : false;
+                    up.area_ints_deforestacion_2014_m2 ? $('#interseccionD2014M2').text(up.area_ints_deforestacion_2014_m2) : false;
+                    up.area_ints_deforestacion_2014_m2 ? $('#interseccionD2014Porcentaje').text((up.area_ints_deforestacion_2014_m2/(up.area_poly_ha*100)).toFixed(3)) : false;
+                    up.area_ints_deforestacion_2020_m2 ? $('#interseccionD2020M2').text(up.area_ints_deforestacion_2020_m2) : false;
+                    up.area_ints_deforestacion_2020_m2 ? $('#interseccionD2020Porcentaje').text((up.area_ints_deforestacion_2020_m2/(up.area_poly_ha*100)).toFixed(3)) : false;
+
+                    let interseccion_total = up.area_ints_anp_m2/10000 + up.area_ints_za_m2/10000 + up.area_ints_deforestacion_2014_m2/10000 + up.area_ints_deforestacion_2020_m2/10000;
+
+                    $('#interseccionTotal').text(interseccion_total.toFixed(3));
+                    $('#interseccionTotalPorcentaje').text(((interseccion_total/up.area_poly_ha)*100).toFixed(0));
+                    
+                    $('#fechaImpresion').text(obtenerFechaHoy());
+
+                    generarQrCode(up.id);
+
+                }        
+            });
+        }
+
+        // Ejemplo de función para obtener el id buscado
+        function obtenerIdBuscado($key) {
+            // Obtener la cadena de consulta de la URL
+            const queryString = window.location.search;
+
+            // Crear un objeto URLSearchParams a partir de la cadena de consulta
+            const params = new URLSearchParams(queryString);
+
+            // Obtener el valor de la variable1
+            const dataId = params.get('dataId');
+
+            // Obtener el valor de la variable2
+            const dataIdg = params.get('dataIdg');
+
+            // Obtener el valor de la variable3
+            const dataLpaTipo = params.get('dataLpaTipo');
+
+            if ($key === 'id') {
+                return dataId;
+            }
+            else if ($key === 'idg'){
+                return dataIdg;
+            }
+            else if ($key === 'lpaTipo'){
+                return dataLpaTipo;
+
+            }
+
+            
+        }
+
+        function obtenerFechaHoy() {
+            const hoy = new Date();
+            const dia = hoy.getDate().toString().padStart(2, '0');
+            const mes = (hoy.getMonth() + 1).toString().padStart(2, '0'); // Meses comienzan desde 0
+            const anio = hoy.getFullYear();
+
+            return `${dia}/${mes}/${anio}`;
+        }
+
+        function generarQrCode(id){
+            var qrcode = new QRCode("qr-code", {
+                text: "https://geofarmsperhusa.com.pe/visor",
+                width: 128,
+                height: 128,
+                colorDark : "#000000",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        }
+        
+    </script>
+
+</body>
+</html>

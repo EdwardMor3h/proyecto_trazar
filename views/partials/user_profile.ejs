@@ -1,0 +1,19 @@
+<div class="logo-container">
+    <img src="../assets/images/img-logo-geofarms.png" alt="">
+    <!-- <img src="../assets/images/logo/agroin_v2_logo_negativo.svg" alt=""> -->
+</div>
+
+<div class="user-container profile-nav onhover-dropdown p-0 me-0">
+<div class="d-flex profile-media">    
+    <img class="b-r-50" src="<%= user.imagen || '../assets/images/dashboard/profile.jpg' %>" alt="">
+    <div class="flex-grow-1">
+    <span><%= user.usuario %></span>
+    <p class="mb-0 font-roboto"><%= user.rol_nombre %><i class="middle fa fa-angle-down"></i></p>
+    </div>
+</div>
+<ul class="profile-dropdown perfil-section onhover-show-div">
+    <li><a href="#" class="a-foto-usuario"><i data-feather="camera"> </i><span>Foto perfil</span></a></li>
+    <li class="mt-2"><a href="/logout"><i data-feather="log-in"> </i><span>Cerrar Sesión</span></a></li>
+</ul>
+<input type="file" class="input-foto-usuario d-none" data-id="<%= user.id %>"/>
+</div>

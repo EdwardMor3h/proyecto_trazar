@@ -1,0 +1,15 @@
+node_modules/
+build/
+.env
+logs/
+*.log
+npm-debug.log
+.DS_Store
+
+clavePrivada/
+uploads/
+shapefile/
+
+public/productor/fotos
+public/unidad_productiva/fotos
+public/usuario
