@@ -800,46 +800,49 @@ app.get('/', function(req, res) {
 
 });
 
-// Ruta de inicio de sesión
 app.post('/login', async (req, res) => {
-    const { username, password } = req.body;
-  
+    console.log("BODY:", req.body); // 👈 DEBUG
+
+    const { username, correo, password } = req.body;
+
+    // 🔥 Soporta ambos nombres (por si el frontend usa "correo")
+    const userInput = username || correo;
+
+    // 🚨 VALIDACIÓN IMPORTANTE
+    if (!userInput || !password) {
+        return res.status(400).send('Faltan datos');
+    }
+
     try {
 
-      // Calcular el hash MD5 de la contraseña proporcionada
-      const md5Password = crypto.createHash('md5').update(password).digest('hex');
+      const md5Password = crypto.createHash('md5')
+        .update(password)
+        .digest('hex');
 
-      // Verificar las credenciales del usuario en la base de datos
       const user = await Usuario.findOne({
         where: {
-          usuario: username,
+          usuario: userInput,
           contrasena: md5Password,
         },
         include: [
-            { model: Zona }, // Incluir la tabla "Zona" relacionada
-            { model: Rol }, // Incluir la tabla "Rol" relacionada
-          ],
+          { model: Zona },
+          { model: Rol },
+        ],
       });
-  
+
       if (user) {
 
-        // Revocar todas las sesiones anteriores del usuario
         await SessionTokenController.revokeAllSessionTokensForUser(user.id);
 
-        // Generar un nuevo token de sesión
         const sessionToken = SessionTokenController.generateSessionToken();
 
-        // Guardar el token en la base de datos
         await SessionTokenController.saveSessionToken(user.id, sessionToken);
         
-        //Guardar token en la sesion
         req.session.userToken = sessionToken;
 
-        // Credenciales válidas, crear sesión para el usuario
         req.session.user = {
             id: user.id,
             rol: user.rol_id,
-            // Agregar todos los campos del modelo Usuario al objeto de sesión
             nombre: user.nombre,
             dni: user.dni,
             zona_id: user.zona_id,
@@ -847,31 +850,24 @@ app.post('/login', async (req, res) => {
             imagen: user.imagen,
             fecha_creacion: user.fecha_creacion,
             fecha_modificacion: user.fecha_modificacion,
-            // Acceder a la información de la tabla "Zona" relacionada
             zona_nombre: user.Zona ? user.Zona.nombre : null,
             zona_descripcion: user.Zona ? user.Zona.descripcion : null,
-            // Acceder a la información de la tabla "Rol" relacionada
             rol_nombre: user.Rol ? user.Rol.nombre : null,
             rol_descripcion: user.Rol ? user.Rol.descripcion : null,
-            // Agregar más campos de la tabla "Zona" y "Rol" según tus necesidades,
             usuario: user.usuario
         };
-        
-        //res.redirect('/visor'); // Redirigir a una página de bienvenida
 
         res.send('1');
 
       } else {
-        // Credenciales inválidas, mostrar mensaje de error
-        //res.send('Credenciales inválidas');
         res.send('0');
       }
+
     } catch (error) {
       console.error(error);
       res.status(500).send('Error de servidor');
     }
-  });
-
+});
 // Middleware para autorización
 const requireRole = (role) => async (req, res, next) => {
     try {

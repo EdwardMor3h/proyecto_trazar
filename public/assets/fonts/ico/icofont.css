@@ -1,0 +1,7 @@
+@font-face {
+  font-family: 'IcoFont';
+  src: url('./icofont.ttf') format('truetype'),
+       url('./icofont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}

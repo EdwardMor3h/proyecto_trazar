@@ -40,7 +40,11 @@ var map = new maplibregl.Map({
             //tiles: ["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],
             //tiles: ["https://basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png"],
             //tiles: ["https://basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"],           
-            tiles: ["https://mts1.google.com/vt/lyrs=y@186112443&hl=x-local&src=app&x={x}&y={y}&z={z}&s=Galile"],
+            tiles: [
+            "https://a.tile.openstreetmap.org/{z}/{x}/{y}.png",
+            "https://b.tile.openstreetmap.org/{z}/{x}/{y}.png",
+            "https://c.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            ],
             tileSize: 256,
             attribution: 'Map tiles by <a target="_top" rel="noopener" href="https://tile.openstreetmap.org/">OpenStreetMap tile servers</a>, under the <a target="_top" rel="noopener" href="https://operations.osmfoundation.org/policies/tiles/">tile usage policy</a>. Data by <a target="_top" rel="noopener" href="http://openstreetmap.org">OpenStreetMap</a>'
             }
@@ -53,8 +57,8 @@ var map = new maplibregl.Map({
         }]
     }
     ,
-    center: [-74.5, 40],
-    zoom: 9
+    center: [-79.9, -6.7],
+    zoom: 12
 });
     
 /*

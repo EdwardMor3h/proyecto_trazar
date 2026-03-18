@@ -23,15 +23,23 @@ exports.getAllUnidadProductivaCodigoVentas = async (req, res) => {
 // Obtener los codigos de venta únicos
 exports.getDistinctCodigoVentas = async (req, res) => {
   try {
-    // const unidadProductivaCodigoVentas = await UnidadProductivaCodigoVenta.findAll({attributes: ['codigo_venta'],group: 'codigo_venta'});
-    // res.json(unidadProductivaCodigoVentas);
-    const unidadProductivaCodigoVentas = await sequelize.query('SELECT codigo_venta, COUNT(codigo_venta) as cantidad FROM unidad_productiva_codigo_venta GROUP BY codigo_venta', {
-      type: QueryTypes.SELECT
-    });
+    const unidadProductivaCodigoVentas = await sequelize.query(
+      `SELECT codigo_venta, COUNT(codigo_venta) as cantidad 
+       FROM unidad_productiva_codigo_venta 
+       GROUP BY codigo_venta`,
+      {
+        type: QueryTypes.SELECT
+      }
+    );
+
     res.json(unidadProductivaCodigoVentas);
+
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Error al obtener los unidadProductivaCodigoVentas' });
+    console.error("🔥 ERROR REAL:", error); // 👈 ESTE ES EL IMPORTANTE
+    res.status(500).json({ 
+      message: 'Error al obtener los unidadProductivaCodigoVentas',
+      error: error.message // 👈 AGREGA ESTO TEMPORAL
+    });
   }
 };
 
