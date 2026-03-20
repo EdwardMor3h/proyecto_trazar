@@ -1,45 +1,149 @@
-<!-- Page Body Start-->
-<div class="page-body-wrapper">
-  <!-- Page Sidebar Start-->
-  <div class="sidebar-wrapper">
-    <div>
-      <div class="logo-wrapper">
-        <a class="a-close-menu">
-          <span class="fa fa-xmark"></span>
-        </a>
-        <h6 class="mb-0">Sistema de Información <br> Parcelas de Café</h6>
-        
-        <div class="back-btn"><i class="fa fa-angle-left"></i></div>
-        <!-- <div class="toggle-sidebar"><i class="fa fa-cog status_toggle middle sidebar-toggle"> </i></div> -->
-      </div>
-      <div class="logo-icon-wrapper"><a href="index.html"><img class="img-fluid" src="../assets/images/logo/logo-icon1.png" alt=""></a></div>
-      <nav class="sidebar-main">
-        <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
-        <div id="sidebar-menu">
-          <ul class="sidebar-links" id="simple-bar">
-            <li class="back-btn"><a href="index.html"><img class="img-fluid" src="../assets/images/logo/logo-icon.png" alt=""></a>
-              <div class="mobile-back text-end"><span>Back</span><i class="fa fa-angle-right ps-2" aria-hidden="true"></i></div>
-            </li>
-            <!-- <li class="sidebar-main-title">          
-              <h6>Módulos </h6>
-            </li> -->
-            
-            <li class="menu-box">
-              <ul>
-                <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="/visor"><i class="fa fa-satellite"> </i><span>Monitoreo de Parcelas</span></a></li>                
-                <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="/reportes"><i class="fa-regular fa-file"> </i><span>Reportes de Parcelas</span></a></li>
-                <% if (user && user.rol === 1) { %>
-                  <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="/admin_datos/actualizar_variedad"><i class="fa fa-database"> </i><span>Administración de Datos</span></a></li>
-                  <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="/admin_cuentas/administrador"><i class="fa fa-users"> </i><span>Cuentas de Usuario</span></a></li>
-                  <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="/status"><i class="fa fa-mobile-screen"> </i><span>Status App</span></a></li>
-                <% } %>
-                
-              </ul>
-            </li>
-          </ul>
+<!-- Page Sidebar Start-->
+<div class="sidebar-wrapper">
+  <div>
+
+    <!-- LOGO WRAPPER — sin imágenes, reemplazado por banner con ícono SVG -->
+    <div class="logo-wrapper" style="padding: 0;">
+
+      <!-- Banner principal del sidebar -->
+      <div style="
+        width: 100%;
+        background: linear-gradient(135deg, #1a3a1a 0%, #2d5a1e 60%, #4a8c2a 100%);
+        padding: 18px 16px 14px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        border-bottom: 2px solid #f59800;
+      ">
+        <!-- Ícono mango SVG inline -->
+        <div style="
+          width: 40px; height: 40px;
+          background: linear-gradient(135deg, #f59800, #e07000);
+          border-radius: 10px;
+          display: flex; align-items: center; justify-content: center;
+          flex-shrink: 0;
+          box-shadow: 0 3px 10px rgba(245,152,0,0.4);
+        ">
+          <svg width="22" height="22" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- cuerpo del mango -->
+            <path d="M16 5 C10 5, 5 10, 5 17 C5 23, 10 28, 16 28 C22 28, 27 23, 27 17 C27 10, 22 5, 16 5Z" fill="rgba(255,255,255,0.92)"/>
+            <!-- tallo -->
+            <path d="M16 5 C16 5, 17 2, 21 3" stroke="rgba(255,255,255,0.7)" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+            <!-- hoja -->
+            <path d="M21 3 C24 1, 26 4, 23 6 C21 7, 19 5, 21 3Z" fill="rgba(255,255,255,0.6)"/>
+          </svg>
         </div>
-        <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
-      </nav>
+
+        <div style="flex:1; min-width:0;">
+          <div style="color:#fff; font-weight:700; font-size:13px; line-height:1.3; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+            Sistema de Información
+          </div>
+          <div style="color:#f59800; font-weight:600; font-size:11px; letter-spacing:0.04em; margin-top:2px;">
+            🥭 Parcelas de Mango
+          </div>
+        </div>
+
+        <!-- Botón toggle sidebar (mantiene funcionalidad original) -->
+        <div class="toggle-sidebar" style="color:rgba(255,255,255,0.6); cursor:pointer;">
+          <i class="fa fa-cog status_toggle middle sidebar-toggle"></i>
+        </div>
+      </div>
+
+      <div class="back-btn"><i class="fa fa-angle-left"></i></div>
     </div>
+
+    <!-- logo-icon-wrapper (modo colapsado — Enzo lo muestra/oculta via JS) -->
+    <div class="logo-icon-wrapper" style="background:#1a3a1a; padding: 12px 0; border-bottom: 2px solid #f59800;">
+      <div style="
+        width:36px; height:36px; margin:0 auto;
+        background:linear-gradient(135deg,#f59800,#e07000);
+        border-radius:9px; display:flex; align-items:center; justify-content:center;
+      ">
+        <svg width="20" height="20" viewBox="0 0 32 32" fill="none">
+          <path d="M16 5 C10 5,5 10,5 17 C5 23,10 28,16 28 C22 28,27 23,27 17 C27 10,22 5,16 5Z" fill="rgba(255,255,255,0.92)"/>
+          <path d="M16 5 C16 5,17 2,21 3" stroke="rgba(255,255,255,0.7)" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+          <path d="M21 3 C24 1,26 4,23 6 C21 7,19 5,21 3Z" fill="rgba(255,255,255,0.6)"/>
+        </svg>
+      </div>
+    </div>
+
+    <nav class="sidebar-main">
+      <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
+
+      <div id="sidebar-menu">
+        <ul class="sidebar-links" id="simple-bar">
+
+          <li class="back-btn">
+            <div class="mobile-back text-end">
+              <span>Back</span><i class="fa fa-angle-right ps-2" aria-hidden="true"></i>
+            </div>
+          </li>
+
+          <!-- Sección principal -->
+          <li class="sidebar-main-title">
+            <div>
+              <h6>Módulos</h6>
+            </div>
+          </li>
+
+          <li class="menu-box">
+            <ul>
+
+              <li class="sidebar-list">
+                <a class="sidebar-link sidebar-title link-nav" href="/visor">
+                  <i data-feather="map"></i>
+                  <span>Monitoreo de Parcelas</span>
+                </a>
+              </li>
+
+              <li class="sidebar-list">
+                <a class="sidebar-link sidebar-title link-nav" href="/reportes">
+                  <i data-feather="file-text"></i>
+                  <span>Reportes de Parcelas</span>
+                </a>
+              </li>
+
+              <!-- Solo admin — EJS sin cambios -->
+              <% if (user && user.rol === 1) { %>
+
+              <li class="sidebar-main-title">
+                <div>
+                  <h6>Administración</h6>
+                </div>
+              </li>
+
+              <li class="sidebar-list">
+                <a class="sidebar-link sidebar-title link-nav" href="/admin_datos/actualizar_variedad">
+                  <i data-feather="database"></i>
+                  <span>Administración de Datos</span>
+                </a>
+              </li>
+
+              <li class="sidebar-list">
+                <a class="sidebar-link sidebar-title link-nav" href="/admin_cuentas/administrador">
+                  <i data-feather="users"></i>
+                  <span>Cuentas de Usuario</span>
+                </a>
+              </li>
+
+              <li class="sidebar-list">
+                <a class="sidebar-link sidebar-title link-nav" href="/status">
+                  <i data-feather="activity"></i>
+                  <span>Status App</span>
+                </a>
+              </li>
+
+              <% } %>
+
+            </ul>
+          </li>
+
+        </ul>
+      </div>
+
+      <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
+    </nav>
+
   </div>
-  <!-- Page Sidebar Ends-->
+</div>
+<!-- Page Sidebar Ends-->

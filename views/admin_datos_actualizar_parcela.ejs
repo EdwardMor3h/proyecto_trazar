@@ -7,26 +7,17 @@
     <meta name="description" content="Enzo admin is super flexible, powerful, clean &amp; modern responsive bootstrap 5 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Enzo admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="pixelstrap">
-    <!-- <link rel="icon" href="../assets/images/favicon/favicon.png" type="image/x-icon">
-    <link rel="shortcut icon" href="../assets/images/favicon/favicon.png" type="image/x-icon"> -->
-    <title>Geofarms - Administración de Datos</title>
-    <!-- Google font-->
+    <title>Geofarms - Actualizar Parcela</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;display=swap" rel="stylesheet">
-    <!-- <link rel="stylesheet" type="text/css" href="../assets/css/vendors/font-awesome.css"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- ico-font-->
     <link rel="stylesheet" type="text/css" href="../assets/css/vendors/icofont.css">
-    <!-- Themify icon-->
     <link rel="stylesheet" type="text/css" href="../assets/css/vendors/themify.css">
-    <!-- Flag icon-->
     <link rel="stylesheet" type="text/css" href="../assets/css/vendors/flag-icon.css">
-    <!-- Feather icon-->
     <link rel="stylesheet" type="text/css" href="../assets/css/vendors/feather-icon.css">
-    <!-- Plugins css start-->
     <link rel="stylesheet" type="text/css" href="../assets/css/vendors/scrollbar.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/vendors/date-picker.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/vendors/animate.css">
@@ -37,35 +28,85 @@
     <link rel="stylesheet" type="text/css" href="../assets/css/vendors/daterange-picker.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/vendors/mapsjs-ui.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/vendors/select2.css">
-    <!-- Plugins css Ends-->
-    <!-- Bootstrap css-->
     <link rel="stylesheet" type="text/css" href="../assets/css/vendors/bootstrap.css">
-    <!-- App css-->
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
     <link id="color" rel="stylesheet" href="../assets/css/color-1.css" media="screen">
-    <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="../assets/css/responsive.css">
-
-    <!-- Leaflet css-->
-    <!--
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
-    -->
     <script src="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.js"></script>
     <link href="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.css" rel="stylesheet" />
-
-    <!-- <link rel="stylesheet" type="text/css" href="../assets/css/altomayo-style.css"> -->
     <link rel="stylesheet" type="text/css" href="../assets/css/altomayo-v2-style.css">
-
     <script src='https://unpkg.com/@turf/turf@6/turf.min.js'></script>
-
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-
     <script src="https://cdn.sheetjs.com/xlsx-0.19.3/package/dist/shim.min.js"></script>
     <script src="https://cdn.sheetjs.com/xlsx-0.19.3/package/dist/xlsx.full.min.js"></script>
-  </head>
-  <body style="height: 100% !important;">
 
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenter" style="display: none;" aria-hidden="true">
+    <style>
+      .hm-badge { display:flex;align-items:center;gap:8px; }
+      .hm-badge .hm-icon { width:28px;height:28px;flex-shrink:0;background:linear-gradient(135deg,#f5a800,#e06800);border-radius:6px;display:flex;align-items:center;justify-content:center; }
+      .hm-badge .hm-text { font-weight:700;font-size:13px;white-space:nowrap; }
+      .title-module-section { border-left:3px solid #f59800;padding-left:10px;margin-bottom:20px; }
+      .item-title-module small { font-size:10px;color:#888;text-transform:uppercase;letter-spacing:0.06em; }
+      .item-title-module h5 { font-size:15px;font-weight:700;margin-top:2px; }
+      .section-header-mango { display:flex;align-items:center;gap:14px;margin-bottom:20px;padding-bottom:16px;border-bottom:2px solid #f5f5f5; }
+      .section-header-mango .sh-icon { width:42px;height:42px;flex-shrink:0;background:linear-gradient(135deg,#f5a800,#e06800);border-radius:10px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(245,152,0,0.3); }
+      .section-header-mango .sh-text h5 { font-size:16px;font-weight:700;margin:0; }
+      .section-header-mango .sh-text small { color:#888;font-size:12px; }
+      .buscador-card { background:#fffbf5;border:1px solid #f0e0c0;border-radius:10px;padding:14px 16px;margin-bottom:24px; }
+      .buscador-card h6 { font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:#b36800;margin-bottom:10px; }
+      .field-group { margin-bottom:16px; }
+      .field-group .field-label { font-size:11.5px;font-weight:600;color:#555;margin-bottom:6px;display:block; }
+      .field-group .field-unit { font-size:10px;color:#aaa;font-weight:400;margin-left:4px;letter-spacing:0.04em; }
+      .col-divider { border-left:1px solid #f0f0f0;padding-left:24px !important; }
+      .foto-parcela-wrapper { display:flex;align-items:flex-start;gap:14px;padding:14px;background:#f8f9fa;border-radius:10px;border:1px solid #eee;margin-bottom:16px; }
+      .foto-parcela-wrapper .img-container { width:80px;height:80px;border-radius:10px;overflow:hidden;flex-shrink:0;border:2px solid #f0e0c0; }
+      .foto-parcela-wrapper .img-productor { width:100%;height:100%;object-fit:cover; }
+      .foto-parcela-wrapper .perfil-container { display:flex;flex-direction:column;justify-content:center;gap:6px; }
+      .foto-parcela-wrapper .perfil-codigo-productor { font-size:12px;color:#f59800;cursor:pointer;display:flex;align-items:center;gap:6px; }
+      .form-group i.fa { color:#f59800 !important; }
+
+      /* === Panel izquierdo — logo section banner mango === */
+      .logo-section {
+        background: linear-gradient(135deg, #1b3d10, #2e6318);
+        border-radius: 10px;
+        padding: 14px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+      .logo-section .logo-container { display:flex; align-items:center; gap:8px; }
+      .logo-section .logo-container span { color:#fff; font-weight:700; font-size:13px; line-height:1.25; }
+      .logo-section .logo-container small { color:#ffc046; font-size:10px; display:block; font-weight:500; }
+
+      /* === Secciones del menú lateral === */
+      .nuevos-datos-section h6 {
+        font-size:10.5px; font-weight:700; text-transform:uppercase;
+        letter-spacing:0.08em; color:#888;
+        padding-bottom:6px; border-bottom:1px solid #f0f0f0; margin-bottom:0;
+      }
+      .items-menu-container ul { list-style:none; padding:0; margin:0; }
+      .items-menu-container ul li { margin-bottom:2px; }
+      .items-menu-container ul li a {
+        display:flex; align-items:center; gap:8px;
+        padding:7px 10px; border-radius:7px;
+        font-size:13px; color:inherit; text-decoration:none;
+        transition:background 0.18s, color 0.18s;
+      }
+      .items-menu-container ul li a:hover { background:#fff8ed; color:#e07000; }
+      .items-menu-container ul li a.active {
+        background:linear-gradient(135deg,rgba(245,168,0,0.15),rgba(245,168,0,0.07));
+        color:#c96800; font-weight:600;
+        border-left:3px solid #f59800; padding-left:7px;
+      }
+      .items-menu-container ul li a i { font-size:12px; width:14px; text-align:center; color:#f59800; }
+
+    </style>
+  </head>
+
+  <body style="height:100% !important;">
+
+    <!-- Modal ayuda CSV — id y clases originales intactas -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenter" style="display:none;" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -82,463 +123,292 @@
         </div>
       </div>
     </div>
-    
+
     <div class="loader-indices">
-      <div class="loader">
-        <img src="../assets/images/img-logo-geofarms.png" alt="">
-      </div>
+      <div class="loader"><img src="../assets/images/img-logo-geofarms.png" alt=""></div>
     </div>
-    <!-- Loader ends-->
-    <!-- page-wrapper Start-->
+
     <div class="page-wrapper compact-wrapper" id="pageWrapper">
-      <!-- Page Header Start-->
+
       <div class="page-header">
         <div class="header-wrapper row m-0">
-          
           <div class="header-logo-wrapper col-auto p-0">
-            <div class="logo-wrapper"><a href="index.html"><img class="img-fluid" src="../assets/images/img-logo-geofarms.png"" alt=""></a></div>
+            <div class="logo-wrapper">
+              <div class="hm-badge">
+                <div class="hm-icon">
+                  <svg width="15" height="15" viewBox="0 0 32 32" fill="none">
+                    <path d="M16 6C10 6,5 11,5 17.5C5 23.5,10 28,16 28C22 28,27 23.5,27 17.5C27 11,22 6,16 6Z" fill="rgba(255,255,255,0.93)"/>
+                    <path d="M16 6C16 6,17.5 2.5,21.5 3.5" stroke="rgba(255,255,255,0.65)" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+                  </svg>
+                </div>
+                <span class="hm-text">Parcelas de Mango</span>
+              </div>
+            </div>
             <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="align-center"></i></div>
           </div>
           <div class="left-header col-7 horizontal-wrapper ps-0">
-           
-
-
-            <a class="sidebar-link sidebar-title" href="javascript:void(0)">
-              <i data-feather="bar-chart"></i
-              ><span class="">Dashboard</span>
-            </a>
-            <a class="sidebar-link sidebar-title" href="javascript:void(0)">
-              <i data-feather="map"></i
-              ><span class="">Monitoreo</span>
-            </a> 
-            <a class="sidebar-link sidebar-title" href="javascript:void(0)">
-              <i data-feather="map"></i
-              ><span class="">Coberturas</span>
-            </a> 
-            <a class="sidebar-link sidebar-title" href="javascript:void(0)">
-              <i data-feather="file-text"> </i><span class="">Reportes</span>
-            </a> 
-
-        
-            
+            <a class="sidebar-link sidebar-title" href="javascript:void(0)"><i data-feather="bar-chart"></i><span>Dashboard</span></a>
+            <a class="sidebar-link sidebar-title" href="javascript:void(0)"><i data-feather="map"></i><span>Monitoreo</span></a>
+            <a class="sidebar-link sidebar-title" href="javascript:void(0)"><i data-feather="layers"></i><span>Coberturas</span></a>
+            <a class="sidebar-link sidebar-title" href="javascript:void(0)"><i data-feather="file-text"></i><span>Reportes</span></a>
           </div>
           <div class="nav-right col-3 pull-right right-header p-0">
-            <ul class="nav-menus">             
+            <ul class="nav-menus">
               <li class="onhover-dropdown">
-                <div class="notification-box"><i class="fa fa-bell-o"> </i><span class="badge rounded-pill badge-primary">4                                </span></div>
+                <div class="notification-box"><i class="fa fa-bell-o"></i><span class="badge rounded-pill badge-primary">4</span></div>
                 <ul class="notification-dropdown onhover-show-div">
-                  <li><i data-feather="bell">            </i>
-                    <h6 class="f-18 mb-0">Notificaciones</h6>
-                  </li>
-                  <li><a href="email_read.html">
-                      <p><i class="fa fa-circle-o me-3 font-primary"> </i>Solicitud NDVI <span class="pull-right">10 min.</span></p></a></li>
-                  <li><a href="email_read.html">
-                      <p><i class="fa fa-circle-o me-3 font-success"></i>Solicitud RECI<span class="pull-right">1 hr</span></p></a></li>
-                  <li><a href="email_read.html">
-                      <p><i class="fa fa-circle-o me-3 font-info"></i>Solicitud MCARI<span class="pull-right">3 hr</span></p></a></li>
-                  <li><a href="email_read.html"> 
-                      <p><i class="fa fa-circle-o me-3 font-danger"></i>Solicitud EVI<span class="pull-right">6 hr</span></p></a></li>
+                  <li><i data-feather="bell"></i><h6 class="f-18 mb-0">Notificaciones</h6></li>
+                  <li><a href="email_read.html"><p><i class="fa fa-circle-o me-3 font-primary"></i>Solicitud NDVI <span class="pull-right">10 min.</span></p></a></li>
+                  <li><a href="email_read.html"><p><i class="fa fa-circle-o me-3 font-success"></i>Solicitud RECI<span class="pull-right">1 hr</span></p></a></li>
+                  <li><a href="email_read.html"><p><i class="fa fa-circle-o me-3 font-info"></i>Solicitud MCARI<span class="pull-right">3 hr</span></p></a></li>
+                  <li><a href="email_read.html"><p><i class="fa fa-circle-o me-3 font-danger"></i>Solicitud EVI<span class="pull-right">6 hr</span></p></a></li>
                   <li><a class="btn btn-primary" href="email_read.html">Ver más</a></li>
                 </ul>
               </li>
-              
-              
-              
-              <!-- <li class="profile-nav onhover-dropdown p-0 me-0">
-                <div class="d-flex profile-media"><img class="b-r-50" src="../assets/images/dashboard/profile.jpg" alt="">
-                  <div class="flex-grow-1"><span>Administrador</span>
-                    <p class="mb-0 font-roboto">Admin <i class="middle fa fa-angle-down"></i></p>
-                  </div>
-                </div>
-                <ul class="profile-dropdown onhover-show-div">
-                  <li><a href="user-profile.html"><i data-feather="user"></i><span>Account </span></a></li>
-                  <li><a href="email_inbox.html"><i data-feather="mail"></i><span>Inbox</span></a></li>
-                  <li><a href="kanban.html"><i data-feather="file-text"></i><span>Taskboard</span></a></li>
-                  <li><a href="login.html"><i data-feather="log-in"> </i><span>Log in</span></a></li>
-                </ul>
-              </li> -->
             </ul>
           </div>
           <script class="result-template" type="text/x-handlebars-template">
-            <div class="ProfileCard u-cf">                        
-            <div class="ProfileCard-avatar"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-airplay m-0"><path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"></path><polygon points="12 15 17 21 7 21 12 15"></polygon></svg></div>
-            <div class="ProfileCard-details">
-            <div class="ProfileCard-realName">{{name}}</div>
-            </div>
-            </div>
+            <div class="ProfileCard u-cf"><div class="ProfileCard-avatar"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-airplay m-0"><path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"></path><polygon points="12 15 17 21 7 21 12 15"></polygon></svg></div><div class="ProfileCard-details"><div class="ProfileCard-realName">{{name}}</div></div></div>
           </script>
           <script class="empty-template" type="text/x-handlebars-template"><div class="EmptyMessage">Your search turned up 0 results. This most likely means the backend is down, yikes!</div></script>
         </div>
       </div>
-      <!-- Page Header Ends                              -->
-      <!-- Page Body Start-->
-      <div class="page-body-wrapper">
-        
-        <%- include('./partials/menu_lateral'); %>
-        
-        <div class="page-body">
-          <!-- Container-fluid starts-->
-          <div class="container-fluid">
 
+      <div class="page-body-wrapper">
+        <%- include('./partials/menu_lateral'); %>
+
+        <div class="page-body">
+          <div class="container-fluid">
             <div class="row h-100 m-0">
 
-              <!-- Sección de Información -->
+              <!-- PANEL IZQUIERDO -->
               <div class="col-xl-3 col-md-3 box-col-30 xl-30 info-section">
                 <div class="card">
                   <div class="card-body">
-
                     <div class="logo-section mb-4">
-
+                      <div class="logo-container">
+                        <div style="width:32px;height:32px;background:linear-gradient(135deg,#f5a800,#e06800);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                          <svg width="17" height="17" viewBox="0 0 32 32" fill="none">
+                            <path d="M16 6C10 6,5 11,5 17.5C5 23.5,10 28,16 28C22 28,27 23.5,27 17.5C27 11,22 6,16 6Z" fill="rgba(255,255,255,0.93)"/>
+                            <path d="M16 6C16 6,17.5 2.5,21.5 3.5" stroke="rgba(255,255,255,0.65)" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+                          </svg>
+                        </div>
+                        <div>
+                          <span>Parcelas de Mango</span>
+                          <small>Sistema de Información</small>
+                        </div>
+                      </div>
                       <%- include('./partials/user_profile'); %>
-
                     </div>
-
                     <div class="title-module-section">
-
-                      
-                      <div class="group-title-module" style="display: flex;">
-                        <a class="a-open-menu">
-                          <span class="fa fa-bars"></span>
-                        </a>
+                      <div class="group-title-module" style="display:flex;">
+                        <a class="a-open-menu" style="margin-right:10px;margin-top:2px;"><span class="fa fa-bars"></span></a>
                         <div class="item-title-module">
                           <small>Módulo</small>
                           <h5 class="mb-0">Administración de Datos</h5>
                         </div>
-                        
                       </div>
-                      
                     </div>
-
                     <div class="options-section">
-
-                      <div class="buscador-periodo-ie-section">
-
-                        <%- include('./partials/admin_menu'); %>
-                   
-                      </div>
-                      <!-- ./buscador-periodo-ie-section -->
-
-           
-
+                      <div class="buscador-periodo-ie-section"><%- include('./partials/admin_menu'); %></div>
                     </div>
-
-                    
-
-                    
-
-
-                   
                   </div>
                 </div>
-
               </div>
 
-              <!-- Sección del Mapa -->
+              <!-- PANEL DERECHO -->
               <div class="col-xl-9 col-md-9 box-col-70 xl-70 admin-data-section">
-                  
                 <div class="card">
-                  <!-- <div class="card-header pb-0">
-                    <h5>Visualizador de Indices</h5><span>Distribución espacial del índice</span>
-                  </div> -->
                   <div class="card-body p-5">
 
-                    <div class="mb-5">
-                      <h5 class="mb-0">Actualizar Datos de Parcela</h5>
+                    <!-- Encabezado -->
+                    <div class="section-header-mango">
+                      <div class="sh-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M12 2C8 2,5 6,5 10.5C5 15,8 19,12 20C16 19,19 15,19 10.5C19 6,16 2,12 2Z"/>
+                          <path d="M12 2C12 2,13.5 0,16 0.5" stroke-opacity="0.6"/>
+                        </svg>
+                      </div>
+                      <div class="sh-text">
+                        <h5>Actualizar Datos de Parcela</h5>
+                        <small>Busca una parcela y actualiza su información y atributos</small>
+                      </div>
                     </div>
 
-                    <div class="buscador-parcela-section mb-5">
-
-                      <h6 class="mb-0">Buscador de Parcelas</h6>
-                      
-
-                      <div class="search mt-3">
+                    <!-- Buscador -->
+                    <div class="buscador-card">
+                      <h6><i class="fa fa-search me-2"></i>Buscador de Parcelas</h6>
+                      <div class="search">
                         <form class="form-inline w-50">
                           <div class="form-group d-flex mb-0 w-100 ui search">
                             <i class="fa fa-search"></i>
                             <input class="form-control-plaintext input-buscar-parcela" type="text" placeholder="Ingresa el nombre, código o DNI">
-                            <div class="dropdown-content">
-                              <ul class="list-group list-group-flush list">
-                                
-                              </ul>
-                            </div>
+                            <div class="dropdown-content"><ul class="list-group list-group-flush list"></ul></div>
                           </div>
                         </form>
                       </div>
-
-                    
                     </div>
 
                     <div class="row">
 
+                      <!-- Columna izquierda -->
                       <div class="col-xl-6 col-md-6 box-col-50 xl-50">
 
-                        <div class="input-image-parcela-section mb-5">
-
-                          <h6 class="mb-0">Imagen de Parcela</h6>
-                          
-    
-                          <div class="mt-3 w-100 d-flex">
+                        <!-- Imagen parcela — clases originales intactas -->
+                        <div class="input-image-parcela-section field-group">
+                          <label class="field-label">Imagen de Parcela</label>
+                          <div class="foto-parcela-wrapper">
                             <div class="img-container">
                               <img class="img-productor" src="https://cdn.www.gob.pe/uploads/document/file/1464052/standard_FOTO_WEB_CAFE-1536x1024.jpg" alt="">
-
                             </div>
                             <div class="perfil-container">
-                               
                               <small class="perfil-codigo-productor"><i class="fa fa-upload"></i> Cargar imagen desde archivo</small>
                               <input class="input-cargar-foto" type="file" style="display:none"/>
                             </div>
-                              
-
-                            </div>
-
-    
+                          </div>
                         </div>
 
-                        
-
-                        <div class="input-section mb-5">
-
-                          <h6 class="mb-0">Código de Venta</h6>
-                          
-    
-                          <div class="search mt-3">
+                        <div class="field-group">
+                          <label class="field-label">Código de Venta</label>
+                          <div class="search">
                             <form class="form-inline w-100">
                               <div class="form-group d-flex mb-0 w-100 ui search">
-                                <i class="fa fa-coffee"></i>
+                                <i class="fa fa-tag"></i>
                                 <input class="form-control-plaintext input-codigo-venta-actualizar-parcela" type="text" placeholder="Ingresar código de venta">
-                                
                               </div>
                             </form>
                           </div>
-    
                         </div>
 
-                        <div class="input-section mb-5">
-
-                          <h6 class="mb-0">Nombre de Parcela</h6>
-                          
-    
-                          <div class="search mt-3">
+                        <div class="field-group">
+                          <label class="field-label">Nombre de Parcela</label>
+                          <div class="search">
                             <form class="form-inline w-100">
                               <div class="form-group d-flex mb-0 w-100 ui search">
-                                <i class="fa fa-coffee"></i>
+                                <i class="fa fa-seedling"></i>
                                 <input class="form-control-plaintext input-nombre-actualizar-parcela" type="text" placeholder="Ingresar nombre de parcela">
-                                
                               </div>
                             </form>
                           </div>
-    
                         </div>
 
-                        <div class="input-section mb-5">
-
-                          <h6 class="mb-0">Altitud (msnm)</h6>
-                          
-    
-                          <div class="search mt-3">
+                        <div class="field-group">
+                          <label class="field-label">Altitud <span class="field-unit">(msnm)</span></label>
+                          <div class="search">
                             <form class="form-inline w-100">
                               <div class="form-group d-flex mb-0 w-100 ui search">
-                                <i class="fa fa-coffee"></i>
+                                <i class="fa fa-mountain"></i>
                                 <input class="form-control-plaintext input-altitud-actualizar-parcela" type="number" placeholder="Ingresar altitud msnm">
-                                
                               </div>
                             </form>
                           </div>
-    
                         </div>
 
-                        <div class="input-section mb-5">
-
-                          <h6 class="mb-0">Area (ha)</h6>
-                          
-    
-                          <div class="search mt-3">
+                        <div class="field-group">
+                          <label class="field-label">Área <span class="field-unit">(ha)</span></label>
+                          <div class="search">
                             <form class="form-inline w-100">
                               <div class="form-group d-flex mb-0 w-100 ui search">
-                                <i class="fa fa-coffee"></i>
-                                <input class="form-control-plaintext input-area-actualizar-parcela" type="number" placeholder="cantidad de hectáreas" disabled>
-                                
+                                <i class="fa fa-vector-square"></i>
+                                <input class="form-control-plaintext input-area-actualizar-parcela" type="number" placeholder="Cantidad de hectáreas" disabled>
                               </div>
                             </form>
                           </div>
-    
                         </div>
-
-                        
-
-                        
-
-                        
 
                       </div>
 
-                      <div class="col-xl-6 col-md-6 box-col-50 xl-50">
+                      <!-- Columna derecha -->
+                      <div class="col-xl-6 col-md-6 box-col-50 xl-50 col-divider">
 
-                        <!-- <div class="input-section mb-5">
-
-                          <h6 class="mb-0">Productor(a)</h6>
-                          
-    
-                          <select id="select-input-productor-actualizar-parcela" class="js-example-basic-single input-select col-sm-12" data-model="productores" data-id="">
-                            
-                          </select>
-    
-                        </div> -->
-
-                        <div class="input-section mb-5">
-
-                          <h6 class="mb-0">Variedad</h6>
-                          
-    
-                          <select id="select-input-variedad-actualizar-parcela" class="js-example-basic-single input-select col-sm-12" data-model="variedades" data-id="">
-                            
-                          </select>
-    
+                        <div class="field-group">
+                          <label class="field-label">Variedad</label>
+                          <select id="select-input-variedad-actualizar-parcela" class="js-example-basic-single input-select col-sm-12" data-model="variedades" data-id=""></select>
                         </div>
 
-                     
-
-                        <div class="input-section mb-5">
-
-                          <h6 class="mb-0">Sello</h6>
-                          
-    
-                          <select id="select-input-sello-actualizar-parcela" class="js-example-basic-single input-select col-sm-12" data-model="sellos" data-id="">
-                            
-                          </select>
-    
+                        <div class="field-group">
+                          <label class="field-label">Sello</label>
+                          <select id="select-input-sello-actualizar-parcela" class="js-example-basic-single input-select col-sm-12" data-model="sellos" data-id=""></select>
                         </div>
 
-                        
-
-                        <div class="input-section mb-5">
-
-                          <h6 class="mb-0">Caserío</h6>
-                          
-
-                          <select id="select-input-caserio-actualizar-parcela" class="js-example-basic-single input-select col-sm-12" data-model="caserios" data-id="">
-                              
-                          </select>
-    
+                        <div class="field-group">
+                          <label class="field-label">Caserío</label>
+                          <select id="select-input-caserio-actualizar-parcela" class="js-example-basic-single input-select col-sm-12" data-model="caserios" data-id=""></select>
                         </div>
 
-                        <div class="input-section mb-5">
-
-                          <h6 class="mb-0">Comité</h6>
-                          
-    
-                          <select id="select-input-comite-actualizar-parcela" class="js-example-basic-single input-select col-sm-12" data-model="comites" data-id="">
-                            
-                          </select>
-    
+                        <div class="field-group">
+                          <label class="field-label">Comité</label>
+                          <select id="select-input-comite-actualizar-parcela" class="js-example-basic-single input-select col-sm-12" data-model="comites" data-id=""></select>
                         </div>
 
-                        <div class="input-section mb-5">
-
-                          <h6 class="mb-0">Corredor</h6>
-                          
-    
-                          <select id="select-input-corredor-actualizar-parcela" class="js-example-basic-single input-select col-sm-12" data-model="corredores" data-id="">
-                            
-                          </select>
-    
+                        <div class="field-group">
+                          <label class="field-label">Corredor</label>
+                          <select id="select-input-corredor-actualizar-parcela" class="js-example-basic-single input-select col-sm-12" data-model="corredores" data-id=""></select>
                         </div>
 
-                        <div class="input-section mb-5">
-
-                          <h6 class="mb-0">Zona</h6>
-                          
-    
-                          <select id="select-input-zona-actualizar-parcela" class="js-example-basic-single input-select col-sm-12" data-model="zonas" data-id="">
-                          
-                          </select>
-    
+                        <div class="field-group">
+                          <label class="field-label">Zona</label>
+                          <select id="select-input-zona-actualizar-parcela" class="js-example-basic-single input-select col-sm-12" data-model="zonas" data-id=""></select>
                         </div>
 
-                        
+                        <!-- Botones — ids y clases originales intactos, 2 csvForms -->
+                        <div class="footer-section" style="position:relative;padding-left:0;justify-content:flex-start;display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:8px;">
 
-                        <div class="footer-section" style="position: relative; padding-left: 0; justify-content: flex-start;">
+                          <button class="btn btn-round btn-back btn-actualizar-parcela-ayuda" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                            <i class="fa fa-question"></i>
+                          </button>
 
-                            <button class="btn btn-round btn-back btn-actualizar-parcela-ayuda" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><i class="fa fa-question"></i></button>
+                          <form id="csvForm" enctype="multipart/form-data" class="d-flex flex-column" style="position:relative;">
+                            <input type="file" name="csvFile" id="csvFile" accept=".csv" class="d-none">
+                            <button id="cargarCSV" class="btn btn-back btn-cargar-csv-parcela m-r-10" type="button">
+                              <i class="fa fa-upload me-1"></i> Actualizar con CSV
+                            </button>
+                            <span id="progreso" style="position:absolute;bottom:-18px;left:0;color:#888;font-size:11px;">0%</span>
+                          </form>
 
-                            <form id="csvForm" enctype="multipart/form-data" class="d-flex flex-column">
-                              
-                              <input type="file" name="csvFile" id="csvFile" accept=".csv" class="d-none">
-                              <button id="cargarCSV" class="btn btn-back btn-cargar-csv-parcela m-r-10" type="button">Actualizar con CSV</button>
+                          <form enctype="multipart/form-data" class="d-flex flex-column" style="position:relative;">
+                            <input type="file" name="csvFile" id="csvFileEliminar" accept=".csv" class="d-none">
+                            <button id="cargarCSVEliminar" class="btn btn-back btn-cargar-csv-parcela m-r-10" type="button">
+                              <i class="fa fa-trash me-1"></i> Eliminar con CSV
+                            </button>
+                            <span id="progresoEliminar" style="position:absolute;bottom:-18px;left:0;color:#888;font-size:11px;">0%</span>
+                          </form>
 
-                              <span id="progreso" class="" style="position:absolute;bottom:0;color:#888">0%</span>
-                            </form> 
-            
-                            <form enctype="multipart/form-data" class="d-flex flex-column">
-                              
-                              <input type="file" name="csvFile" id="csvFileEliminar" accept=".csv" class="d-none">
-                              <button id="cargarCSVEliminar" class="btn btn-back btn-cargar-csv-parcela m-r-10" type="button">Eliminar con CSV</button>
-
-                              <span id="progresoEliminar" class="" style="position:absolute;bottom:0;color:#888">0%</span>
-                            </form>                          
-
-                            <button class="btn btn-primary btn-actualizar-parcela" type="button" disabled>Actualizar</button>
-                  
+                          <button class="btn btn-primary btn-actualizar-parcela" type="button" disabled>
+                            <i class="fa fa-save me-1"></i> Actualizar
+                          </button>
 
                         </div>
 
                       </div>
-                   
-
                     </div>
-
                   </div>
                 </div>
-
-               
-                  
               </div>
 
-              
-
-            
             </div>
-
           </div>
-          <!-- Container-fluid Ends-->
         </div>
-        <!-- footer start-->
+
         <footer class="footer">
           <div class="container-fluid">
             <div class="row">
               <div class="col-md-6 p-0 footer-left">
                 <p class="mb-0">Copyright© 2026 TraZar. Todos los derechos</p>
               </div>
-              <!-- <div class="col-md-6 p-0 footer-right">
-                <ul class="color-varient">
-                  <li></li>
-                  <li></li>
-                  <li></li>
-                  <li></li>
-                </ul>
-                <p class="mb-0 ms-3">Hand-crafted & made with <i class="fa fa-heart font-danger"></i></p>
-              </div> -->
             </div>
           </div>
         </footer>
       </div>
-    </div>  
+    </div>
 
-
-    <!-- latest jquery-->
     <script src="../assets/js/jquery-3.6.0.min.js"></script>
-    <!-- Bootstrap js-->
     <script src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
-    <!-- feather icon js-->
     <script src="../assets/js/icons/feather-icon/feather.min.js"></script>
     <script src="../assets/js/icons/feather-icon/feather-icon.js"></script>
-    <!-- scrollbar js-->
     <script src="../assets/js/scrollbar/simplebar.js"></script>
     <script src="../assets/js/scrollbar/custom.js"></script>
-    <!-- Sidebar jquery-->
     <script src="../assets/js/config.js"></script>
-    <!-- Plugins JS start-->
-    <!-- <script src="../assets/js/sidebar-menu.js"></script> -->
     <script src="../assets/js/select2/select2.full.min.js"></script>
     <script src="../assets/js/select2/select2-custom.js"></script>
     <script src="../assets/js/chart/chartist/chartist.js"></script>
@@ -552,35 +422,16 @@
     <script src="../assets/js/custom-card/custom-card.js"></script>
     <script src="../assets/js/notify/bootstrap-notify.min.js"></script>
     <script src="../assets/js/dashboard/default.js"></script>
-    <!-- <script src="../assets/js/notify/index.js"></script> -->
     <script src="../assets/js/slick-slider/slick.min.js"></script>
     <script src="../assets/js/slick-slider/slick-theme.js"></script>
-    <!-- <script src="../assets/js/typeahead/handlebars.js"></script>
-    <script src="../assets/js/typeahead/typeahead.bundle.js"></script>
-    <script src="../assets/js/typeahead/typeahead.custom.js"></script>
-    <script src="../assets/js/typeahead-search/handlebars.js"></script>
-    <script src="../assets/js/typeahead-search/typeahead-custom.js"></script> -->
     <script src="../assets/js/datepicker/date-picker/datepicker.js"></script>
     <script src="../assets/js/datepicker/date-picker/datepicker.en.js"></script>
     <script src="../assets/js/datepicker/date-picker/datepicker.custom.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  
-    <!-- <script src="../assets/js/map-js/mapsjs-core.js"></script>
-    <script src="../assets/js/map-js/mapsjs-service.js"></script>
-    <script src="../assets/js/map-js/mapsjs-ui.js"></script>
-    <script src="../assets/js/map-js/mapsjs-mapevents.js"></script>
-    <script src="../assets/js/map-js/custom.js"></script> -->
-    <!--
-    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" 
-    crossorigin=""></script>
-    -->
-    <!-- Plugins JS Ends-->
-    <!-- Theme js-->
     <script src="../assets/js/script.js"></script>
     <script src="../js/tools-script.js"></script>
     <script src="../js/admin-datos/admin-datos-script.js"></script>
     <script src="../js/admin-datos/admin-datos-parcela-script.js"></script>
-    
     <%- include('./partials/scripts'); %>
   </body>
 </html>

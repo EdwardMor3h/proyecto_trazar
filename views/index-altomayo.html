@@ -1,31 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Enzo admin is super flexible, powerful, clean &amp; modern responsive bootstrap 5 admin template with unlimited possibilities.">
-    <meta name="keywords" content="admin template, Enzo admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="description" content="Sistema de Información de Parcelas de Mango">
     <meta name="author" content="pixelstrap">
     <link rel="icon" href="../assets/images/favicon/favicon.png" type="image/x-icon">
     <link rel="shortcut icon" href="../assets/images/favicon/favicon.png" type="image/x-icon">
-    <title>Altomayo - Indices Espectrales</title>
-    <!-- Google font-->
+    <title>Geofarms - Tablero de Índices</title>
+
+    <!-- Google font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../assets/css/vendors/font-awesome.css">
-    <!-- ico-font-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Enzo assets — sin cambios -->
     <link rel="stylesheet" type="text/css" href="../assets/css/vendors/icofont.css">
-    <!-- Themify icon-->
     <link rel="stylesheet" type="text/css" href="../assets/css/vendors/themify.css">
-    <!-- Flag icon-->
     <link rel="stylesheet" type="text/css" href="../assets/css/vendors/flag-icon.css">
-    <!-- Feather icon-->
     <link rel="stylesheet" type="text/css" href="../assets/css/vendors/feather-icon.css">
-    <!-- Plugins css start-->
     <link rel="stylesheet" type="text/css" href="../assets/css/vendors/scrollbar.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/vendors/animate.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/vendors/chartist.css">
@@ -34,159 +32,311 @@
     <link rel="stylesheet" type="text/css" href="../assets/css/vendors/prism.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/vendors/daterange-picker.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/vendors/mapsjs-ui.css">
-    <!-- Plugins css Ends-->
-    <!-- Bootstrap css-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/select2.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/vendors/bootstrap.css">
-    <!-- App css-->
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
     <link id="color" rel="stylesheet" href="../assets/css/color-1.css" media="screen">
-    <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="../assets/css/responsive.css">
-
     <link rel="stylesheet" type="text/css" href="../assets/css/altomayo-style.css">
+
+    <style>
+      /* =============================================
+         MEJORAS VISUALES — no rompen altomayo-style
+      ============================================= */
+
+      /* Header badge mango */
+      .hm-badge { display:flex; align-items:center; gap:8px; }
+      .hm-badge .hm-icon { width:30px;height:30px;flex-shrink:0;background:linear-gradient(135deg,#f5a800,#e06800);border-radius:7px;display:flex;align-items:center;justify-content:center; }
+      .hm-badge .hm-text { font-weight:700; font-size:13px; white-space:nowrap; }
+
+      /* Títulos de cards con acento mango */
+      .card .card-header h5 {
+        font-size: 14px;
+        font-weight: 700;
+        position: relative;
+        padding-left: 10px;
+      }
+      .card .card-header h5::before {
+        content: '';
+        position: absolute;
+        left: 0; top: 2px; bottom: 2px;
+        width: 3px;
+        background: linear-gradient(to bottom, #f5a800, #e06800);
+        border-radius: 2px;
+      }
+
+      /* Cards de índices — slider */
+      .investment-sec .card-body {
+        padding: 16px !important;
+      }
+      .investment-sec .card-body .icon {
+        width: 36px; height: 36px;
+        background: linear-gradient(135deg, rgba(245,168,0,0.2), rgba(245,168,0,0.06));
+        border: 1px solid rgba(245,168,0,0.25);
+        border-radius: 9px;
+        display: flex; align-items: center; justify-content: center;
+        margin-bottom: 10px;
+      }
+      .investment-sec .card-body .icon i {
+        color: #f5a800 !important;
+        font-size: 15px;
+      }
+      .investment-sec .card-body p {
+        font-size: 11px;
+        color: #888;
+        margin-bottom: 4px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        font-weight: 500;
+      }
+      .investment-sec .card-body h3 {
+        font-size: 20px;
+        font-weight: 700;
+        color: #f5a800;
+        margin: 0;
+      }
+
+      /* Card mapa — altura ajustada */
+      #map2 {
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      /* Formulario consulta — mejorado */
+      #regForm .col-form-label {
+        font-size: 11.5px;
+        font-weight: 600;
+        color: #555;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-bottom: 6px;
+        display: block;
+      }
+
+      #regForm label {
+        font-size: 11.5px;
+        font-weight: 600;
+        color: #555;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-bottom: 6px;
+      }
+
+      /* Botón consultar */
+      #nextBtn {
+        background: linear-gradient(135deg, #f5a800, #e06800) !important;
+        border: none !important;
+        color: #fff !important;
+        font-weight: 600;
+        padding: 9px 22px;
+        border-radius: 8px;
+        font-size: 13px;
+        box-shadow: 0 3px 10px rgba(245,152,0,0.3);
+        transition: transform 0.15s, box-shadow 0.15s;
+      }
+      #nextBtn:hover { transform: translateY(-1px); box-shadow: 0 5px 14px rgba(245,152,0,0.4); }
+
+      /* Card información parcela — tabla */
+      .recent-activi .table td {
+        padding: 10px 4px;
+        border-bottom: 1px solid #f5f5f5;
+      }
+      .recent-activi .table td:last-child { border-bottom: none; }
+      .recent-activi .d-flex svg {
+        width: 22px; height: 22px;
+        flex-shrink: 0;
+        margin-right: 10px;
+        fill: #f5a800;
+        opacity: 0.85;
+      }
+      .recent-activi .flex-grow-1 span {
+        font-size: 13.5px;
+        font-weight: 600;
+        color: #333;
+        display: block;
+        line-height: 1.2;
+      }
+      .recent-activi .flex-grow-1 p {
+        font-size: 11px;
+        color: #888;
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      /* Cards evolutivos — header mejorado */
+      .sellview-sec .card-header h5,
+      .profitview-sec .card-header h5,
+      .browser-statistics .card-header h5 {
+        font-size: 14px;
+      }
+
+      .sellview-sec .center-content p,
+      .profitview-sec .center-content p,
+      .browser-statistics .center-content p {
+        font-size: 11px;
+        color: #aaa;
+        background: rgba(245,168,0,0.08);
+        border: 1px solid rgba(245,168,0,0.15);
+        border-radius: 6px;
+        padding: 2px 10px;
+        display: inline-block;
+        margin: 0;
+      }
+
+      /* Footer mejorado */
+      .footer .footer-left p {
+        font-size: 12px;
+        color: #888;
+      }
+
+      /* Header title izquierdo */
+      .left-header h4 {
+        font-size: 15px;
+        font-weight: 700;
+        color: #333;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .left-header h4::before {
+        content: '';
+        width: 4px; height: 18px;
+        background: linear-gradient(to bottom, #f5a800, #e06800);
+        border-radius: 2px;
+        display: inline-block;
+      }
+    </style>
   </head>
+
   <body>
-    <!-- tap on top starts-->
+    <!-- tap on top -->
     <div class="tap-top"><i data-feather="chevrons-up"></i></div>
-    <!-- tap on tap ends-->
-    <!-- Loader starts-->
-    <div class="loader-wrapper">
-      <div class="loader"></div>
-    </div>
-    <!-- Loader ends-->
-    <!-- page-wrapper Start-->
+
+    <!-- Loader -->
+    <div class="loader-wrapper"><div class="loader"></div></div>
+
     <div class="page-wrapper compact-wrapper" id="pageWrapper">
-      <!-- Page Header Start-->
+
+      <!-- Page Header -->
       <div class="page-header">
         <div class="header-wrapper row m-0">
+
+          <!-- Search -->
           <form class="form-inline search-full col" action="#" method="get">
             <div class="form-group w-100">
               <div class="Typeahead Typeahead--twitterUsers">
                 <div class="u-posRelative">
-                  <input class="demo-input Typeahead-input form-control-plaintext w-100" type="text" placeholder="Search In Enzo .." name="q" title="" autofocus>
-                  <div class="spinner-border Typeahead-spinner" role="status"><span class="sr-only">Loading...</span></div><i class="close-search" data-feather="x"></i>
+                  <input class="demo-input Typeahead-input form-control-plaintext w-100" type="text" placeholder="Buscar parcela, productor..." name="q" title="" autofocus>
+                  <div class="spinner-border Typeahead-spinner" role="status"><span class="sr-only">Loading...</span></div>
+                  <i class="close-search" data-feather="x"></i>
                 </div>
                 <div class="Typeahead-menu"></div>
               </div>
             </div>
           </form>
+
+          <!-- Logo — badge mango sin imagen -->
           <div class="header-logo-wrapper col-auto p-0">
-            <div class="logo-wrapper"><a href="index.html"><img class="img-fluid" src="../assets/images/logo/login.png" alt=""></a></div>
+            <div class="logo-wrapper">
+              <div class="hm-badge">
+                <div class="hm-icon">
+                  <svg width="16" height="16" viewBox="0 0 32 32" fill="none">
+                    <path d="M16 6C10 6,5 11,5 17.5C5 23.5,10 28,16 28C22 28,27 23.5,27 17.5C27 11,22 6,16 6Z" fill="rgba(255,255,255,0.93)"/>
+                    <path d="M16 6C16 6,17.5 2.5,21.5 3.5" stroke="rgba(255,255,255,0.65)" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+                  </svg>
+                </div>
+                <span class="hm-text">Parcelas de Mango</span>
+              </div>
+            </div>
             <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="align-center"></i></div>
           </div>
+
+          <!-- Título izquierdo -->
           <div class="left-header col horizontal-wrapper ps-0">
-            <!-- <div class="input-group">
-              <div class="input-group-prepend"><span class="input-group-text mobile-search"><i class="fa fa-search"></i></span></div>
-              <input class="form-control" type="text" placeholder="Search Here........">
-            </div> -->
-            <h4>Tablero de Indices</h4>
+            <h4>Tablero de Índices Espectrales</h4>
           </div>
+
+          <!-- Nav right — sin cambios funcionales -->
           <div class="nav-right col-8 pull-right right-header p-0">
-            <ul class="nav-menus">             
+            <ul class="nav-menus">
               <li class="onhover-dropdown">
-                <div class="notification-box"><i class="fa fa-bell-o"> </i><span class="badge rounded-pill badge-primary">4                                </span></div>
+                <div class="notification-box"><i class="fa fa-bell-o"></i><span class="badge rounded-pill badge-primary">4</span></div>
                 <ul class="notification-dropdown onhover-show-div">
-                  <li><i data-feather="bell">            </i>
-                    <h6 class="f-18 mb-0">Notificaciones</h6>
-                  </li>
-                  <li><a href="email_read.html">
-                      <p><i class="fa fa-circle-o me-3 font-primary"> </i>Solicitud NDVI <span class="pull-right">10 min.</span></p></a></li>
-                  <li><a href="email_read.html">
-                      <p><i class="fa fa-circle-o me-3 font-success"></i>Solicitud RECI<span class="pull-right">1 hr</span></p></a></li>
-                  <li><a href="email_read.html">
-                      <p><i class="fa fa-circle-o me-3 font-info"></i>Solicitud MCARI<span class="pull-right">3 hr</span></p></a></li>
-                  <li><a href="email_read.html"> 
-                      <p><i class="fa fa-circle-o me-3 font-danger"></i>Solicitud EVI<span class="pull-right">6 hr</span></p></a></li>
+                  <li><i data-feather="bell"></i><h6 class="f-18 mb-0">Notificaciones</h6></li>
+                  <li><a href="email_read.html"><p><i class="fa fa-circle-o me-3 font-primary"></i>Solicitud NDVI <span class="pull-right">10 min.</span></p></a></li>
+                  <li><a href="email_read.html"><p><i class="fa fa-circle-o me-3 font-success"></i>Solicitud RECI<span class="pull-right">1 hr</span></p></a></li>
+                  <li><a href="email_read.html"><p><i class="fa fa-circle-o me-3 font-info"></i>Solicitud MCARI<span class="pull-right">3 hr</span></p></a></li>
+                  <li><a href="email_read.html"><p><i class="fa fa-circle-o me-3 font-danger"></i>Solicitud EVI<span class="pull-right">6 hr</span></p></a></li>
                   <li><a class="btn btn-primary" href="email_read.html">Ver más</a></li>
                 </ul>
               </li>
-              
-              
-              
               <li class="profile-nav onhover-dropdown p-0 me-0">
-                <div class="d-flex profile-media"><img class="b-r-50" src="../assets/images/dashboard/profile.jpg" alt="">
-                  <div class="flex-grow-1"><span>Elvis Vera</span>
+                <div class="d-flex profile-media">
+                  <img class="b-r-50" src="../assets/images/dashboard/profile.jpg" alt="">
+                  <div class="flex-grow-1">
+                    <span>Elvis Vera</span>
                     <p class="mb-0 font-roboto">Admin <i class="middle fa fa-angle-down"></i></p>
                   </div>
                 </div>
                 <ul class="profile-dropdown onhover-show-div">
-                  <li><a href="user-profile.html"><i data-feather="user"></i><span>Account </span></a></li>
+                  <li><a href="user-profile.html"><i data-feather="user"></i><span>Account</span></a></li>
                   <li><a href="email_inbox.html"><i data-feather="mail"></i><span>Inbox</span></a></li>
                   <li><a href="kanban.html"><i data-feather="file-text"></i><span>Taskboard</span></a></li>
-                  <li><a href="login.html"><i data-feather="log-in"> </i><span>Log in</span></a></li>
+                  <li><a href="login.html"><i data-feather="log-in"></i><span>Log in</span></a></li>
                 </ul>
               </li>
             </ul>
           </div>
+
           <script class="result-template" type="text/x-handlebars-template">
-            <div class="ProfileCard u-cf">                        
-            <div class="ProfileCard-avatar"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-airplay m-0"><path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"></path><polygon points="12 15 17 21 7 21 12 15"></polygon></svg></div>
-            <div class="ProfileCard-details">
-            <div class="ProfileCard-realName">{{name}}</div>
-            </div>
-            </div>
+            <div class="ProfileCard u-cf"><div class="ProfileCard-avatar"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-airplay m-0"><path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"></path><polygon points="12 15 17 21 7 21 12 15"></polygon></svg></div><div class="ProfileCard-details"><div class="ProfileCard-realName">{{name}}</div></div></div>
           </script>
           <script class="empty-template" type="text/x-handlebars-template"><div class="EmptyMessage">Your search turned up 0 results. This most likely means the backend is down, yikes!</div></script>
         </div>
       </div>
-      <!-- Page Header Ends                              -->
-      <!-- Page Body Start-->
+      <!-- Page Header Ends -->
+
       <div class="page-body-wrapper">
-        
+
         <%- include('./partials/menu_lateral'); %>
-        
+
         <div class="page-body">
-          <!-- Container-fluid starts-->
           <div class="container-fluid default-dash">
             <div class="row">
 
+              <!-- ============================================
+                   COLUMNA IZQUIERDA — mapa + slider + consulta
+              ============================================ -->
               <div class="col-xl-9 col-md-6 box-col-50 xl-50">
                 <div class="row">
+
+                  <!-- Mapa -->
                   <div class="col-xl-8 col-md-8 box-col-50 xl-50">
                     <div class="card">
                       <div class="card-header pb-0">
-                        <h5>Visualizador de Indices</h5><span>Distribución espacial del índice</span>
+                        <h5>Visualizador de Índices</h5>
+                        <span style="font-size:12px;color:#888;">Distribución espacial del índice</span>
                       </div>
                       <div class="card-body">
-                        <div class="map-js-height" id="map2" style="height: 250px"></div>
+                        <!-- id="map2" — original intacto -->
+                        <div class="map-js-height" id="map2" style="height:250px;"></div>
                       </div>
                     </div>
                   </div>
-                  <!-- <div class="col-xl-6 col-md-6 box-col-50 xl-50">
-                    <div class="card company-view">
-                      <div class="card-header card-no-border dflex justify-content-between p-b-0">
-                        <h5>Evolutivo NDVI</h5>
-                        <div class="center-content">
-                          <p>Incremento en 4%, JUN-23</p>
-                        </div>
-                        <div class="card-header-right">
-                          <ul class="list-unstyled card-option">
-                            <li><i class="icon-more-alt"></i></li>
-                            <li><i class="view-html fa fa-code"></i></li>
-                            <li><i class="icofont icofont-maximize full-card"></i></li>
-                            <li><i class="icofont icofont-minus minimize-card"></i></li>
-                            <li><i class="icofont icofont-refresh reload-card"></i></li>
-                            <li><i class="icofont icofont-error close-card"></i></li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div class="card-body">
-                        <div id="company-viewchart">  </div>
-                        <div class="code-box-copy">
-                          <button class="code-box-copy__btn btn-clipboard" data-clipboard-target="#company-view" title="" data-bs-original-title="Copy" aria-label="Copy"><i class="icofont icofont-copy-alt"></i></button>
-                        </div>
-                      </div>
-                    </div>
-                  </div> -->
-                  
+
+                  <!-- Formulario consulta -->
                   <div class="col-xl-4 col-md-4 box-col-50 xl-50">
                     <div class="card">
                       <div class="card-header pb-0">
-                        <h5>Consultar Indice Espectral</h5><span>Seleccione la parcela o producto y el período de análisis</span>
+                        <h5>Consultar Índice Espectral</h5>
+                        <span style="font-size:12px;color:#888;">Seleccione la parcela y período de análisis</span>
                       </div>
                       <div class="card-body">
+                        <!-- form original — id, action, method sin cambios -->
                         <form class="form-wizard" id="regForm" action="#" method="POST">
-                          <div class="tab" style="display: block;">
+                          <div class="tab" style="display:block;">
                             <div class="mb-4">
                               <div class="col-form-label">Parcela / Productor</div>
                               <select class="js-example-basic-single col-sm-12">
@@ -201,106 +351,115 @@
                                 </optgroup>
                               </select>
                             </div>
-            
                             <div class="mb-4">
                               <label for="contact">Seleccionar Período</label>
                               <div class="theme-form">
                                 <div>
+                                  <!-- input original — name="datefilter" intacto -->
                                   <input class="form-control" type="text" name="datefilter" value="">
                                 </div>
                               </div>
                             </div>
                           </div>
-                          
                           <div>
                             <div class="text-center">
-                              <button class="btn btn-secondary" id="prevBtn" type="button" onclick="nextPrev(-1)" style="display: none;">Previous</button>
-                              <button class="btn btn-primary" id="nextBtn" type="button" onclick="nextPrev(1)">Consultar</button>
+                              <!-- botones — id y onclick originales intactos -->
+                              <button class="btn btn-secondary" id="prevBtn" type="button" onclick="nextPrev(-1)" style="display:none;">Anterior</button>
+                              <button class="btn btn-primary" id="nextBtn" type="button" onclick="nextPrev(1)">
+                                <i class="fa fa-satellite me-2"></i>Consultar
+                              </button>
                             </div>
                           </div>
-                          <!-- Container-fluid Ends-->
                         </form>
                       </div>
                     </div>
-
                   </div>
-                  
+
+                  <!-- Slider de índices — clases investment-sec originales intactas -->
                   <div class="col-xl-12">
                     <div class="items-slider">
+
                       <div class="col-xl-2 col-lg-4 col-sm-4 des-xsm-50 box-col-33">
                         <div class="card investment-sec">
                           <div class="animated-bg"><i></i><i></i><i></i></div>
                           <div class="card-body">
-                            <div class="icon"><i class="fa fa-leaf"></i></div>
+                            <div class="icon"><i class="fa fa-seedling"></i></div>
                             <p>Salud Vegetación</p>
                             <h3>NDVI</h3>
                           </div>
                         </div>
                       </div>
+
                       <div class="col-xl-2 col-lg-4 col-sm-4 des-xsm-50 box-col-33">
                         <div class="card investment-sec">
                           <div class="animated-bg"><i></i><i></i><i></i></div>
                           <div class="card-body">
-                            <div class="icon"><i class="fa fa-leaf"></i></div>
+                            <div class="icon"><i class="fa fa-mountain"></i></div>
                             <p>Salud Suelo</p>
                             <h3>EVI 01</h3>
                           </div>
                         </div>
                       </div>
+
                       <div class="col-xl-2 col-lg-4 col-sm-4 des-xsm-50 box-col-33">
                         <div class="card investment-sec">
                           <div class="animated-bg"><i></i><i></i><i></i></div>
                           <div class="card-body">
-                            <div class="icon"><i class="fa fa-leaf"></i></div>
+                            <div class="icon"><i class="fa fa-layer-group"></i></div>
                             <p>Salud Suelo</p>
                             <h3>EVI 02</h3>
                           </div>
                         </div>
                       </div>
+
                       <div class="col-xl-2 col-lg-4 col-sm-4 des-xsm-50 box-col-33">
                         <div class="card investment-sec">
                           <div class="animated-bg"><i></i><i></i><i></i></div>
                           <div class="card-body">
-                            <div class="icon"><i class="fa fa-leaf"></i></div>
-                            <p>Nivel Nitrogeno </p>
+                            <div class="icon"><i class="fa fa-atom"></i></div>
+                            <p>Nivel Nitrógeno</p>
                             <h3>RECI</h3>
                           </div>
                         </div>
                       </div>
+
                       <div class="col-xl-2 col-lg-4 col-sm-4 des-xsm-50 box-col-33">
                         <div class="card investment-sec">
                           <div class="animated-bg"><i></i><i></i><i></i></div>
                           <div class="card-body">
-                            <div class="icon"><i class="fa fa-leaf"></i></div>
+                            <div class="icon"><i class="fa fa-droplet"></i></div>
                             <p>Nivel Humedad</p>
                             <h3>NDWI</h3>
                           </div>
                         </div>
                       </div>
+
                       <div class="col-xl-2 col-lg-4 col-sm-4 des-xsm-50 box-col-33">
                         <div class="card investment-sec">
                           <div class="animated-bg"><i></i><i></i><i></i></div>
                           <div class="card-body">
-                            <div class="icon"><i class="fa fa-leaf"></i></div>
+                            <div class="icon"><i class="fa fa-flask"></i></div>
                             <p>Nivel Clorofila</p>
                             <h3>MCARI</h3>
                           </div>
                         </div>
                       </div>
+
                     </div>
                   </div>
 
                 </div>
-
               </div>
-              
 
+              <!-- ============================================
+                   COLUMNA DERECHA — información de parcela
+              ============================================ -->
               <div class="col-xl-3 col-lg-6 col-md-7 col-sm-6 box-col-3 our-city">
                 <div class="card recent-activi">
                   <div class="card-header pb-0 border-0">
                     <h5>Información de Parcela</h5>
                     <div class="center-content">
-                      <p>Productor, parcela y campaña</p>
+                      <p style="font-size:11px;color:#888;">Productor, parcela y campaña</p>
                     </div>
                     <div class="card-header-right">
                       <ul class="list-unstyled card-option">
@@ -317,121 +476,92 @@
                     <div class="table-responsive">
                       <table class="table table-bordernone">
                         <tbody>
+
+                          <!-- Parcela -->
                           <tr>
                             <td>
                               <div class="d-flex">
-                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewbox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;" xml:space="preserve">
-                                  <g>
-                                    <g>
-                                      <path d="M506.35,80.699c-7.57-7.589-19.834-7.609-27.43-0.052L331.662,227.31l-42.557-42.557c-7.577-7.57-19.846-7.577-27.423,0                                                      L89.076,357.36c-7.577,7.57-7.577,19.853,0,27.423c3.782,3.788,8.747,5.682,13.712,5.682c4.958,0,9.93-1.894,13.711-5.682                                                      l158.895-158.888l42.531,42.524c7.57,7.57,19.808,7.577,27.397,0.032l160.97-160.323                                                      C513.881,100.571,513.907,88.288,506.35,80.699z"></path>
-                                    </g>
-                                  </g>
-                                  <g>
-                                    <g>
-                                      <path d="M491.96,449.94H38.788V42.667c0-10.712-8.682-19.394-19.394-19.394S0,31.955,0,42.667v426.667                                                      c0,10.712,8.682,19.394,19.394,19.394H491.96c10.712,0,19.394-8.682,19.394-19.394C511.354,458.622,502.672,449.94,491.96,449.94z                                                      "></path>
-                                    </g>
-                                  </g>
-                                  <g>
-                                    <g>
-                                      <path d="M492.606,74.344H347.152c-10.712,0-19.394,8.682-19.394,19.394s8.682,19.394,19.394,19.394h126.061v126.067                                                      c0,10.705,8.682,19.394,19.394,19.394S512,249.904,512,239.192V93.738C512,83.026,503.318,74.344,492.606,74.344z"></path>
-                                    </g>
-                                  </g>
-                                </svg>
-                                <div class="flex-grow-1"><span>001 - El Cafetal</span>
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.001 512.001"><g><g><path d="M506.35,80.699c-7.57-7.589-19.834-7.609-27.43-0.052L331.662,227.31l-42.557-42.557c-7.577-7.57-19.846-7.577-27.423,0L89.076,357.36c-7.577,7.57-7.577,19.853,0,27.423c3.782,3.788,8.747,5.682,13.712,5.682c4.958,0,9.93-1.894,13.711-5.682l158.895-158.888l42.531,42.524c7.57,7.57,19.808,7.577,27.397,0.032l160.97-160.323C513.881,100.571,513.907,88.288,506.35,80.699z"></path></g></g><g><g><path d="M491.96,449.94H38.788V42.667c0-10.712-8.682-19.394-19.394-19.394S0,31.955,0,42.667v426.667c0,10.712,8.682,19.394,19.394,19.394H491.96c10.712,0,19.394-8.682,19.394-19.394C511.354,458.622,502.672,449.94,491.96,449.94z"></path></g></g><g><g><path d="M492.606,74.344H347.152c-10.712,0-19.394,8.682-19.394,19.394s8.682,19.394,19.394,19.394h126.061v126.067c0,10.705,8.682,19.394,19.394,19.394S512,249.904,512,239.192V93.738C512,83.026,503.318,74.344,492.606,74.344z"></path></g></g></svg>
+                                <div class="flex-grow-1">
+                                  <span>001 - El Cafetal</span>
                                   <p>Parcela</p>
                                 </div>
                               </div>
                             </td>
                           </tr>
+
+                          <!-- Productor -->
                           <tr>
                             <td>
                               <div class="d-flex">
-                                <svg enable-background="new 0 0 512 512" viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-                                  <path d="m362 91v-60h-212v60h-150v390h512c0-16.889 0-372.29 0-390zm-182-30h152v30h-152zm302 390h-452v-202.844l90 36v46.844h90v-30h92v30h90v-46.844l90-36zm-302-150h-30v-60h30zm152-60h30v60h-30c0-7.259 0-52.693 0-60zm150-25.156-90 36v-40.844h-90v60h-92v-60h-90v40.844l-90-36c0-14.163 0-84.634 0-94.844h452z"></path>
-                                </svg>
-                                <div class="flex-grow-1"><span>Juan Sanchez </span>
+                                <svg enable-background="new 0 0 512 512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="m362 91v-60h-212v60h-150v390h512c0-16.889 0-372.29 0-390zm-182-30h152v30h-152zm302 390h-452v-202.844l90 36v46.844h90v-30h92v30h90v-46.844l90-36zm-302-150h-30v-60h30zm152-60h30v60h-30c0-7.259 0-52.693 0-60zm150-25.156-90 36v-40.844h-90v60h-92v-60h-90v40.844l-90-36c0-14.163 0-84.634 0-94.844h452z"></path></svg>
+                                <div class="flex-grow-1">
+                                  <span>Juan Sanchez</span>
                                   <p>Productor(a)</p>
                                 </div>
                               </div>
                             </td>
                           </tr>
+
+                          <!-- Variedad -->
                           <tr>
                             <td>
                               <div class="d-flex">
-                                <svg enable-background="new 0 0 512 512" viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-                                  <g>
-                                    <path d="m345.622 126.038c-50.748-45.076-130.482-46.914-183.244 3.903-21.262 20.478-35.375 47.381-39.737 75.754-5.454 35.471 2.872 70.834 23.444 99.576 56.271 78.616 49.132 141.058 49.915 145.691 0 16.435 6.211 31.795 17.491 43.253 11.289 11.469 26.386 17.785 42.509 17.785 33.084 0 60-26.916 60-60 .686-4.269-6.11-72.81 47.676-143.691 17.875-23.557 27.324-51.673 27.324-81.309 0-38.547-16.54-75.347-45.378-100.962zm-89.622 355.962c-16.486 0-29.462-13.096-29.975-30h59.975c0 16.542-13.458 30-30 30zm83.777-191.826c-30.015 39.554-47.946 84.707-52.569 131.826h-62.57c-4.961-45.331-23.43-91.26-54.157-134.19-15.985-22.333-22.444-49.876-18.188-77.556 7.293-47.43 49.733-88.262 103.846-88.262 58.661 0 104.861 47.891 104.861 105.008 0 23.032-7.339 44.877-21.223 63.174z"></path>
-                                    <path d="m256 62c8.284 0 15-6.716 15-15v-32c0-8.284-6.716-15-15-15s-15 6.716-15 15v32c0 8.284 6.716 15 15 15z"></path>
-                                    <path d="m419.385 149.99 25.98-15c7.174-4.142 9.632-13.316 5.49-20.49-4.142-7.175-13.316-9.633-20.49-5.49l-25.98 15c-7.174 4.142-9.632 13.316-5.49 20.49 4.162 7.21 13.349 9.613 20.49 5.49z"></path>
-                                    <path d="m92.615 304.01-25.98 15c-7.174 4.142-9.632 13.316-5.49 20.49 4.163 7.21 13.35 9.613 20.49 5.49l25.98-15c7.174-4.142 9.632-13.316 5.49-20.49-4.141-7.175-13.316-9.632-20.49-5.49z"></path>
-                                    <path d="m338.5 84.105c7.141 4.124 16.33 1.716 20.49-5.49l15-25.98c4.142-7.174 1.684-16.348-5.49-20.49-7.174-4.144-16.349-1.685-20.49 5.49l-15 25.98c-4.142 7.175-1.684 16.348 5.49 20.49z"></path>
-                                    <path d="m153.01 78.615c4.163 7.21 13.35 9.613 20.49 5.49 7.174-4.142 9.632-13.316 5.49-20.49l-15-25.98c-4.142-7.174-13.315-9.633-20.49-5.49-7.174 4.142-9.632 13.316-5.49 20.49z"></path>
-                                    <path d="m445.365 319.01-25.98-15c-7.175-4.143-16.349-1.684-20.49 5.49-4.142 7.174-1.684 16.348 5.49 20.49l25.98 15c7.141 4.124 16.33 1.716 20.49-5.49 4.143-7.174 1.685-16.348-5.49-20.49z"></path>
-                                    <path d="m107.615 124.01-25.98-15c-7.175-4.144-16.348-1.684-20.49 5.49s-1.684 16.348 5.49 20.49l25.98 15c7.141 4.124 16.33 1.716 20.49-5.49 4.143-7.174 1.685-16.348-5.49-20.49z"></path>
-                                    <path d="m466 212h-30c-8.284 0-15 6.716-15 15s6.716 15 15 15h30c8.284 0 15-6.716 15-15s-6.716-15-15-15z"></path>
-                                    <path d="m91 227c0-8.284-6.716-15-15-15h-30c-8.284 0-15 6.716-15 15s6.716 15 15 15h30c8.284 0 15-6.716 15-15z"></path>
-                                    <path d="m275.394 216.394-19.394 19.393-19.394-19.393c-5.857-5.858-15.355-5.858-21.213 0s-5.858 15.355 0 21.213l25.607 25.606v53.787c0 8.284 6.716 15 15 15s15-6.716 15-15v-53.787l25.606-25.606c5.858-5.858 5.858-15.355 0-21.213-5.857-5.859-15.355-5.859-21.212 0z"></path>
-                                  </g>
-                                </svg>
-                                <div class="flex-grow-1"><span>Variedad 01</span>
+                                <svg enable-background="new 0 0 512 512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><g><path d="m345.622 126.038c-50.748-45.076-130.482-46.914-183.244 3.903-21.262 20.478-35.375 47.381-39.737 75.754-5.454 35.471 2.872 70.834 23.444 99.576 56.271 78.616 49.132 141.058 49.915 145.691 0 16.435 6.211 31.795 17.491 43.253 11.289 11.469 26.386 17.785 42.509 17.785 33.084 0 60-26.916 60-60 .686-4.269-6.11-72.81 47.676-143.691 17.875-23.557 27.324-51.673 27.324-81.309 0-38.547-16.54-75.347-45.378-100.962zm-89.622 355.962c-16.486 0-29.462-13.096-29.975-30h59.975c0 16.542-13.458 30-30 30zm83.777-191.826c-30.015 39.554-47.946 84.707-52.569 131.826h-62.57c-4.961-45.331-23.43-91.26-54.157-134.19-15.985-22.333-22.444-49.876-18.188-77.556 7.293-47.43 49.733-88.262 103.846-88.262 58.661 0 104.861 47.891 104.861 105.008 0 23.032-7.339 44.877-21.223 63.174z"></path><path d="m256 62c8.284 0 15-6.716 15-15v-32c0-8.284-6.716-15-15-15s-15 6.716-15 15v32c0 8.284 6.716 15 15 15z"></path><path d="m419.385 149.99 25.98-15c7.174-4.142 9.632-13.316 5.49-20.49-4.142-7.175-13.316-9.633-20.49-5.49l-25.98 15c-7.174 4.142-9.632 13.316-5.49 20.49 4.162 7.21 13.349 9.613 20.49 5.49z"></path><path d="m92.615 304.01-25.98 15c-7.174 4.142-9.632 13.316-5.49 20.49 4.163 7.21 13.35 9.613 20.49 5.49l25.98-15c7.174-4.142 9.632-13.316 5.49-20.49-4.141-7.175-13.316-9.632-20.49-5.49z"></path><path d="m338.5 84.105c7.141 4.124 16.33 1.716 20.49-5.49l15-25.98c4.142-7.174 1.684-16.348-5.49-20.49-7.174-4.144-16.349-1.685-20.49 5.49l-15 25.98c-4.142 7.175-1.684 16.348 5.49 20.49z"></path><path d="m153.01 78.615c4.163 7.21 13.35 9.613 20.49 5.49 7.174-4.142 9.632-13.316 5.49-20.49l-15-25.98c-4.142-7.174-13.315-9.633-20.49-5.49-7.174 4.142-9.632 13.316-5.49 20.49z"></path><path d="m445.365 319.01-25.98-15c-7.175-4.143-16.349-1.684-20.49 5.49-4.142 7.174-1.684 16.348 5.49 20.49l25.98 15c7.141 4.124 16.33 1.716 20.49-5.49 4.143-7.174 1.685-16.348-5.49-20.49z"></path><path d="m107.615 124.01-25.98-15c-7.175-4.144-16.348-1.684-20.49 5.49s-1.684 16.348 5.49 20.49l25.98 15c7.141 4.124 16.33 1.716 20.49-5.49 4.143-7.174 1.685-16.348-5.49-20.49z"></path><path d="m466 212h-30c-8.284 0-15 6.716-15 15s6.716 15 15 15h30c8.284 0 15-6.716 15-15s-6.716-15-15-15z"></path><path d="m91 227c0-8.284-6.716-15-15-15h-30c-8.284 0-15 6.716-15 15s6.716 15 15 15h30c8.284 0 15-6.716 15-15z"></path><path d="m275.394 216.394-19.394 19.393-19.394-19.393c-5.857-5.858-15.355-5.858-21.213 0s-5.858 15.355 0 21.213l25.607 25.606v53.787c0 8.284 6.716 15 15 15s15-6.716 15-15v-53.787l25.606-25.606c5.858-5.858 5.858-15.355 0-21.213-5.857-5.859-15.355-5.859-21.212 0z"></path></g></svg>
+                                <div class="flex-grow-1">
+                                  <span>Variedad 01</span>
                                   <p>Variedad</p>
                                 </div>
                               </div>
                             </td>
                           </tr>
+
+                          <!-- Campaña -->
                           <tr>
                             <td>
                               <div class="d-flex">
-                                <svg enable-background="new 0 0 512 512" viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-                                  <g>
-                                    <path d="m512 390v-390h-512v390h241v32h-15c-41.355 0-75 33.645-75 75v15h210v-15c0-41.355-33.645-75-75-75h-15v-32zm-226 62c19.556 0 36.239 12.539 42.43 30h-144.86c6.191-17.461 22.874-30 42.43-30zm-256-92v-330h452v330c-12.164 0-438.947 0-452 0z"></path>
-                                    <path d="m136 180c24.813 0 45-20.187 45-45s-20.187-45-45-45-45 20.187-45 45 20.187 45 45 45zm0-60c8.271 0 15 6.729 15 15s-6.729 15-15 15-15-6.729-15-15 6.729-15 15-15z"></path>
-                                    <path d="m184.568 197.848c-28.678-24.39-60.953-16.827-61.054-16.833-35.639 5.799-62.514 38.985-62.514 77.196v41.789h150v-45c0-22.034-9.634-42.865-26.432-57.152zm-3.568 72.152h-90v-11.789c0-23.666 16.049-44.122 37.332-47.584 13.509-2.198 26.578 1.38 36.801 10.074 10.083 8.577 15.867 21.078 15.867 34.299z"></path>
-                                    <path d="m241 270h120v30h-120z"></path>
-                                    <path d="m241 210h210v30h-210z"></path>
-                                    <path d="m241 150h210v30h-210z"></path>
-                                    <path d="m331 90h120v30h-120z"></path>
-                                    <path d="m241 90h60v30h-60z"></path>
-                                    <path d="m391 270h60v30h-60z"></path>
-                                  </g>
-                                </svg>
-                                <div class="flex-grow-1"><span>Ago - 23</span>
+                                <svg enable-background="new 0 0 512 512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><g><path d="m512 390v-390h-512v390h241v32h-15c-41.355 0-75 33.645-75 75v15h210v-15c0-41.355-33.645-75-75-75h-15v-32zm-226 62c19.556 0 36.239 12.539 42.43 30h-144.86c6.191-17.461 22.874-30 42.43-30zm-256-92v-330h452v330c-12.164 0-438.947 0-452 0z"></path><path d="m136 180c24.813 0 45-20.187 45-45s-20.187-45-45-45-45 20.187-45 45 20.187 45 45 45zm0-60c8.271 0 15 6.729 15 15s-6.729 15-15 15-15-6.729-15-15 6.729-15 15-15z"></path><path d="m184.568 197.848c-28.678-24.39-60.953-16.827-61.054-16.833-35.639 5.799-62.514 38.985-62.514 77.196v41.789h150v-45c0-22.034-9.634-42.865-26.432-57.152zm-3.568 72.152h-90v-11.789c0-23.666 16.049-44.122 37.332-47.584 13.509-2.198 26.578 1.38 36.801 10.074 10.083 8.577 15.867 21.078 15.867 34.299z"></path><path d="m241 270h120v30h-120z"></path><path d="m241 210h210v30h-210z"></path><path d="m241 150h210v30h-210z"></path><path d="m331 90h120v30h-120z"></path><path d="m241 90h60v30h-60z"></path><path d="m391 270h60v30h-60z"></path></g></svg>
+                                <div class="flex-grow-1">
+                                  <span>Ago - 23</span>
                                   <p>Campaña</p>
                                 </div>
                               </div>
                             </td>
                           </tr>
+
+                          <!-- Corredor -->
                           <tr>
                             <td>
                               <div class="d-flex">
-                                <svg viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-                                  <path d="m437.019531 74.980469c-48.351562-48.351563-112.640625-74.980469-181.019531-74.980469s-132.667969 26.628906-181.019531 74.980469c-48.351563 48.351562-74.980469 112.640625-74.980469 181.019531s26.628906 132.667969 74.980469 181.019531c48.351562 48.351563 112.640625 74.980469 181.019531 74.980469s132.667969-26.628906 181.019531-74.980469c48.351563-48.351562 74.980469-112.640625 74.980469-181.019531s-26.628906-132.667969-74.980469-181.019531zm-181.019531 407.019531c-124.617188 0-226-101.382812-226-226s101.382812-226 226-226 226 101.382812 226 226-101.382812 226-226 226zm0 0"></path>
-                                  <path d="m326.203125 234.433594-23.339844 5.160156v-112.898438c0-8.285156-6.71875-15-15-15h-63.722656c-8.285156 0-15 6.714844-15 15v112.898438l-23.34375-5.160156c-10.226563-2.261719-20.695313 1.832031-26.675781 10.429687-5.976563 8.597657-6.171875 19.839844-.492188 28.636719l73.398438 113.742188c5.277344 8.179687 14.238281 13.0625 23.972656 13.0625s18.695312-4.882813 23.972656-13.0625l73.402344-113.738282c5.679688-8.800781 5.484375-20.042968-.496094-28.640625-5.980468-8.597656-16.449218-12.691406-26.675781-10.429687zm-105.304687 38.488281c4.441406.980469 9.085937-.105469 12.632812-2.949219 3.546875-2.847656 5.609375-7.152344 5.609375-11.699218v-116.578126h33.722656v116.578126c0 4.546874 2.0625 8.851562 5.605469 11.699218 3.546875 2.847656 8.191406 3.929688 12.632812 2.949219l31.429688-6.953125-66.53125 103.09375-66.527344-103.09375zm0 0"></path>
-                                </svg>
-                                <div class="flex-grow-1"><span>Corredor 01</span>
+                                <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="m437.019531 74.980469c-48.351562-48.351563-112.640625-74.980469-181.019531-74.980469s-132.667969 26.628906-181.019531 74.980469c-48.351563 48.351562-74.980469 112.640625-74.980469 181.019531s26.628906 132.667969 74.980469 181.019531c48.351562 48.351563 112.640625 74.980469 181.019531 74.980469s132.667969-26.628906 181.019531-74.980469c48.351563-48.351562 74.980469-112.640625 74.980469-181.019531s-26.628906-132.667969-74.980469-181.019531zm-181.019531 407.019531c-124.617188 0-226-101.382812-226-226s101.382812-226 226-226 226 101.382812 226 226-101.382812 226-226 226zm0 0"></path><path d="m326.203125 234.433594-23.339844 5.160156v-112.898438c0-8.285156-6.71875-15-15-15h-63.722656c-8.285156 0-15 6.714844-15 15v112.898438l-23.34375-5.160156c-10.226563-2.261719-20.695313 1.832031-26.675781 10.429687-5.976563 8.597657-6.171875 19.839844-.492188 28.636719l73.398438 113.742188c5.277344 8.179687 14.238281 13.0625 23.972656 13.0625s18.695312-4.882813 23.972656-13.0625l73.402344-113.738282c5.679688-8.800781 5.484375-20.042968-.496094-28.640625-5.980468-8.597656-16.449218-12.691406-26.675781-10.429687zm-105.304687 38.488281c4.441406.980469 9.085937-.105469 12.632812-2.949219 3.546875-2.847656 5.609375-7.152344 5.609375-11.699218v-116.578126h33.722656v116.578126c0 4.546874 2.0625 8.851562 5.605469 11.699218 3.546875 2.847656 8.191406 3.929688 12.632812 2.949219l31.429688-6.953125-66.53125 103.09375-66.527344-103.09375zm0 0"></path></svg>
+                                <div class="flex-grow-1">
+                                  <span>Corredor 01</span>
                                   <p>Corredor</p>
                                 </div>
                               </div>
                             </td>
                           </tr>
+
                         </tbody>
                       </table>
                     </div>
                     <div class="code-box-copy">
                       <button class="code-box-copy__btn btn-clipboard" data-clipboard-target="#recentactiviti" title="" data-bs-original-title="Copy" aria-label="Copy"><i class="icofont icofont-copy-alt"></i></button>
-                      
                     </div>
                   </div>
                 </div>
               </div>
-              
+
+              <!-- ============================================
+                   FILA INFERIOR — gráficas evolutivas + monitoreo
+              ============================================ -->
+
+              <!-- Evolutivo Nitrógeno — id="sell-view" intacto -->
               <div class="col-xl-4 col-md-12 box-col-4 xl-30">
                 <div class="card sellview-sec">
                   <div class="card-header card-no-border pb-0">
                     <h5>Evolutivo Nitrógeno</h5>
-                    <div class="center-content">
-                      <p>ENE 23 - JUN 23</p>
-                    </div>
+                    <div class="center-content"><p>ENE 23 - JUN 23</p></div>
                     <div class="card-header-right">
                       <ul class="list-unstyled card-option">
                         <li><i class="icon-more-alt"></i></li>
@@ -451,13 +581,13 @@
                   </div>
                 </div>
               </div>
+
+              <!-- Evolutivo Humedad — id="profit-view" intacto -->
               <div class="col-xl-4 col-md-6 xl-30">
                 <div class="card profitview-sec">
                   <div class="card-header card-no-border">
                     <h5>Evolutivo Humedad</h5>
-                    <div class="center-content">
-                      <p>ENE 23 - JUN 23</p>
-                    </div>
+                    <div class="center-content"><p>ENE 23 - JUN 23</p></div>
                     <div class="card-header-right">
                       <ul class="list-unstyled card-option">
                         <li><i class="icon-more-alt"></i></li>
@@ -473,19 +603,17 @@
                     <div id="profit-view"></div>
                     <div class="code-box-copy">
                       <button class="code-box-copy__btn btn-clipboard" data-clipboard-target="#profitview" title="" data-bs-original-title="Copy" aria-label="Copy"><i class="icofont icofont-copy-alt"></i></button>
-                      
                     </div>
                   </div>
                 </div>
               </div>
 
+              <!-- Monitoreo — ids explorerstatistics etc. intactos -->
               <div class="col-xl-4 col-md-6 box-col-4">
                 <div class="card browser-statistics">
                   <div class="card-header pb-0 card-no-border dflex justify-content-between">
                     <h5>Monitoreo</h5>
-                    <div class="center-content">
-                      <p>Útimos 07 días</p>
-                    </div>
+                    <div class="center-content"><p>Últimos 07 días</p></div>
                     <div class="card-header-right">
                       <ul class="list-unstyled card-option">
                         <li><i class="icon-more-alt"></i></li>
@@ -493,86 +621,49 @@
                         <li><i class="icofont icofont-maximize full-card"></i></li>
                         <li><i class="icofont icofont-minus minimize-card"></i></li>
                         <li><i class="icofont icofont-refresh reload-card"></i></li>
-                        <li><i class="icofont icofont-error close-card">                </i></li>
+                        <li><i class="icofont icofont-error close-card"></i></li>
                       </ul>
                     </div>
                   </div>
-                  <div class="card-body text-center" style="position: relative;">
-                    <div id="explorerstatistics" style="min-height: 75px;"><div id="apexcharts9sj6lgyth" class="apexcharts-canvas apexcharts9sj6lgyth light" style="width: 254px; height: 75px;"><svg id="SvgjsSvg1143" width="254" height="75" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" class="apexcharts-svg" xmlns:data="ApexChartsNS" transform="translate(0, 0)" style="background: transparent;"><g id="SvgjsG1145" class="apexcharts-inner apexcharts-graphical" transform="translate(0, 20)"><defs id="SvgjsDefs1144"><linearGradient id="SvgjsLinearGradient1149" x1="0" y1="0" x2="0" y2="1"><stop id="SvgjsStop1150" stop-opacity="0.4" stop-color="rgba(216,227,240,0.4)" offset="0"></stop><stop id="SvgjsStop1151" stop-opacity="0.5" stop-color="rgba(190,209,230,0.5)" offset="1"></stop><stop id="SvgjsStop1152" stop-opacity="0.5" stop-color="rgba(190,209,230,0.5)" offset="1"></stop></linearGradient><clipPath id="gridRectMask9sj6lgyth"><rect id="SvgjsRect1154" width="253" height="55" x="0" y="0" rx="0" ry="0" fill="#ffffff" opacity="1" stroke-width="0" stroke="none" stroke-dasharray="0"></rect></clipPath><clipPath id="gridRectMarkerMask9sj6lgyth"><rect id="SvgjsRect1155" width="255" height="57" x="-1" y="-1" rx="0" ry="0" fill="#ffffff" opacity="1" stroke-width="0" stroke="none" stroke-dasharray="0"></rect></clipPath></defs><rect id="SvgjsRect1153" width="0" height="55" x="0" y="0" rx="0" ry="0" fill="url(#SvgjsLinearGradient1149)" opacity="1" stroke-width="0" stroke-dasharray="3" class="apexcharts-xcrosshairs" y2="55" filter="none" fill-opacity="0.9"></rect><g id="SvgjsG1164" class="apexcharts-yaxis apexcharts-xaxis-inversed" rel="0"><g id="SvgjsG1165" class="apexcharts-yaxis-texts-g apexcharts-xaxis-inversed-texts-g" transform="translate(0, 0)"></g></g><g id="SvgjsG1162" class="apexcharts-xaxis apexcharts-yaxis-inversed"><g id="SvgjsG1163" class="apexcharts-xaxis-texts-g" transform="translate(0, -8)"></g></g><g id="SvgjsG1166" class="apexcharts-grid"><line id="SvgjsLine1168" x1="0" y1="55" x2="253" y2="55" stroke="transparent" stroke-dasharray="0"></line><line id="SvgjsLine1167" x1="0" y1="1" x2="0" y2="55" stroke="transparent" stroke-dasharray="0"></line></g><g id="SvgjsG1157" class="apexcharts-bar-series apexcharts-plot-series"><g id="SvgjsG1158" class="apexcharts-series" seriesName="InternetxExplorer" rel="1" data:realIndex="0"><rect id="SvgjsRect1160" width="253" height="5.5" x="0" y="24.75" rx="0" ry="0" fill="#e2e7f8" opacity="1" stroke-width="0" stroke="none" stroke-dasharray="0" class="apexcharts-backgroundBar"></rect><path id="SvgjsPath1161" d="M0.1 24.75L202.5 24.75L202.5 30.25L0.1 30.25L0.1 24.75C0.1 24.75 0.1 24.75 0.1 24.75 " fill="rgba(62,95,206,1)" fill-opacity="1" stroke-opacity="1" stroke-linecap="butt" stroke-width="0" stroke-dasharray="0" class="apexcharts-bar-area" index="0" clip-path="url(#gridRectMask9sj6lgyth)" pathTo="M 0.1 24.75L 202.5 24.75L 202.5 30.25L 0.1 30.25L 0.1 24.75" pathFrom="M 0.1 24.75L 0.1 24.75L 0.1 30.25L 0.1 30.25L 0.1 30.25L 0.1 24.75" cy="79.75" cx="202.5" j="0" val="80" barHeight="5.5" barWidth="202.4"></path><g id="SvgjsG1159" class="apexcharts-datalabels"></g></g></g><line id="SvgjsLine1169" x1="0" y1="0" x2="253" y2="0" stroke="#b6b6b6" stroke-dasharray="0" stroke-width="1" class="apexcharts-ycrosshairs"></line><line id="SvgjsLine1170" x1="0" y1="0" x2="253" y2="0" stroke-dasharray="0" stroke-width="0" class="apexcharts-ycrosshairs-hidden"></line><g id="SvgjsG1171" class="apexcharts-yaxis-annotations"></g><g id="SvgjsG1172" class="apexcharts-xaxis-annotations"></g><g id="SvgjsG1173" class="apexcharts-point-annotations"></g></g><text id="SvgjsText1146" font-family="Rubik,sans-serif" x="0" y="21" text-anchor="start" dominant-baseline="auto" font-size="14px" font-weight="regular" fill="#373d3f" class="apexcharts-title-text" style="font-family: Rubik, sans-serif; opacity: 1;">Humedad</text><text id="SvgjsText1147" font-family="Rubik,sans-serif" x="244" y="20" text-anchor="end" dominant-baseline="auto" font-size="18px" font-weight="regular" fill="#373d3f" class="apexcharts-subtitle-text" style="font-family: Rubik, sans-serif; opacity: 1;">56%</text></svg><div class="apexcharts-legend"></div></div></div>
-                    <div id="chromestatistics" style="min-height: 75px;"><div id="apexchartsr7zrd93x" class="apexcharts-canvas apexchartsr7zrd93x light" style="width: 254px; height: 75px;"><svg id="SvgjsSvg1050" width="254" height="75" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" class="apexcharts-svg" xmlns:data="ApexChartsNS" transform="translate(0, 0)" style="background: transparent;"><g id="SvgjsG1052" class="apexcharts-inner apexcharts-graphical" transform="translate(0, 20)"><defs id="SvgjsDefs1051"><linearGradient id="SvgjsLinearGradient1056" x1="0" y1="0" x2="0" y2="1"><stop id="SvgjsStop1057" stop-opacity="0.4" stop-color="rgba(216,227,240,0.4)" offset="0"></stop><stop id="SvgjsStop1058" stop-opacity="0.5" stop-color="rgba(190,209,230,0.5)" offset="1"></stop><stop id="SvgjsStop1059" stop-opacity="0.5" stop-color="rgba(190,209,230,0.5)" offset="1"></stop></linearGradient><clipPath id="gridRectMaskr7zrd93x"><rect id="SvgjsRect1061" width="253" height="55" x="0" y="0" rx="0" ry="0" fill="#ffffff" opacity="1" stroke-width="0" stroke="none" stroke-dasharray="0"></rect></clipPath><clipPath id="gridRectMarkerMaskr7zrd93x"><rect id="SvgjsRect1062" width="255" height="57" x="-1" y="-1" rx="0" ry="0" fill="#ffffff" opacity="1" stroke-width="0" stroke="none" stroke-dasharray="0"></rect></clipPath></defs><rect id="SvgjsRect1060" width="0" height="55" x="0" y="0" rx="0" ry="0" fill="url(#SvgjsLinearGradient1056)" opacity="1" stroke-width="0" stroke-dasharray="3" class="apexcharts-xcrosshairs" y2="55" filter="none" fill-opacity="0.9"></rect><g id="SvgjsG1071" class="apexcharts-yaxis apexcharts-xaxis-inversed" rel="0"><g id="SvgjsG1072" class="apexcharts-yaxis-texts-g apexcharts-xaxis-inversed-texts-g" transform="translate(0, 0)"></g></g><g id="SvgjsG1069" class="apexcharts-xaxis apexcharts-yaxis-inversed"><g id="SvgjsG1070" class="apexcharts-xaxis-texts-g" transform="translate(0, -8)"></g></g><g id="SvgjsG1073" class="apexcharts-grid"><line id="SvgjsLine1075" x1="0" y1="55" x2="253" y2="55" stroke="transparent" stroke-dasharray="0"></line><line id="SvgjsLine1074" x1="0" y1="1" x2="0" y2="55" stroke="transparent" stroke-dasharray="0"></line></g><g id="SvgjsG1064" class="apexcharts-bar-series apexcharts-plot-series"><g id="SvgjsG1065" class="apexcharts-series" seriesName="GooglexChrome" rel="1" data:realIndex="0"><rect id="SvgjsRect1067" width="253" height="5.5" x="0" y="24.75" rx="0" ry="0" fill="#e2e7f8" opacity="1" stroke-width="0" stroke="none" stroke-dasharray="0" class="apexcharts-backgroundBar"></rect><path id="SvgjsPath1068" d="M0.1 24.75L240.45 24.75L240.45 30.25L0.1 30.25L0.1 24.75C0.1 24.75 0.1 24.75 0.1 24.75 " fill="rgba(62,95,206,1)" fill-opacity="1" stroke-opacity="1" stroke-linecap="butt" stroke-width="0" stroke-dasharray="0" class="apexcharts-bar-area" index="0" clip-path="url(#gridRectMaskr7zrd93x)" pathTo="M 0.1 24.75L 240.45 24.75L 240.45 30.25L 0.1 30.25L 0.1 24.75" pathFrom="M 0.1 24.75L 0.1 24.75L 0.1 30.25L 0.1 30.25L 0.1 30.25L 0.1 24.75" cy="79.75" cx="240.45" j="0" val="95" barHeight="5.5" barWidth="240.35"></path><g id="SvgjsG1066" class="apexcharts-datalabels"></g></g></g><line id="SvgjsLine1076" x1="0" y1="0" x2="253" y2="0" stroke="#b6b6b6" stroke-dasharray="0" stroke-width="1" class="apexcharts-ycrosshairs"></line><line id="SvgjsLine1077" x1="0" y1="0" x2="253" y2="0" stroke-dasharray="0" stroke-width="0" class="apexcharts-ycrosshairs-hidden"></line><g id="SvgjsG1078" class="apexcharts-yaxis-annotations"></g><g id="SvgjsG1079" class="apexcharts-xaxis-annotations"></g><g id="SvgjsG1080" class="apexcharts-point-annotations"></g></g><text id="SvgjsText1053" font-family="Rubik,sans-serif" x="0" y="21" text-anchor="start" dominant-baseline="auto" font-size="14px" font-weight="regular" fill="#373d3f" class="apexcharts-title-text" style="font-family: Rubik, sans-serif; opacity: 1;">Nitrógeno</text><text id="SvgjsText1054" font-family="Rubik,sans-serif" x="244" y="20" text-anchor="end" dominant-baseline="auto" font-size="18px" font-weight="regular" fill="#373d3f" class="apexcharts-subtitle-text" style="font-family: Rubik, sans-serif; opacity: 1;">95%</text></svg><div class="apexcharts-legend"></div></div></div>
-                    <div id="operastatistics" style="min-height: 75px;"><div id="apexchartsbve95ijzh" class="apexcharts-canvas apexchartsbve95ijzh light" style="width: 254px; height: 75px;"><svg id="SvgjsSvg1081" width="254" height="75" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" class="apexcharts-svg" xmlns:data="ApexChartsNS" transform="translate(0, 0)" style="background: transparent;"><g id="SvgjsG1083" class="apexcharts-inner apexcharts-graphical" transform="translate(0, 20)"><defs id="SvgjsDefs1082"><linearGradient id="SvgjsLinearGradient1087" x1="0" y1="0" x2="0" y2="1"><stop id="SvgjsStop1088" stop-opacity="0.4" stop-color="rgba(216,227,240,0.4)" offset="0"></stop><stop id="SvgjsStop1089" stop-opacity="0.5" stop-color="rgba(190,209,230,0.5)" offset="1"></stop><stop id="SvgjsStop1090" stop-opacity="0.5" stop-color="rgba(190,209,230,0.5)" offset="1"></stop></linearGradient><clipPath id="gridRectMaskbve95ijzh"><rect id="SvgjsRect1092" width="253" height="55" x="0" y="0" rx="0" ry="0" fill="#ffffff" opacity="1" stroke-width="0" stroke="none" stroke-dasharray="0"></rect></clipPath><clipPath id="gridRectMarkerMaskbve95ijzh"><rect id="SvgjsRect1093" width="255" height="57" x="-1" y="-1" rx="0" ry="0" fill="#ffffff" opacity="1" stroke-width="0" stroke="none" stroke-dasharray="0"></rect></clipPath></defs><rect id="SvgjsRect1091" width="0" height="55" x="0" y="0" rx="0" ry="0" fill="url(#SvgjsLinearGradient1087)" opacity="1" stroke-width="0" stroke-dasharray="3" class="apexcharts-xcrosshairs" y2="55" filter="none" fill-opacity="0.9"></rect><g id="SvgjsG1102" class="apexcharts-yaxis apexcharts-xaxis-inversed" rel="0"><g id="SvgjsG1103" class="apexcharts-yaxis-texts-g apexcharts-xaxis-inversed-texts-g" transform="translate(0, 0)"></g></g><g id="SvgjsG1100" class="apexcharts-xaxis apexcharts-yaxis-inversed"><g id="SvgjsG1101" class="apexcharts-xaxis-texts-g" transform="translate(0, -8)"></g></g><g id="SvgjsG1104" class="apexcharts-grid"><line id="SvgjsLine1106" x1="0" y1="55" x2="253" y2="55" stroke="transparent" stroke-dasharray="0"></line><line id="SvgjsLine1105" x1="0" y1="1" x2="0" y2="55" stroke="transparent" stroke-dasharray="0"></line></g><g id="SvgjsG1095" class="apexcharts-bar-series apexcharts-plot-series"><g id="SvgjsG1096" class="apexcharts-series" seriesName="opera" rel="1" data:realIndex="0"><rect id="SvgjsRect1098" width="253" height="5.5" x="0" y="24.75" rx="0" ry="0" fill="#e2e7f8" opacity="1" stroke-width="0" stroke="none" stroke-dasharray="0" class="apexcharts-backgroundBar"></rect><path id="SvgjsPath1099" d="M0.1 24.75L177.2 24.75L177.2 30.25L0.1 30.25L0.1 24.75C0.1 24.75 0.1 24.75 0.1 24.75 " fill="rgba(62,95,206,1)" fill-opacity="1" stroke-opacity="1" stroke-linecap="butt" stroke-width="0" stroke-dasharray="0" class="apexcharts-bar-area" index="0" clip-path="url(#gridRectMaskbve95ijzh)" pathTo="M 0.1 24.75L 177.2 24.75L 177.2 30.25L 0.1 30.25L 0.1 24.75" pathFrom="M 0.1 24.75L 0.1 24.75L 0.1 30.25L 0.1 30.25L 0.1 30.25L 0.1 24.75" cy="79.75" cx="177.2" j="0" val="70" barHeight="5.5" barWidth="177.1"></path><g id="SvgjsG1097" class="apexcharts-datalabels"></g></g></g><line id="SvgjsLine1107" x1="0" y1="0" x2="253" y2="0" stroke="#b6b6b6" stroke-dasharray="0" stroke-width="1" class="apexcharts-ycrosshairs"></line><line id="SvgjsLine1108" x1="0" y1="0" x2="253" y2="0" stroke-dasharray="0" stroke-width="0" class="apexcharts-ycrosshairs-hidden"></line><g id="SvgjsG1109" class="apexcharts-yaxis-annotations"></g><g id="SvgjsG1110" class="apexcharts-xaxis-annotations"></g><g id="SvgjsG1111" class="apexcharts-point-annotations"></g></g><text id="SvgjsText1084" font-family="Rubik,sans-serif" x="0" y="21" text-anchor="start" dominant-baseline="auto" font-size="14px" font-weight="regular" fill="#373d3f" class="apexcharts-title-text" style="font-family: Rubik, sans-serif; opacity: 1;">Suelo</text><text id="SvgjsText1085" font-family="Rubik,sans-serif" x="244" y="20" text-anchor="end" dominant-baseline="auto" font-size="18px" font-weight="regular" fill="#373d3f" class="apexcharts-subtitle-text" style="font-family: Rubik, sans-serif; opacity: 1;">70%</text></svg><div class="apexcharts-legend"></div></div></div>
-                    <div id="firefoxstatistics" style="min-height: 75px;"><div id="apexchartsya80lqrgh" class="apexcharts-canvas apexchartsya80lqrgh light" style="width: 254px; height: 75px;"><svg id="SvgjsSvg1112" width="254" height="75" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" class="apexcharts-svg" xmlns:data="ApexChartsNS" transform="translate(0, 0)" style="background: transparent;"><g id="SvgjsG1114" class="apexcharts-inner apexcharts-graphical" transform="translate(0, 20)"><defs id="SvgjsDefs1113"><linearGradient id="SvgjsLinearGradient1118" x1="0" y1="0" x2="0" y2="1"><stop id="SvgjsStop1119" stop-opacity="0.4" stop-color="rgba(216,227,240,0.4)" offset="0"></stop><stop id="SvgjsStop1120" stop-opacity="0.5" stop-color="rgba(190,209,230,0.5)" offset="1"></stop><stop id="SvgjsStop1121" stop-opacity="0.5" stop-color="rgba(190,209,230,0.5)" offset="1"></stop></linearGradient><clipPath id="gridRectMaskya80lqrgh"><rect id="SvgjsRect1123" width="253" height="55" x="0" y="0" rx="0" ry="0" fill="#ffffff" opacity="1" stroke-width="0" stroke="none" stroke-dasharray="0"></rect></clipPath><clipPath id="gridRectMarkerMaskya80lqrgh"><rect id="SvgjsRect1124" width="255" height="57" x="-1" y="-1" rx="0" ry="0" fill="#ffffff" opacity="1" stroke-width="0" stroke="none" stroke-dasharray="0"></rect></clipPath></defs><rect id="SvgjsRect1122" width="0" height="55" x="0" y="0" rx="0" ry="0" fill="url(#SvgjsLinearGradient1118)" opacity="1" stroke-width="0" stroke-dasharray="3" class="apexcharts-xcrosshairs" y2="55" filter="none" fill-opacity="0.9"></rect><g id="SvgjsG1133" class="apexcharts-yaxis apexcharts-xaxis-inversed" rel="0"><g id="SvgjsG1134" class="apexcharts-yaxis-texts-g apexcharts-xaxis-inversed-texts-g" transform="translate(0, 0)"></g></g><g id="SvgjsG1131" class="apexcharts-xaxis apexcharts-yaxis-inversed"><g id="SvgjsG1132" class="apexcharts-xaxis-texts-g" transform="translate(0, -8)"></g></g><g id="SvgjsG1135" class="apexcharts-grid"><line id="SvgjsLine1137" x1="0" y1="55" x2="253" y2="55" stroke="transparent" stroke-dasharray="0"></line><line id="SvgjsLine1136" x1="0" y1="1" x2="0" y2="55" stroke="transparent" stroke-dasharray="0"></line></g><g id="SvgjsG1126" class="apexcharts-bar-series apexcharts-plot-series"><g id="SvgjsG1127" class="apexcharts-series" seriesName="Firefox" rel="1" data:realIndex="0"><rect id="SvgjsRect1129" width="253" height="5.5" x="0" y="24.75" rx="0" ry="0" fill="#e2e7f8" opacity="1" stroke-width="0" stroke="none" stroke-dasharray="0" class="apexcharts-backgroundBar"></rect><path id="SvgjsPath1130" d="M0.1 24.75L139.25 24.75L139.25 30.25L0.1 30.25L0.1 24.75C0.1 24.75 0.1 24.75 0.1 24.75 " fill="rgba(62,95,206,1)" fill-opacity="1" stroke-opacity="1" stroke-linecap="butt" stroke-width="0" stroke-dasharray="0" class="apexcharts-bar-area" index="0" clip-path="url(#gridRectMaskya80lqrgh)" pathTo="M 0.1 24.75L 139.25 24.75L 139.25 30.25L 0.1 30.25L 0.1 24.75" pathFrom="M 0.1 24.75L 0.1 24.75L 0.1 30.25L 0.1 30.25L 0.1 30.25L 0.1 24.75" cy="79.75" cx="139.25" j="0" val="55" barHeight="5.5" barWidth="139.15"></path><g id="SvgjsG1128" class="apexcharts-datalabels"></g></g></g><line id="SvgjsLine1138" x1="0" y1="0" x2="253" y2="0" stroke="#b6b6b6" stroke-dasharray="0" stroke-width="1" class="apexcharts-ycrosshairs"></line><line id="SvgjsLine1139" x1="0" y1="0" x2="253" y2="0" stroke-dasharray="0" stroke-width="0" class="apexcharts-ycrosshairs-hidden"></line><g id="SvgjsG1140" class="apexcharts-yaxis-annotations"></g><g id="SvgjsG1141" class="apexcharts-xaxis-annotations"></g><g id="SvgjsG1142" class="apexcharts-point-annotations"></g></g><text id="SvgjsText1115" font-family="Rubik,sans-serif" x="0" y="21" text-anchor="start" dominant-baseline="auto" font-size="14px" font-weight="regular" fill="#373d3f" class="apexcharts-title-text" style="font-family: Rubik, sans-serif; opacity: 1;">Clorofila</text><text id="SvgjsText1116" font-family="Rubik,sans-serif" x="244" y="20" text-anchor="end" dominant-baseline="auto" font-size="18px" font-weight="regular" fill="#373d3f" class="apexcharts-subtitle-text" style="font-family: Rubik, sans-serif; opacity: 1;">55%</text></svg><div class="apexcharts-legend"></div></div></div>
+                  <div class="card-body text-center" style="position:relative;">
+                    <!-- IDs originales intactos — los scripts apex chart los usan -->
+                    <div id="explorerstatistics" style="min-height:75px;"></div>
+                    <div id="chromestatistics" style="min-height:75px;"></div>
+                    <div id="operastatistics" style="min-height:75px;"></div>
+                    <div id="firefoxstatistics" style="min-height:75px;"></div>
                     <div class="code-box-copy">
                       <button class="code-box-copy__btn btn-clipboard" data-clipboard-target="#browserstatist" title="" data-bs-original-title="Copy" aria-label="Copy"><i class="icofont icofont-copy-alt"></i></button>
-                      <pre class=" language-html"><code class=" language-html" id="browserstatist"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>card browser-statistics<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
- <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>card-header pb-0 card-no-border dflex justify-content-between<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
-   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h5</span><span class="token punctuation">&gt;</span></span>Browser Statistics<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h5</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>center-content<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>This Year Statistics<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>card-header-right<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>list-unstyled card-option<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>icon-more-alt<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>view-html fa fa-code<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>icofont icofont-maximize full-card<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>icofont icofont-minus minimize-card<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>icofont icofont-refresh reload-card<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>icofont icofont-error close-card<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
- <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>card-body text-center<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
-   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>explorerstatistics<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
-   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>chromestatistics<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
-   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>operastatistics<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
-   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>firefoxstatistics<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>btn btn-primary<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>javascript:void(0)<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>View More<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span>
- <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code></pre>
                     </div>
-                  <div class="resize-triggers"><div class="expand-trigger"><div style="width: 295px; height: 388px;"></div></div><div class="contract-trigger"></div></div></div>
+                  </div>
                 </div>
               </div>
 
-              
-
             </div>
           </div>
-          <!-- Container-fluid Ends-->
         </div>
-        <!-- footer start-->
+
+        <!-- Footer -->
         <footer class="footer">
           <div class="container-fluid">
             <div class="row">
               <div class="col-md-6 p-0 footer-left">
-                <p class="mb-0">Copyright © 2023 Altomayo. All rights reserved.</p>
+                <p class="mb-0">Copyright © 2026 TraZar · Geofarms. Todos los derechos reservados.</p>
               </div>
-              <!-- <div class="col-md-6 p-0 footer-right">
-                <ul class="color-varient">
-                  <li></li>
-                  <li></li>
-                  <li></li>
-                  <li></li>
-                </ul>
-                <p class="mb-0 ms-3">Hand-crafted & made with <i class="fa fa-heart font-danger"></i></p>
-              </div> -->
             </div>
           </div>
         </footer>
+
       </div>
     </div>
-    <!-- latest jquery-->
+
+    <!-- Scripts — orden exacto del original, sin quitar ninguno -->
     <script src="../assets/js/jquery-3.6.0.min.js"></script>
-    <!-- Bootstrap js-->
     <script src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
-    <!-- feather icon js-->
     <script src="../assets/js/icons/feather-icon/feather.min.js"></script>
     <script src="../assets/js/icons/feather-icon/feather-icon.js"></script>
-    <!-- scrollbar js-->
     <script src="../assets/js/scrollbar/simplebar.js"></script>
     <script src="../assets/js/scrollbar/custom.js"></script>
-    <!-- Sidebar jquery-->
     <script src="../assets/js/config.js"></script>
-    <!-- Plugins JS start-->
     <script src="../assets/js/sidebar-menu.js"></script>
     <script src="../assets/js/select2/select2.full.min.js"></script>
     <script src="../assets/js/select2/select2-custom.js"></script>
@@ -604,12 +695,8 @@
     <script src="../assets/js/map-js/mapsjs-ui.js"></script>
     <script src="../assets/js/map-js/mapsjs-mapevents.js"></script>
     <script src="../assets/js/map-js/custom.js"></script>
-    <!-- Plugins JS Ends-->
-    <!-- Theme js-->
     <script src="../assets/js/script.js"></script>
-    <!-- <script src="../assets/js/theme-customizer/customizer.js"></script> -->
-    <!-- login js-->
-    <!-- Plugin used-->
+
     <%- include('./partials/scripts'); %>
   </body>
 </html>
